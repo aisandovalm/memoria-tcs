@@ -185,11 +185,106 @@ elif sys.argv[1] == 'set_tracking_mode':
 #Funciones Slewing:#
 ####################
 elif sys.argv[1] == 'slew_var_rate':
-	if sys.argv[2] == 'azm_ra':
-		response = telescope.slew_var_rate('azm_ra', 0)
-	elif sys.argv[2] == 'alt_dec':
-		response = telescope.slew_var_rate('alt_dec', 150)
+	response = telescope.slew_var_rate(sys.argv[2], int(sys.argv[3]))
+	print response
 
+elif sys.argv[1] == 'slew_fixed_rate':
+	response = telescope.slew_var_rate(sys.argv[2], int(sys.argv[3]))
+	print response
+
+##########################
+#Funciones Time/location:#
+##########################
+elif sys.argv[1] == 'get_location':
+	response = telescope.get_location()
+	print response
+
+elif sys.argv[1] == 'set_location':
+	response = telescope.set_location(sys.argv[2] + sys.argv[3] + sys.argv[4] + 
+		sys.argv[5] + sys.argv[6] + sys.argv[7] + sys.argv[8] + sys.argv[9])
+	print response
+
+elif sys.argv[1] == 'get_time':
+	response = telescope.get_time()
+	print response
+
+elif sys.argv[1] == 'set_time':
+	response = telescope.set_time(sys.argv[2] + sys.argv[3] + sys.argv[4] + 
+		sys.argv[5] + sys.argv[6] + sys.argv[7] + sys.argv[8] + sys.argv[9])
+	print response
+
+################
+#Funciones GPS:#
+################
+elif sys.argv[1] == 'is_gps_linked':
+	response = telescope.is_gps_linked()
+	print response
+
+elif sys.argv[1] == 'gps_get_latitude':
+	response = telescope.gps_get_latitude(sys.argv[2])
+	print response
+
+elif sys.argv[1] == 'gps_get_longitude':
+	response = telescope.gps_get_longitude(sys.argv[2])
+	print response
+
+elif sys.argv[1] == 'gps_get_date':
+	response = telescope.gps_get_date()
+	print response
+
+elif sys.argv[1] == 'gps_get_time':
+	response = telescope.gps_get_time()
+	print response
+
+############################
+#Funciones RTC (CGE Mount):#
+############################
+elif sys.argv[1] == 'rtc_get_date':
+	response = telescope.rtc_get_date()
+	print response
+
+elif sys.argv[1] == 'rtc_get_time':
+	response = telescope.rtc_get_time()
+	print response	
+
+elif sys.argv[1] == 'rtc_set_date':
+	response = telescope.rtc_set_date(int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
+	print response
+
+elif sys.argv[1] == 'rtc_set_time':
+	response = telescope.rtc_set_time(int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]))
+	print response
+
+
+########################
+#Funciones Misceláneas:#
+########################
+elif sys.argv[1] == 'get_version':
+	response = telescope.get_version()
+	print response
+
+elif sys.argv[1] == 'get_device_version':
+	response = telescope.get_device_version(sys.argv[2])
+	print sys.argv[2] + 'version: ' + response
+
+elif sys.argv[1] == 'get_model':
+	response = telescope.get_model()
+	print response
+
+elif sys.argv[1] == 'echo':
+	response = telescope.echo(sys.argv[2])
+	print response
+
+elif sys.argv[1] == 'is_alignment_complete':
+	response = telescope.is_alignment_complete()
+	print response
+
+elif sys.argv[1] == 'is_goto_in_progress':
+	response = telescope.is_goto_in_progress()
+	print response
+
+elif sys.argv[1] == 'cancel_goto':
+	response = telescope.cancel_goto()
 	print response
 
 #print telescope.get_RA_DEC('degrees')

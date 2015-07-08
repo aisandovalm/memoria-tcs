@@ -374,7 +374,7 @@ def set_location(A, B, C, D, E, F, G, H):
 	command = ('W' + chr(A) + chr(B) + chr(C) + chr(D) + chr(E) + chr(F) + chr(G) + chr(H))
 	nexstar.write(command)
 	response = nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 def get_time():
 	nexstar.write('h')
@@ -605,7 +605,7 @@ def is_alignment_complete():
 	align = ord(response[0])
 	return True if align == 1 else False
 
-def is_goto_in_progess():
+def is_goto_in_progress():
 	nexstar.write('L')
 	response = nexstar.read(2)
 	return True if (int(response[0]) == 1) else False
