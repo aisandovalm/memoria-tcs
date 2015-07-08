@@ -94,12 +94,101 @@ elif sys.argv[1] == 'get_precise_AZM_ALT':
 #########################
 elif sys.argv[1] == 'goto_RA_DEC':
 	if len(sys.argv) == 5: #Se entregan las coordenadas y el formato
-		response = telescope.goto_RA_DEC(sys.argv[2], sys.argv[3], sys.argv[4])
+		response = telescope.goto_RA_DEC(float(sys.argv[2]), float(sys.argv[3]), sys.argv[4])
 	elif len(sys.argv) == 3: #Solo se entrega el formato
 		if sys.argv[2] == 'percent_of_rev':
 			response = telescope.goto_RA_DEC(ra_percent, dec_percent, 'percent_of_rev')
 		elif sys.argv[2] == 'degrees':
 			response = telescope.goto_RA_DEC(ra_degrees, dec_degrees, 'degrees')
+
+	print response
+
+elif sys.argv[1] == 'goto_precise_RA_DEC':
+	if len(sys.argv) == 5: #Se entregan las coordenadas y el formato
+		response = telescope.goto_precise_RA_DEC(float(sys.argv[2]), float(sys.argv[3]), sys.argv[4])
+	elif len(sys.argv) == 3: #Solo se entrega el formato
+		if sys.argv[2] == 'percent_of_rev':
+			response = telescope.goto_precise_RA_DEC(ra_percent, dec_percent, 'percent_of_rev')
+		elif sys.argv[2] == 'degrees':
+			response = telescope.goto_precise_RA_DEC(ra_degrees, dec_degrees, 'degrees')
+
+	print response
+
+elif sys.argv[1] == 'goto_AZM_ALT':
+	if len(sys.argv) == 5: #Se entregan las coordenadas y el formato
+		response = telescope.goto_AZM_ALT(float(sys.argv[2]), float(sys.argv[3]), sys.argv[4])
+	elif len(sys.argv) == 3: #Solo se entrega el formato
+		if sys.argv[2] == 'percent_of_rev':
+			response = telescope.goto_AZM_ALT(azm_percent, alt_percent, 'percent_of_rev')
+		elif sys.argv[2] == 'degrees':
+			response = telescope.goto_AZM_ALT(azm_degrees, alt_degrees, 'degrees')
+
+	print response
+
+elif sys.argv[1] == 'goto_precise_AZM_ALT':
+	if len(sys.argv) == 5: #Se entregan las coordenadas y el formato
+		response = telescope.goto_precise_AZM_ALT(float(sys.argv[2]), float(sys.argv[3]), sys.argv[4])
+	elif len(sys.argv) == 3: #Solo se entrega el formato
+		if sys.argv[2] == 'percent_of_rev':
+			response = telescope.goto_precise_AZM_ALT(azm_percent, alt_percent, 'percent_of_rev')
+		elif sys.argv[2] == 'degrees':
+			response = telescope.goto_precise_AZM_ALT(azm_degrees, alt_degrees, 'degrees')
+
+	print response	
+
+elif sys.argv[1] == 'cancel_goto':
+	response = telescope.cancel_goto()
+	print response
+
+#################
+#Funciones Sync:#
+#################
+elif sys.argv[1] == 'sync_RA_DEC':
+	if len(sys.argv) == 5: #Se entregan las coordenadas y el formato
+		response = telescope.sync_RA_DEC(float(sys.argv[2]), float(sys.argv[3]), sys.argv[4])
+	elif len(sys.argv) == 3: #Solo se entrega el formato
+		if sys.argv[2] == 'percent_of_rev':
+			response = telescope.sync_RA_DEC(0.20573, 0.07346, 'percent_of_rev')
+		elif sys.argv[2] == 'degrees':
+			response = telescope.sync_RA_DEC(74.0628, 26.4456, 'degrees')
+
+	print response	
+
+elif sys.argv[1] == 'sync_precise_RA_DEC':
+	if len(sys.argv) == 5: #Se entregan las coordenadas y el formato
+		response = telescope.sync_precise_RA_DEC(float(sys.argv[2]), float(sys.argv[3]), sys.argv[4])
+	elif len(sys.argv) == 3: #Solo se entrega el formato
+		if sys.argv[2] == 'percent_of_rev':
+			response = telescope.sync_precise_RA_DEC(0.205734550, 0.073456108, 'percent_of_rev')
+		elif sys.argv[2] == 'degrees':
+			response = telescope.sync_precise_RA_DEC(74.064438, 26.44419888, 'degrees')
+
+	print response	
+
+#####################
+#Funciones Tracking:#
+#####################
+	#Tracking modes:
+		# 0 = Off
+		# 1 = Alt/Az
+		# 2 = EQ North
+		# 3 = EQ South
+elif sys.argv[1] == 'get_tracking_mode':
+	response = telescope.get_tracking_mode()
+	print 'Tracking mode: ' + response		
+
+elif sys.argv[1] == 'set_tracking_mode':
+	response = telescope.set_tracking_mode(int(sys.argv[2]))
+	print response
+
+####################
+#Funciones Slewing:#
+####################
+elif sys.argv[1] == 'slew_var_rate':
+	if sys.argv[2] == 'azm_ra':
+		response = telescope.slew_var_rate('azm_ra', 0)
+	elif sys.argv[2] == 'alt_dec':
+		response = telescope.slew_var_rate('alt_dec', 150)
 
 	print response
 

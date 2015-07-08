@@ -40,8 +40,8 @@ def get_precise_RA_DEC(format):
 	nexstar.write('e')
 	response = nexstar.read(18) #Se espera respuesta de 18 bytes
 
-	ra = _hex_to_perc_of_rev(response[0:8])
-	dec = _hex_to_perc_of_rev(response[9:17])
+	ra = _hex_precise_to_perc_of_rev(response[0:8])
+	dec = _hex_precise_to_perc_of_rev(response[9:17])
 
 	if format == 'percent_of_rev':
 		return (ra, dec)
@@ -66,7 +66,7 @@ def get_AZM_ALT(format):
 	elif format == 'degrees':
 		return (azm * 360, alt * 360)
 	elif format == 'DMS':
-		azm_d, azm_m, azm_s  = _dd_to_dms(azm*360)
+		azm_h, azm_m, azm_s  = _dd_to_dms(azm*360)
 		alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
 		return azm_h, azm_m, azm_s, alt_d, alt_m, alt_s
 	else:
@@ -76,15 +76,15 @@ def get_precise_AZM_ALT(format):
 	nexstar.write('z')
 	response = nexstar.read(18) #Se espera respuesta de 18 bytes
 
-	azm = _hex_to_perc_of_rev(response[0:8])
-	alt = _hex_to_perc_of_rev(response[9:17])
+	azm = _hex_precise_to_perc_of_rev(response[0:8])
+	alt = _hex_precise_to_perc_of_rev(response[9:17])
 
 	if format == 'percent_of_rev':
 		return (azm, alt)
 	elif format == 'degrees':
 		return (azm * 360, alt * 360)
 	elif format == 'DMS':
-		azm_d, azm_m, azm_s  = _dd_to_dms(azm*360)
+		azm_h, azm_m, azm_s  = _dd_to_dms(azm*360)
 		alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
 		return azm_h, azm_m, azm_s, alt_d, alt_m, alt_s
 	else:
@@ -239,17 +239,17 @@ def _verify_response(response):
 #################
 #Funciones Sync:#
 #################
-def sync_RA_DEC(format):
+def sync_RA_DEC(ra, dec, format):
 	if format == 'percent_of_rev':
 		command = ('S' + _perc_of_rev_to_hex(ra) + ',' + _perc_of_rev_to_hex(dec))
 	elif format == 'degrees':
 		command = ('S' + _degrees_to_hex(ra) + ',' + _degrees_to_hex(dec))
 
 	nexstar.write(command)
-	response = serial.read(1)
-	_verify_response(response)
+	response = nexstar.read(1)
+	return _verify_response(response)
 
-def sync_precise_RA_DEC(format):
+def sync_precise_RA_DEC(ra, dec, format):
 	if format == 'percent_of_rev':
 		command = ('s' + _perc_of_rev_to_hex_precise(ra) + ',' 
 			+ _perc_of_rev_to_hex_precise(dec))
@@ -258,8 +258,8 @@ def sync_precise_RA_DEC(format):
 			+ _degrees_to_hex_precise(dec))
 
 	nexstar.write(command)
-	response = serial.read(1)
-	_verify_response(response)	
+	response = nexstar.read(1)
+	return _verify_response(response)	
 
 #####################
 #Funciones Tracking:#
@@ -269,15 +269,23 @@ def sync_precise_RA_DEC(format):
 		# 1 = Alt/Az
 		# 2 = EQ North
 		# 3 = EQ South
-def get_tracking_mode(mode):
+def get_tracking_mode():
 	nexstar.write('t')
 	response = nexstar.read(2)
-	return ord(response[0]) #ord(): convierte un char en su valor ASCII
+	if ord(response[0]) == 0: #ord(): convierte un char en su valor ASCII
+		output = '0 = Off'
+	elif ord(response[0]) == 1:
+		output = '1 = Alt/Az'
+	elif ord(response[0]) == 2:
+		output = '2 = EQ North'
+	elif ord(response[0]) == 3:
+		output = '3 = EQ South'
+	return output
 
 def set_tracking_mode(mode):
-	nexstar.write('T' + chr(0)) #chr: concierte ASCII a char
+	nexstar.write('T' + chr(mode)) #chr: convierte ASCII a char
 	response = nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 ####################
 #Funciones Slewing:#
@@ -302,7 +310,7 @@ def slew_var_rate(direction, rate):
 
 	nexstar.write(command)
 	response = nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 def slew_fixed_rate(direction, rate):
 	if direction == 'azm_ra':
@@ -320,7 +328,7 @@ def slew_fixed_rate(direction, rate):
 
 	nexstar.write(command)
 	response = nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 
 ##########################
@@ -400,7 +408,7 @@ def set_time(Q, R, S, U, T, V, W, X):
 	command = ('W' + chr(Q) + chr(R) + chr(S) + chr(T) + chr(U) + chr(V) + chr(W) + chr(X))
 	nexstar.write(command)
 	response =  nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 
 ################
@@ -515,7 +523,7 @@ def rtc_set_date(day, month, year):
 		chr(day) + chr(0) + chr(0))
 	nexstar.write(command)
 	response = nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 	#DUDA CON SET YEAR!
 	#nexstar.write('P' + chr(3) + chr(178) + chr(132) + chr(month) +
@@ -528,7 +536,7 @@ def rtc_set_time(hours, minutes, seconds):
 		chr(hours) + chr(minutes) + chr(seconds) + chr(0))
 	nexstar.write(command)
 	response =  nexstar.read(1)
-	_verify_response(response)
+	return _verify_response(response)
 
 
 ########################
@@ -605,5 +613,5 @@ def is_goto_in_progess():
 def cancel_goto():
 	nexstar.write('M')
 	response = nexstar.read(1)
-	_verify_response(response)	
+	return _verify_response(response)	
 
