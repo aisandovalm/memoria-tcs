@@ -100,11 +100,51 @@ def _hex_precise_to_perc_of_rev(value):
 
 #Grado decimal a Horas:Minutos:Segundos
 def _dd_to_hms(dd):
-	(hfrac, hours) = math.modf(dd)
-	(mfrac, minutes) = math.modf(hfrac * 60)
-	seconds = mfrac * 60.
+	hours = (dd/360.0)*24
+	if 1 <= hours < 10:
+		sHours = "0"+str(hours)[0]
+	elif hours >= 10:
+		sHours = str(hours)[:2]
+	elif hours < 1:
+		sHours = "00"
+
+	if str(hours).find(".") == -1:
+		mins = float(hours)*60.0
+	else:
+		mins = float(str(hours)[str(hours).index("."):])*60.0
+	#if mins<10 and mins>=1:
+	if 1 <= mins<10:
+		sMins = "0"+str(mins)[:1]
+	elif mins >= 10:
+		sMins = str(mins)[:2]
+	elif mins < 1:
+		sMins = "00"
+
+	secs = (hours-(float(sHours)+float(sMins)/60.0))*3600.0
+	#if secs < 10 and secs>0.001:
+	if 0.001 < secs < 10:
+		sSecs = "0"+str(secs)[:str(secs).find(".")+4]
+	elif secs < 0.0001:
+		sSecs = "00.001"
+	else:
+		sSecs = str(secs)[:str(secs).find(".")+4]
+	if len(sSecs) < 5:
+		sSecs = sSecs+"00" # So all to 3dp
+
+	if float(sSecs) == 60.000:
+		sSecs = "00.00"
+		sMins = str(int(sMins)+1)
+	if int(sMins) == 60:
+		sMins = "00"
+		sDeg = str(int(sDeg)+1)
+
+	return int(sHours), int(sMins), float(sSecs)
+
+	#(hfrac, hours) = math.modf(dd)
+	#(mfrac, minutes) = math.modf(hfrac * 60)
+	#seconds = mfrac * 60.
 	#return (str(int(hours)) + 'h' + str(int(minutes)) + 'm' + str(seconds) + 's')
-	return int(hours), int(minutes), seconds
+	#return int(hours), int(minutes), seconds
 
 #Grado decimal a Grados:Arcominutos:Arcosegundos
 def _dd_to_dms(dd):
@@ -227,7 +267,21 @@ def _degrees_to_hex_precise(value):
 #################################################################
 #def goto_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s):
 
+#Horas:Minutos:Segundos a grado decimal
+def _hms_to_dd(h, m, s):
+	first = float(h) + float(m)/60.0 + float(s)/3600.0
+	percent = first / 24
+	degrees = percent * 360
+	return degrees
 
+#Grados:Arcominutos:Arcosegundos a grado decimal
+def _dms_to_dd(d, m, s):
+	if d < 0:
+		degrees = float(d) - float(m)/60.0 - float(s)/3600.0
+	else:
+		degrees = float(d) + float(m)/60.0 + float(s)/3600.0
+
+	return degrees
 
 #Entrega un error si la respuesta del telescopio no es la esperada
 def _verify_response(response):
