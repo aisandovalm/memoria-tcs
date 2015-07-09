@@ -136,6 +136,16 @@ elif sys.argv[1] == 'goto_precise_AZM_ALT':
 
 	print response	
 
+elif sys.argv[1] == 'goto_RA_DEC_hdms':
+	response = telescope.goto_RA_DEC_hdms(float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4]),
+		float(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]))
+	print response
+
+elif sys.argv[1] == 'goto_AZM_ALT_dms':
+	response = telescope.goto_AZM_ALT_dms(float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4]),
+		float(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]))
+	print response
+
 elif sys.argv[1] == 'cancel_goto':
 	response = telescope.cancel_goto()
 	print response
