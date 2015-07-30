@@ -199,7 +199,7 @@ elif sys.argv[1] == 'slew_var_rate':
 	print response
 
 elif sys.argv[1] == 'slew_fixed_rate':
-	response = telescope.slew_var_rate(sys.argv[2], int(sys.argv[3]))
+	response = telescope.slew_fixed_rate(sys.argv[2], int(sys.argv[3]))
 	print response
 
 ##########################
@@ -219,8 +219,9 @@ elif sys.argv[1] == 'get_time':
 	print response
 
 elif sys.argv[1] == 'set_time':
-	response = telescope.set_time(sys.argv[2] + sys.argv[3] + sys.argv[4] + 
-		sys.argv[5] + sys.argv[6] + sys.argv[7] + sys.argv[8] + sys.argv[9])
+	print len(sys.argv)
+	#response = telescope.set_time(sys.argv[2] + sys.argv[3] + sys.argv[4] + sys.argv[5] + sys.argv[6] + sys.argv[7] + sys.argv[8] + sys.argv[9])
+	response = telescope.set_time(18, 30, 0, 22, 7, 15, -3, 0)
 	print response
 
 ################
@@ -275,7 +276,7 @@ elif sys.argv[1] == 'get_version':
 
 elif sys.argv[1] == 'get_device_version':
 	response = telescope.get_device_version(sys.argv[2])
-	print sys.argv[2] + 'version: ' + response
+	print response
 
 elif sys.argv[1] == 'get_model':
 	response = telescope.get_model()

@@ -6,7 +6,7 @@ config = {
     'version': '0.1',   
     'name': 'TCS',
 	'usbresetpath': '/home/pi/tcs/usbreset',
-	'bottle_staticfilepath' : '/home/pi/TCS/static',
+	'bottle_staticfilepath' : '/home/pi/tcs/static',
 	'bottle_port' : 80,
 	'bottle_debug': True,
 	'bottle_reloader': True,

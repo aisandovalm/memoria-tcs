@@ -9,7 +9,7 @@ device = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-i
 #Se establece conexión serial con el Telescopio, la instancia de la conexión se pasa a la variable "nexstar"
 nexstar = serial.Serial(device, baudrate=9600, timeout=1)
 
-check = 'c'
+check = 1
 msg_check = 'Communication problem, check the conections and make sure that the telescope is on'
 msg_format = 'Error: Invalid format'
 
@@ -523,7 +523,7 @@ def get_time():
 def set_time(Q, R, S, U, T, V, W, X):
 	if echo(check) == check:
 		if W < 0:
-			W = 256 - W
+			W = 256 + W
 
 		command = ('W' + chr(Q) + chr(R) + chr(S) + chr(T) + chr(U) + chr(V) + chr(W) + chr(X))
 		nexstar.write(command)
@@ -695,7 +695,7 @@ def get_version():
 	if echo(check) == check:
 		nexstar.write('V')
 		response = nexstar.read(3)
-		return ('Major: ' + response[0] + ', Minor: ' + response[1])
+		return ord(response[0]), ord(response[1])
 	else:
 		return msg_check
 
@@ -716,7 +716,7 @@ def get_device_version(device):
 			chr(0) + chr(0) + chr(2))
 		nexstar.write(command)
 		response = nexstar.read(3)
-		return ('Major: ' + response[0] + ', Minor: ' + response[1])
+		return ord(response[0]), ord(response[1])
 	else:
 		return msg_check
 
@@ -746,6 +746,8 @@ def get_model():
 			return '4/5 SE'
 		elif model == 12:
 			return '6/8 SE'
+		else:
+			return 'Modelo desconocido'
 	else:
 		return msg_check
 
