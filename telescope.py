@@ -29,13 +29,17 @@ def get_RA_DEC(format):
 		dec = _hex_to_perc_of_rev(response[5:9])
 
 		if format == 'percent_of_rev':
-			return ra, dec
+			#return ra, dec
+			return "RA: " + str(ra) + ", DEC: " + str(dec)
 		elif format == 'degrees':
-			return ra * 360, dec * 360
+			#return ra * 360, dec * 360
+			return "RA: " + str(ra*360) + ", DEC: " + str(dec*360)
 		elif format == 'H/DMS':
 			ra_h, ra_m, ra_s  = _dd_to_hms(ra*360)
 			dec_d, dec_m, dec_s = _dd_to_dms(dec*360)
-			return ra_h, ra_m, ra_s, dec_d, dec_m, dec_s
+			#return ra_h, ra_m, ra_s, dec_d, dec_m, dec_s
+			return ("RA: " + str(ra_h) + "h" + str(ra_m) + "m" + str(ra_s) + "s"
+				+ " DEC: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
 		else:
 			return msg_format
 	else:
@@ -196,12 +200,12 @@ def goto_RA_DEC(ra, dec, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progess():
+		while is_goto_in_progress():
 			continue
 		else:
-			print 'GOTO completed'
+			return 'GOTO completed'
 
-		return _verify_response(response)
+		#return _verify_response(response)
 	else:
 		return msg_check
 
@@ -217,7 +221,7 @@ def goto_precise_RA_DEC(ra, dec, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progess():
+		while is_goto_in_progress():
 			continue
 		else:
 			print 'GOTO completed'
@@ -236,7 +240,7 @@ def goto_AZM_ALT(azm, alt, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progess():
+		while is_goto_in_progress():
 			continue
 		else:
 			print 'GOTO completed'
@@ -257,7 +261,7 @@ def goto_precise_AZM_ALT(azm, alt, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progess():
+		while is_goto_in_progress():
 			continue
 		else:
 			print 'GOTO completed'

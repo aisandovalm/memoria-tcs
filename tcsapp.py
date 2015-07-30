@@ -24,18 +24,27 @@ def ajaxtest():
 
 @app.route('/getposition', method='POST')
 def getposition():
-    pos = request.forms.get('coordinates')
-    form = request.forms.get('format')
-    print pos, form
-    return pos, form
+    c = request.forms.get('coordinates')
+    f = request.forms.get('format')
+    if c == "RA/DEC":
+        response = telescope.get_RA_DEC(f)
+    elif c == "precise RA/DEC":
+        response = telescope.get_precise_RA_DEC(f)
+    elif c == "AZM/ALT":
+        response = telescope.get_AZM_ALT(f)
+    elif c == "precise AZM/ALT":
+        response = telescope.get_precise_AZM_ALT(f)
+    print str(response)
+    return str(response)
 
 @app.route('/gotoradec', method='POST')
 def gotoradec():
-    form = request.forms.get('format')
-    ra = request.forms.get('ra')
-    dec = request.forms.get('dec')
-    print form, ra, dec
-    return form, ra, dec
+    f = request.forms.get('format')
+    ra = float(request.forms.get('ra'))
+    dec = float(request.forms.get('dec'))
+    response = telescope.goto_RA_DEC(ra, dec, f)
+    print response
+    return response
 			
 
 bottle.debug(tcs_bottle_config.config['bottle_debug'])

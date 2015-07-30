@@ -12,8 +12,7 @@ $(document).ready(function() {
     });
 
     $('#form_getposition').submit(function(e) {
-        //var coord = $('#coordinates').val();
-        alert($(this).serialize());
+        //alert($(this).serialize());
         $.ajax({
             type: 'POST',
             url: '/getposition',
@@ -26,7 +25,7 @@ $(document).ready(function() {
     });
 
     $('#form_gotoradec').submit(function(e) {
-        alert($(this).serialize());
+        //alert($(this).serialize());
         $.ajax({
             type: 'POST',
             url: '/gotoradec',
