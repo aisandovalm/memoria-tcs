@@ -16,7 +16,6 @@
 	<div id="getposition">
 		<p>GET POSITION</p>
 		<form id="form_getposition" method="POST" action="/getposition">
-			<br>
 			Coordinates:
 			<select name="coordinates">
 			  <option value="RA/DEC">RA/DEC</option>
@@ -44,7 +43,6 @@
 		<div id="radec">
 			<p>RADEC</p>
 			<form id="form_gotoradec" method="POST" action="/gotoradec">
-				<br>
 				Format:
 				<select name="format">
 				  <option value="percent_of_rev">Percentage of revolution</option>
@@ -59,8 +57,170 @@
 
 				<input id="gotoradecButton" type="submit" value="GOTO RADEC" />
 			</form>
-			Estado: <output id="estado"></output>
+			Response: <output id="response"></output>
 		</div>
+		<div id="preciseradec">
+			<p>Precise RADEC</p>
+			<form id="form_gotopreciseradec" method="POST" action="/gotopreciseradec">
+				Format:
+				<select name="format">
+				  <option value="percent_of_rev">Percentage of revolution</option>
+				  <option value="degrees">Degrees</option>
+				</select> 
+				<br>
+				RA:
+				<input name="ra" type="text">
+				<br>
+				DEC:
+				<input name="dec" type="text">
+
+				<input id="gotopreciseradecButton" type="submit" value="GOTO Precise RADEC" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+		<div id="radechdms">
+			<p>RADEC h:m:s °:':" </p>
+			<form id="form_gotoradechdms" method="POST" action="/gotoradechdms">
+				RA:
+				<input name="ra_h" type="text">Hours&nbsp;
+				<input name="ra_m" type="text">Minutes&nbsp;
+				<input name="ra_s" type="text">Seconds
+				<br> 
+				DEC:
+				<input name="dec_d" type="text">Degrees&nbsp;
+				<input name="dec_m" type="text">Arcminutes&nbsp;
+				<input name="dec_s" type="text">Arcseconds
+
+				<input id="gotoradechdmsButton" type="submit" value="GOTO RADEC hdms" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+		<div id="azmalt">
+			<p>AZM-ALT</p>
+			<form id="form_gotoazmalt" method="POST" action="/gotoazmalt">
+				Format:
+				<select name="format">
+				  <option value="percent_of_rev">Percentage of revolution</option>
+				  <option value="degrees">Degrees</option>
+				</select> 
+				<br>
+				AZM:
+				<input name="azm" type="text">
+				<br>
+				ALT:
+				<input name="alt" type="text">
+
+				<input id="gotoazmaltButton" type="submit" value="GOTO AZM-ALT" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+		<div id="preciseazmalt">
+			<p>AZM-ALT</p>
+			<form id="form_gotopreciseazmalt" method="POST" action="/gotopreciseazmalt">
+				Format:
+				<select name="format">
+				  <option value="percent_of_rev">Percentage of revolution</option>
+				  <option value="degrees">Degrees</option>
+				</select> 
+				<br>
+				AZM:
+				<input name="azm" type="text">
+				<br>
+				ALT:
+				<input name="alt" type="text">
+
+				<input id="gotopreciseazmaltButton" type="submit" value="GOTO Precise AZM-ALT" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+		<div id="azmaltdms">
+			<p>AZM-ALT °:':" </p>
+			<form id="form_gotoazmaltdms" method="POST" action="/gotoazmaltdms">
+				AZM:
+				<input name="azm_d" type="text">Degrees&nbsp;
+				<input name="azm_m" type="text">Arcminutes&nbsp;
+				<input name="azm_s" type="text">Arcseconds
+				<br> 
+				ALT:
+				<input name="alt_d" type="text">Degrees&nbsp;
+				<input name="alt_m" type="text">Arcminutes&nbsp;
+				<input name="alt_s" type="text">Arcseconds
+
+				<input id="gotoazmaltdmsButton" type="submit" value="GOTO AZM-ALT dms" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+	</div>
+
+
+	<!-- SYNC section -->
+	<div id="sync">
+		<p>SYNC</p>
+		<div id="syncradec">
+			<p>RADEC</p>
+			<form id="form_syncradec" method="POST" action="/syncradec">
+				Format:
+				<select name="format">
+				  <option value="percent_of_rev">Percentage of revolution</option>
+				  <option value="degrees">Degrees</option>
+				</select> 
+				<br>
+				RA:
+				<input name="ra" type="text">
+				<br>
+				DEC:
+				<input name="dec" type="text">
+
+				<input id="syncradecButton" type="submit" value="SYNC RADEC" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+		<div id="syncpreciseradec">
+			<p>Precise RADEC</p>
+			<form id="form_syncpreciseradec" method="POST" action="/syncpreciseradec">
+				Format:
+				<select name="format">
+				  <option value="percent_of_rev">Percentage of revolution</option>
+				  <option value="degrees">Degrees</option>
+				</select> 
+				<br>
+				RA:
+				<input name="ra" type="text">
+				<br>
+				DEC:
+				<input name="dec" type="text">
+
+				<input id="syncpreciseradecButton" type="submit" value="SYNC Precise RADEC" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+		<div id="syncradechdms">
+			<p>RADEC h:m:s °:':" </p>
+			<form id="form_syncradechdms" method="POST" action="/syncradechdms">
+				RA:
+				<input name="ra_h" type="text">Hours&nbsp;
+				<input name="ra_m" type="text">Minutes&nbsp;
+				<input name="ra_s" type="text">Seconds
+				<br> 
+				DEC:
+				<input name="dec_d" type="text">Degrees&nbsp;
+				<input name="dec_m" type="text">Arcminutes&nbsp;
+				<input name="dec_s" type="text">Arcseconds
+
+				<input id="syncradechdmsButton" type="submit" value="SYNC RADEC hdms" />
+			</form>
+			Response: <output id="response"></output>
+		</div>
+	</div>
+
+	<!-- Tracking section -->
+	<div id="tracking">
+		<p>TRACKING</p>
+		<form id="form_gettrackingmode" method="POST" action="/gettrackingmode">
+			<input id="gettrackingmodeButton" type="button" value="Get tracking mode" />
+		</form>
+		Tracking mode: <output id="trackingmode"></output>
+		<!--<p id="position"></p>-->
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

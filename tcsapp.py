@@ -23,7 +23,7 @@ def ajaxtest():
     return "You didn't type anything."
 
 @app.route('/getposition', method='POST')
-def getposition():
+def get_position():
     c = request.forms.get('coordinates')
     f = request.forms.get('format')
     if c == "RA/DEC":
@@ -38,11 +38,92 @@ def getposition():
     return str(response)
 
 @app.route('/gotoradec', method='POST')
-def gotoradec():
+def goto_radec():
     f = request.forms.get('format')
     ra = float(request.forms.get('ra'))
     dec = float(request.forms.get('dec'))
     response = telescope.goto_RA_DEC(ra, dec, f)
+    print response
+    return response
+
+@app.route('/gotopreciseradec', method='POST')
+def goto_preciseradec():
+    f = request.forms.get('format')
+    ra = float(request.forms.get('ra'))
+    dec = float(request.forms.get('dec'))
+    response = telescope.goto_precise_RA_DEC(ra, dec, f)
+    print response
+    return response
+
+@app.route('/gotoradechdms', method='POST')
+def goto_radechdms():
+    ra_h = float(request.forms.get('ra_h'))
+    ra_m = float(request.forms.get('ra_m'))
+    ra_s = float(request.forms.get('ra_s'))
+    dec_d = float(request.forms.get('dec_d'))
+    dec_m = float(request.forms.get('dec_m'))
+    dec_s = float(request.forms.get('dec_s'))
+    response = telescope.goto_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s)
+    print response
+    return response
+
+@app.route('/gotoazmalt', method='POST')
+def goto_azmalt():
+    f = request.forms.get('format')
+    azm = float(request.forms.get('azm'))
+    alt = float(request.forms.get('alt'))
+    response = telescope.goto_AZM_ALT(azm, alt, f)
+    print response
+    return response  
+
+@app.route('/gotopreciseazmalt', method='POST')
+def goto_preciseazmalt():
+    f = request.forms.get('format')
+    azm = float(request.forms.get('azm'))
+    alt = float(request.forms.get('alt'))
+    response = telescope.goto_precise_AZM_ALT(azm, alt, f)
+    print response
+    return response
+
+@app.route('/gotoazmaltdms', method='POST')
+def goto_azmaltdms():
+    azm_d = float(request.forms.get('azm_d'))
+    azm_m = float(request.forms.get('azm_m'))
+    azm_s = float(request.forms.get('azm_s'))
+    alt_d = float(request.forms.get('alt_d'))
+    alt_m = float(request.forms.get('alt_m'))
+    alt_s = float(request.forms.get('alt_s'))
+    response = telescope.goto_AZM_ALT_dms(azm_d, azm_m, azm_s, alt_d, alt_m, alt_s)
+    print response
+    return response
+
+@app.route('/syncradec', method='POST')
+def sync_radec():
+    f = request.forms.get('format')
+    ra = float(request.forms.get('ra'))
+    dec = float(request.forms.get('dec'))
+    response = telescope.sync_RA_DEC(ra, dec, f)
+    print response
+    return response
+
+@app.route('/syncpreciseradec', method='POST')
+def sync_preciseradec():
+    f = request.forms.get('format')
+    ra = float(request.forms.get('ra'))
+    dec = float(request.forms.get('dec'))
+    response = telescope.sync_precise_RA_DEC(ra, dec, f)
+    print response
+    return response
+
+@app.route('/syncradechdms', method='POST')
+def sync_radechdms():
+    ra_h = float(request.forms.get('ra_h'))
+    ra_m = float(request.forms.get('ra_m'))
+    ra_s = float(request.forms.get('ra_s'))
+    dec_d = float(request.forms.get('dec_d'))
+    dec_m = float(request.forms.get('dec_m'))
+    dec_s = float(request.forms.get('dec_s'))
+    response = telescope.sync_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s)
     print response
     return response
 			

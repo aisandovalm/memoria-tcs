@@ -10,8 +10,9 @@ device = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-i
 nexstar = serial.Serial(device, baudrate=9600, timeout=1)
 
 check = 1
-msg_check = 'Communication problem, check the conections and make sure that the telescope is on'
-msg_format = 'Error: Invalid format'
+msg_error_check = 'Communication problem, check the conections and make sure that the telescope is on'
+msg_error_format = 'Error: Invalid format'
+msg_error_goto = 'Error: A problem has ocurred with the GOTO command, check the values and try again'
 
 ###########################################################################
 #Funciones Get Position:												  #
@@ -41,9 +42,9 @@ def get_RA_DEC(format):
 			return ("RA: " + str(ra_h) + "h" + str(ra_m) + "m" + str(ra_s) + "s"
 				+ " DEC: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
 		else:
-			return msg_format
+			return msg_error_format
 	else:
-		return msg_check
+		return msg_error_check
 
 
 
@@ -64,9 +65,9 @@ def get_precise_RA_DEC(format):
 			dec_d, dec_m, dec_s = _dd_to_dms(dec*360)
 			return ra_h, ra_m, ra_s, dec_d, dec_m, dec_s
 		else:
-			return msg_format
+			return msg_error_format
 	else:
-		return msg_check
+		return msg_error_check
 
 def get_AZM_ALT(format):
 	if echo(check) == check:
@@ -85,9 +86,9 @@ def get_AZM_ALT(format):
 			alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
 			return azm_h, azm_m, azm_s, alt_d, alt_m, alt_s
 		else:
-			return msg_format
+			return msg_error_format
 	else:
-		return msg_check
+		return msg_error_check
 
 def get_precise_AZM_ALT(format):
 	if echo(check) == check:
@@ -106,9 +107,9 @@ def get_precise_AZM_ALT(format):
 			alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
 			return azm_h, azm_m, azm_s, alt_d, alt_m, alt_s
 		else:
-			return msg_format
+			return msg_error_format
 	else:
-		return msg_check
+		return msg_error_check
 
 #Valor hexadecimal a fracción de revolución
 def _hex_to_perc_of_rev(value):
@@ -179,7 +180,7 @@ def _dd_to_dms(dd):
 			minutes = -minutes
 		else:
 			seconds = -seconds
-	#return str(degrees) + '°' + str(minutes) + "'" + str(seconds) + '"'
+
 	return int(degrees), int(minutes), seconds
 
 #################################################################
@@ -200,14 +201,15 @@ def goto_RA_DEC(ra, dec, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progress():
-			continue
+		if response == "#":
+			while is_goto_in_progress():
+				continue
+			else:
+				return 'GOTO completed'
 		else:
-			return 'GOTO completed'
-
-		#return _verify_response(response)
+			return msg_error_goto
 	else:
-		return msg_check
+		return msg_error_check
 
 def goto_precise_RA_DEC(ra, dec, format):
 	if echo(check) == check:
@@ -221,14 +223,16 @@ def goto_precise_RA_DEC(ra, dec, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progress():
-			continue
+		if response == "#":
+			while is_goto_in_progress():
+				continue
+			else:
+				return 'GOTO completed'
 		else:
-			print 'GOTO completed'
+			return msg_error_goto
 
-		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def goto_AZM_ALT(azm, alt, format):
 	if echo(check) == check:
@@ -240,14 +244,16 @@ def goto_AZM_ALT(azm, alt, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progress():
-			continue
+		if response == "#":
+			while is_goto_in_progress():
+				continue
+			else:
+				return 'GOTO completed'
 		else:
-			print 'GOTO completed'
+			return msg_error_goto
 
-		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def goto_precise_AZM_ALT(azm, alt, format):
 	if echo(check) == check:
@@ -261,14 +267,16 @@ def goto_precise_AZM_ALT(azm, alt, format):
 		nexstar.write(command)
 		response = nexstar.read(1)
 
-		while is_goto_in_progress():
-			continue
+		if response == "#":
+			while is_goto_in_progress():
+				continue
+			else:
+				return 'GOTO completed'
 		else:
-			print 'GOTO completed'
+			return msg_error_goto
 
-		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def _perc_of_rev_to_hex(value):
 	return '%04X' % round(value * 2.**16)
@@ -344,9 +352,10 @@ def sync_RA_DEC(ra, dec, format):
 
 		nexstar.write(command)
 		response = nexstar.read(1)
+
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def sync_precise_RA_DEC(ra, dec, format):
 	if echo(check) == check:
@@ -361,7 +370,13 @@ def sync_precise_RA_DEC(ra, dec, format):
 		response = nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
+
+def sync_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s):
+	ra_dd = _hms_to_dd(ra_h, ra_m, ra_s)
+	dec_dd = _dms_to_dd(dec_d, dec_m,dec_s)
+
+	return sync_precise_RA_DEC(ra_dd, dec_dd, 'degrees')
 
 #####################
 #Funciones Tracking:#
@@ -385,7 +400,7 @@ def get_tracking_mode():
 			output = '3 = EQ South'
 		return output
 	else:
-		return msg_check
+		return msg_error_check
 
 def set_tracking_mode(mode):
 	if echo(check) == check:
@@ -393,7 +408,7 @@ def set_tracking_mode(mode):
 		response = nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 ####################
 #Funciones Slewing:#
@@ -421,7 +436,7 @@ def slew_var_rate(direction, rate):
 		response = nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def slew_fixed_rate(direction, rate):
 	if echo(check) == check:
@@ -442,7 +457,7 @@ def slew_fixed_rate(direction, rate):
 		response = nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 
 ##########################
@@ -485,7 +500,7 @@ def get_location():
 
 		return (latitude + ',' + longitude)
 	else:
-		return msg_check
+		return msg_error_check
 
 def set_location(A, B, C, D, E, F, G, H):
 	if echo(check) == check:
@@ -494,7 +509,7 @@ def set_location(A, B, C, D, E, F, G, H):
 		response = nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def get_time():
 	if echo(check) == check:
@@ -521,7 +536,7 @@ def get_time():
 			str(U) + '/' + str(T) + '/' + str(V) + ' ' +
 			time_zone + ' ' + time_type)
 	else:
-		return msg_check
+		return msg_error_check
 
 #Se recibe Time con el siguiente formato: (HH,MM,SS,DD,MM,YY,GMT_Offset,type) 
 def set_time(Q, R, S, U, T, V, W, X):
@@ -534,7 +549,7 @@ def set_time(Q, R, S, U, T, V, W, X):
 		response =  nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 
 ################
@@ -554,7 +569,7 @@ def is_gps_linked():
 
 		return output
 	else:
-		msg_check
+		msg_error_check
 
 def gps_get_latitude(format):
 	if echo(check) == check:
@@ -571,7 +586,7 @@ def gps_get_latitude(format):
 		elif format == 'degrees':
 			return latitude * 360
 	else:
-		return msg_check
+		return msg_error_check
 
 def gps_get_longitude(format):
 	if echo(check) == check:
@@ -588,7 +603,7 @@ def gps_get_longitude(format):
 		elif format == 'degrees':
 			return longitude * 360
 	else:
-		return msg_check
+		return msg_error_check
 
 def gps_get_date():
 	if echo(check) == check:
@@ -609,7 +624,7 @@ def gps_get_date():
 
 		return (str(day) + '/' + str(month) + '/' + str(year))
 	else:
-		return msg_check
+		return msg_error_check
 
 def gps_get_time():
 	if echo(check) == check:
@@ -624,7 +639,7 @@ def gps_get_time():
 
 		return (str(hours) + ':' + str(minutes) + ':' + str(seconds))
 	else:
-		return msg_check
+		return msg_error_check
 
 
 ############################
@@ -648,7 +663,7 @@ def rtc_get_date():
 
 		return (str(day) + '/' + str(month) + '/' + str(year))
 	else:
-		return msg_check
+		return msg_error_check
 
 def rtc_get_time():
 	if echo(check) == check:
@@ -663,7 +678,7 @@ def rtc_get_time():
 
 		return (str(hours) + ':' + str(minutes) + ':' + str(seconds))
 	else:
-		return msg_check
+		return msg_error_check
 
 def rtc_set_date(day, month, year):
 	if echo(check) == check:
@@ -679,7 +694,7 @@ def rtc_set_date(day, month, year):
 		#response = nexstar.read(1)
 		#_verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 def rtc_set_time(hours, minutes, seconds):
 	if echo(check) == check:
@@ -689,7 +704,7 @@ def rtc_set_time(hours, minutes, seconds):
 		response =  nexstar.read(1)
 		return _verify_response(response)
 	else:
-		return msg_check
+		return msg_error_check
 
 
 ########################
@@ -701,7 +716,7 @@ def get_version():
 		response = nexstar.read(3)
 		return ord(response[0]), ord(response[1])
 	else:
-		return msg_check
+		return msg_error_check
 
 def get_device_version(device):
 	if echo(check) == check:
@@ -722,7 +737,7 @@ def get_device_version(device):
 		response = nexstar.read(3)
 		return ord(response[0]), ord(response[1])
 	else:
-		return msg_check
+		return msg_error_check
 
 def get_model():
 	if echo(check) == check:
@@ -753,7 +768,7 @@ def get_model():
 		else:
 			return 'Modelo desconocido'
 	else:
-		return msg_check
+		return msg_error_check
 
 #Para chequear comunicación
 def echo(x):
