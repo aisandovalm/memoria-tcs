@@ -498,7 +498,7 @@ def get_location():
 		H = 'E' if ord(response[3]) == 0 else 'W'
 		longitude = (str(E) + '°' + str(F) + "'" + str(G) + '"' + str(H))
 
-		return (latitude + ',' + longitude)
+		return (latitude + ', ' + longitude)
 	else:
 		return msg_error_check
 

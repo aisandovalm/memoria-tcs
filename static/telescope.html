@@ -57,7 +57,7 @@
 
 				<input id="gotoradecButton" type="submit" value="GOTO RADEC" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_gotoradec"></output>
 		</div>
 		<div id="preciseradec">
 			<p>Precise RADEC</p>
@@ -76,7 +76,7 @@
 
 				<input id="gotopreciseradecButton" type="submit" value="GOTO Precise RADEC" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_gotopreciseradec"></output>
 		</div>
 		<div id="radechdms">
 			<p>RADEC h:m:s °:':" </p>
@@ -93,7 +93,7 @@
 
 				<input id="gotoradechdmsButton" type="submit" value="GOTO RADEC hdms" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_gotoradechdms"></output>
 		</div>
 		<div id="azmalt">
 			<p>AZM-ALT</p>
@@ -112,7 +112,7 @@
 
 				<input id="gotoazmaltButton" type="submit" value="GOTO AZM-ALT" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_gotoazmalt"></output>
 		</div>
 		<div id="preciseazmalt">
 			<p>AZM-ALT</p>
@@ -131,7 +131,7 @@
 
 				<input id="gotopreciseazmaltButton" type="submit" value="GOTO Precise AZM-ALT" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_gotopreciseazmalt"></output>
 		</div>
 		<div id="azmaltdms">
 			<p>AZM-ALT °:':" </p>
@@ -148,7 +148,7 @@
 
 				<input id="gotoazmaltdmsButton" type="submit" value="GOTO AZM-ALT dms" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_gotoazmaltdms"></output>
 		</div>
 	</div>
 
@@ -173,7 +173,7 @@
 
 				<input id="syncradecButton" type="submit" value="SYNC RADEC" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_syncradec"></output>
 		</div>
 		<div id="syncpreciseradec">
 			<p>Precise RADEC</p>
@@ -192,7 +192,7 @@
 
 				<input id="syncpreciseradecButton" type="submit" value="SYNC Precise RADEC" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_syncpreciseradec"></output>
 		</div>
 		<div id="syncradechdms">
 			<p>RADEC h:m:s °:':" </p>
@@ -209,20 +209,100 @@
 
 				<input id="syncradechdmsButton" type="submit" value="SYNC RADEC hdms" />
 			</form>
-			Response: <output id="response"></output>
+			Telescope response: <output id="response_syncradechdms"></output>
 		</div>
 	</div>
 
 	<!-- Tracking section -->
 	<div id="tracking">
 		<p>TRACKING</p>
-		<form id="form_gettrackingmode" method="POST" action="/gettrackingmode">
-			<input id="gettrackingmodeButton" type="button" value="Get tracking mode" />
-		</form>
-		Tracking mode: <output id="trackingmode"></output>
-		<!--<p id="position"></p>-->
+		<div id="gettrackingmode">
+			<p>Get tracking mode</p>
+			<form id="form_gettrackingmode" method="POST" action="/gettrackingmode">
+				<input id="gettrackingmodeButton" type="submit" value="Get tracking mode" />
+			</form>
+			Tracking mode: <output id="response_gettrackingmode"></output>
+		</div>	
+		<div id="settrackingmode">
+			<p>Set tracking mode</p>
+			<form id="form_settrackingmode" method="POST" action="/settrackingmode">
+				<select name="trackingmode">
+				  <option value="0">Off</option>
+				  <option value="1">Alt/Azm</option>
+				  <option value="2">EQ North</option>
+				  <option value="3">EQ South</option>
+				</select> 
+
+				<input id="settrackingmodeButton" type="submit" value="Set tracking mode" />
+			</form>
+			Telescope response: <output id="response_settrackingmode"></output>
+		</div>	
 	</div>
 
+	<!-- Slewing section -->
+	<div id="slewing">
+		<p>SLEWING</p>
+		<form id="form_slewing" method="POST" action="/slewing">
+			<select name="direction">
+			  <option value="azm_ra">Azm-Ra</option>
+			  <option value="alt_dec">Alt-Dec</option>
+			</select> 
+			<select name="ratetype">
+			  <option value="var">Variable</option>
+			  <option value="fixed">Fixed</option>
+			</select> 
+			Rate:
+			<input name="rate" type="text">
+			<input id="slewingButton" type="submit" value="Slew" />
+		</form>
+		Telescope response: <output id="response_slewing"></output>
+	</div>
+
+	<!-- Location/Time section -->
+	<div id="locationtime">
+		<p>Location/Time</p>
+		<div id="getlocation">
+			<p>Get location</p>
+			<form id="form_getlocation" method="POST" action="/getlocation">
+				<input id="getlocationButton" type="submit" value="Get location">
+			</form>
+			Location: <output id="location"></output>
+		</div>
+
+		<div id="setlocation">
+			<p>Set location</p>
+			<form id="form_setlocation" method="POST" action="/setlocation">
+				Latitud:<br>
+				<input name="a" type="text">Degrees&nbsp;
+				<input name="b" type="text">Arcminutes&nbsp;
+				<input name="c" type="text">Arcseconds&nbsp;
+				<select name="d">
+				  <option value="0">North</option>
+				  <option value="1">South</option>
+				</select> 
+				<br> 
+				Longitud:<br>
+				<input name="e" type="text">Degrees&nbsp;
+				<input name="f" type="text">Arcminutes&nbsp;
+				<input name="g" type="text">Arcseconds&nbsp;
+				<select name="h">
+				  <option value="0">East</option>
+				  <option value="1">West</option>
+				</select> 
+
+				<input id="setlocationButton" type="submit" value="Set location" />
+			</form>
+			Telescope response: <output id="response_setlocation"></output>
+		</div>
+
+		<div id="getlocation">
+			<p>Get time</p>
+			<form id="form_gettime" method="POST" action="/gettime">
+				<input id="gettimeButton" type="submit" value="Get time">
+			</form>
+			Time: <output id="time"></output>
+		</div>
+	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="telescope.js"></script>
 </body>

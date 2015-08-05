@@ -31,7 +31,7 @@ $(document).ready(function() {
             url: '/gotoradec',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_gotoradec').html(response);
             }
         });
         e.preventDefault();
@@ -44,7 +44,7 @@ $(document).ready(function() {
             url: '/gotopreciseradec',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_gotopreciseradec').html(response);
             }
         });
         e.preventDefault();
@@ -57,7 +57,7 @@ $(document).ready(function() {
             url: '/gotoradechdms',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_gotoradechdms').html(response);
             }
         });
         e.preventDefault();
@@ -70,7 +70,7 @@ $(document).ready(function() {
             url: '/gotoazmalt',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_gotoazmalt').html(response);
             }
         });
         e.preventDefault();
@@ -83,7 +83,7 @@ $(document).ready(function() {
             url: '/gotopreciseazmalt',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_gotopreciseazmalt').html(response);
             }
         });
         e.preventDefault();
@@ -96,7 +96,7 @@ $(document).ready(function() {
             url: '/gotoazmaltdms',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_gotoazmaltdms').html(response);
             }
         });
         e.preventDefault();
@@ -109,7 +109,7 @@ $(document).ready(function() {
             url: '/syncradec',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_syncradec').html(response);
             }
         });
         e.preventDefault();
@@ -122,7 +122,7 @@ $(document).ready(function() {
             url: '/syncpreciseradec',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_syncpreciseradec').html(response);
             }
         });
         e.preventDefault();
@@ -135,18 +135,79 @@ $(document).ready(function() {
             url: '/syncradechdms',
             data: $(this).serialize(),
             success: function(response) {
-                $('#response').html(response);
+                $('#response_syncradechdms').html(response);
             }
         });
         e.preventDefault();
     });
 
-    $('#gettrackingmodeButton').submit(function(e) {
+    $('#form_gettrackingmode').submit(function(e) {
         $.ajax({
             type: 'POST',
             url: '/gettrackingmode',
+            data: $(this).serialize(),
             success: function(response) {
-                $('#trackingmode').html(response);
+                $('#response_gettrackingmode').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_settrackingmode').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/settrackingmode',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_settrackingmode').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_slewing').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/slewing',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_slewing').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_getlocation').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/getlocation',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#location').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_setlocation').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/setlocation',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_setlocation').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_gettime').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/gettime',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#time').html(response);
             }
         });
         e.preventDefault();

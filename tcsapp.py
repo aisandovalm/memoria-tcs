@@ -126,7 +126,59 @@ def sync_radechdms():
     response = telescope.sync_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s)
     print response
     return response
+
+@app.route('/gettrackingmode', method='POST')
+def get_trackingmode():
+    response = telescope.get_tracking_mode()
+    print response
+    return response
+
+@app.route('/settrackingmode', method='POST')
+def set_trackingmode():
+    mode = int(request.forms.get('trackingmode'))
+    response = telescope.set_tracking_mode(mode)
+    print response
+    return response
+
+@app.route('/slewing', method='POST')
+def slewing():
+    rate_type = request.forms.get('ratetype')
+    direction = request.forms.get('direction')
+    rate = int(request.forms.get('rate'))
+
+    if rate_type == 'var':
+        response = telescope.slew_var_rate(direction, rate)
+    else:
+        response = telescope.slew_fixed_rate(direction, rate)
+
+    print response
+    return response
+
+@app.route('/getlocation', method='POST')
+def getlocation():
+    response = telescope.get_location()
+    print response
+    return response
 			
+@app.route('/setlocation', method='POST')
+def setlocation():
+    a = int(request.forms.get('a'))
+    b = int(request.forms.get('b'))
+    c = int(request.forms.get('c'))
+    d = int(request.forms.get('d'))
+    e = int(request.forms.get('e'))
+    f = int(request.forms.get('f'))
+    g = int(request.forms.get('g'))
+    h = int(request.forms.get('h'))
+    response = telescope.set_location(a, b, c, d, e, f, g, h)
+    print response
+    return response
+
+@app.route('/gettime', method='POST')
+def gettime():
+    response = telescope.get_time()
+    print response
+    return response
 
 bottle.debug(tcs_bottle_config.config['bottle_debug'])
 run(app, host=tcs_bottle_config.config['bottle_ip'], port=tcs_bottle_config.config['bottle_port'], reloader=tcs_bottle_config.config['bottle_reloader'])
