@@ -302,7 +302,112 @@
 			</form>
 			Time: <output id="time"></output>
 		</div>
+
+		<div id="settime">
+			<p>Set time</p>
+			<form id="form_settime" method="POST" action="/settime">
+				Time:<br>
+				<input name="q" type="text">Hours&nbsp;
+				<input name="r" type="text">Minutes&nbsp;
+				<input name="s" type="text">Seconds&nbsp;
+				<br> 
+				Date:<br>
+				<input name="t" type="text">Months&nbsp;
+				<input name="u" type="text">Day&nbsp;
+				<input name="v" type="text">Year&nbsp;
+				<input name="w" type="text">Offset from GMT (Santiago, Chile = GMT-3)&nbsp;
+				<select name="x">
+				  <option value="0">Standard time</option>
+				  <option value="1">Daylight savings</option>
+				</select> 
+				<input id="settimeButton" type="submit" value="Set time" />
+			</form>
+			Telescope response: <output id="response_settime"></output>
+		</div>
 	</div>
+
+	<!-- GPS section -->
+	<div id="gps">
+		<p>GPS</p>
+		<form id="form_gpscheck" method="POST" action="/gpscheck">
+			<input id="gpscheckButton" type="submit" value="Check GPS" />
+			GPS response: <output id="response_gpscheck"></output>
+		</form>		
+
+		<form id="form_gpsgetlatitude" method="POST" action="/gpsgetlatitude">
+			<input id="gpsgetlatitudeButton" type="submit" value="Get latitude" />
+			Latitude: <output id="response_gpsgetlatitude"></output>
+		</form>	
+
+		<form id="form_gpsgetlongitude" method="POST" action="/gpsgetlongitude">
+			<input id="gpsgetlongitudeButton" type="submit" value="Get longitude" />
+			Longitude: <output id="response_gpsgetlongitude"></output>
+		</form>
+
+		<form id="form_gpsgetdate" method="POST" action="/gpsgetdate">
+			<input id="gpsgetdateButton" type="submit" value="Get date" />
+			Date: <output id="response_gpsgetdate"></output>
+		</form>
+
+		<form id="form_gpsgettime" method="POST" action="/gpsgettime">
+			<input id="gpsgettimeButton" type="submit" value="Get time" />
+			Time: <output id="response_gpsgettime"></output>
+		</form>
+	</div>
+
+	<!-- RTC section -->
+	<div id="rtc">
+		<p>RTC</p>
+		<form id="form_rtcgetdate" method="POST" action="/rtcgetdate">
+			<input id="rtcgetdateButton" type="submit" value="Get date" />
+			Date: <output id="response_rtcgetdate"></output>
+		</form>
+
+		<form id="form_rtcgettime" method="POST" action="/rtcgettime">
+			<input id="rtcgettimeButton" type="submit" value="Get time" />
+			Time: <output id="response_rtcgettime"></output>
+		</form>
+
+		<form id="form_rtcsetdate" method="POST" action="/rtcsetdate">
+			Date:<br>
+			<input name="day" type="text">Day&nbsp;
+			<input name="month" type="text">Month&nbsp;
+			<input name="year" type="text">Year&nbsp;
+			
+			<input id="rtcsetdateButton" type="submit" value="Set date" />
+		</form>
+		RTC response: <output id="response_rtcsettime"></output>
+
+		<form id="form_rtcsettime" method="POST" action="/rtcsettime">
+			Time:<br>
+			<input name="hours" type="text">Hours&nbsp;
+			<input name="minutes" type="text">Minutes&nbsp;
+			<input name="seconds" type="text">Seconds&nbsp;
+			
+			<input id="rtcsettimeButton" type="submit" value="Set time" />
+		</form>
+		RTC response: <output id="response_rtcsettime"></output>
+	</div>
+
+	<!-- General section -->
+	<div id="general">
+		<p>General info</p>
+		<form id="form_version" method="POST" action="/version">
+			<input id="versionButton" type="submit" value="Version" />
+			Version: <output id="response_version"></output>
+		</form>		
+
+		<form id="form_deviceversion" method="POST" action="/deviceversion">
+			<input id="deviceversionButton" type="submit" value="Device version" />
+			Device version: <output id="response_deviceversion"></output>
+		</form>
+
+		<form id="form_model" method="POST" action="/model">
+			<input id="modelButton" type="submit" value="Model" />
+			Model: <output id="response_model"></output>
+		</form>
+	</div>
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="telescope.js"></script>
 </body>

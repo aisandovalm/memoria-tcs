@@ -212,4 +212,160 @@ $(document).ready(function() {
         });
         e.preventDefault();
     });
+
+    $('#form_settime').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: 'settime',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_settime').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_gpscheck').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/gpscheck',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_gpscheck').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_gpsgetlatitude').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/gpsgetlatitude',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_gpsgetlatitude').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_gpsgetlongitude').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/gpsgetlongitude',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_gpsgetlongitude').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_gpsgetdate').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/gpsgetdate',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_gpsgetdate').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_gpsgettime').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/gpsgettime',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_gpsgettime').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_rtcgetdate').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/rtcgetdate',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_rtcgetdate').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_rtcgettime').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/rtcgettime',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_rtcgettime').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_rtcsetdate').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/rtcsetdate',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_rtcsetdate').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_rtcsettime').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/rtcsettime',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_rtcsettime').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_version').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/version',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_version').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_deviceversion').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/deviceversion',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_deviceversion').html(response);
+            }
+        });
+        e.preventDefault();
+    });
+
+    $('#form_model').submit(function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/model',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#response_model').html(response);
+            }
+        });
+        e.preventDefault();
+    });
 });

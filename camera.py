@@ -15,6 +15,11 @@ def get_config(param):
 	execute_response = _execute_command(command)
 	return execute_response
 
+def get_actual_general_config():
+
+def get_actual_image_config():
+
+
 def set_config(param, value):
 	command = ['--set-config', param, value]
 	execute_response = _execute_command(command)

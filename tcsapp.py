@@ -22,6 +22,10 @@ def ajaxtest():
         return theText
     return "You didn't type anything."
 
+###################################################
+############# TELESCOPE ###########################
+###################################################
+
 @app.route('/getposition', method='POST')
 def get_position():
     c = request.forms.get('coordinates')
@@ -159,7 +163,7 @@ def getlocation():
     response = telescope.get_location()
     print response
     return response
-			
+            
 @app.route('/setlocation', method='POST')
 def setlocation():
     a = int(request.forms.get('a'))
@@ -179,6 +183,139 @@ def gettime():
     response = telescope.get_time()
     print response
     return response
+
+@app.route('/settime', method='POST')
+def settime():
+    q = int(request.forms.get('q'))
+    r = int(request.forms.get('r'))
+    s = int(request.forms.get('s'))
+    t = int(request.forms.get('t'))
+    u = int(request.forms.get('u'))
+    v = int(request.forms.get('v'))
+    w = int(request.forms.get('w'))
+    x = int(request.forms.get('x'))
+    response = telescope.set_time(q,r,s,t,u,v,w,x)
+    print response
+    return response
+
+@app.route('/gpscheck', method='POST')
+def gps_check():
+    response = telescope.is_gps_linked()
+    print response
+    return response
+
+@app.route('/gpsgetlatitude', method='POST')
+def gps_getlatitude():
+    response = telescope.gps_get_latitude()
+    print response
+    return response
+
+@app.route('/gpsgetlongitude', method='POST')
+def gps_getlongitude():
+    response = telescope.gps_get_longitude()
+    print response
+    return response
+
+@app.route('/gpsgetdate', method='POST')
+def gps_getdate():
+    response = telescope.gps_get_date()
+    print response
+    return response
+
+@app.route('/gpsgettime', method='POST')
+def gps_gettime():
+    response = telescope.gps_get_time()
+    print response
+    return response
+
+@app.route('/rtcgetdate', method='POST')
+def rtc_getdate():
+    response = telescope.rtc_get_date()
+    print response
+    return response
+
+@app.route('/rtcgettime', method='POST')
+def rtc_gettime():
+    response = telescope.rtc_get_time()
+    print response
+    return response
+
+@app.route('/rtcsetdate', method='POST')
+def rtc_setdate():
+    response = telescope.rtc_set_date()
+    print response
+    return response
+
+@app.route('/rtcsettime', method='POST')
+def rtc_settime():
+    response = telescope.rtc_set_time()
+    print response
+    return response
+
+@app.route('/version', method='POST')
+def get_version():
+    response = telescope.get_version()
+    print response
+    return response
+
+@app.route('/deviceversion', method='POST')
+def get_deviceversion():
+    response = telescope.get_device_version()
+    print response
+    return response
+
+@app.route('/model', method='POST')
+def get_model():
+    response = telescope.get_model()
+    print response
+    return response
+
+###################################################
+############# CAMERA ##############################
+###################################################
+@app.route('/generalsettings', method='POST')
+def set_generalsettings():
+    param = request.forms.get('parameter')
+    value = request.forms.get('value')
+    response = camera.set_config(param, value)
+    print response
+    return response
+
+@app.route('/actualgeneralsettings', method='POST')
+def get_generalsettings():
+    response = camera.get_actual_general_config()
+    print response
+    return response
+
+@app.route('/imagesettings', method='POST')
+def set_imagesettings():
+    param = request.forms.get('parameter')
+    value = request.forms.get('value')
+    response = camera.set_config(param, value)
+    print response
+    return response
+
+@app.route('/actualimagesettings', method='POST')
+def get_imagesettings():
+    response = camera.get_actual_image_config()
+    print response
+    return response
+
+@app.route('/capturesettings', method='POST')
+def set_capturesettings():
+    param = request.forms.get('parameter')
+    value = request.forms.get('value')
+    response = camera.set_config(param, value)
+    print response
+    return response
+
+@app.route('/actualcapturesettings', method='POST')
+def get_capturesettings():
+    response = camera.get_actual_capture_config()
+    print response
+    return response
+
+
 
 bottle.debug(tcs_bottle_config.config['bottle_debug'])
 run(app, host=tcs_bottle_config.config['bottle_ip'], port=tcs_bottle_config.config['bottle_port'], reloader=tcs_bottle_config.config['bottle_reloader'])

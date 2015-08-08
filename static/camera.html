@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- General settings section -->
+	<div id="generalsettings">
+		<p>General Settings</p>
+	    <form id="form_generalsettings" method="POST" action="/generalsettings">
+			Parameter:
+			<select name="parameter">
+			  <option value="param1">param1</option>
+			  <option value="param2">param2</option>
+			  <option value="param3">param3</option>
+			  <option value="param4">param4</option>
+			</select> 
+			<br>
+			Value:
+			<select name="value">
+			  <option value="value1">value1</option>
+			  <option value="value2">value2</option>
+			  <option value="value3">value3</option>
+			</select> 
+			<br>
+			<input id="applygeneralsettingsButton" type="submit" value="Apply" />
+			Camera response: <output id="response_generalsettings"></output>
+		</form>
+
+		<form id="form_actualgeneralsettings" method="POST" action="/actualgeneralsettings">
+			<input id="actualgeneralsettingsButton" type="submit" value="Get actual settings" />
+			Actual Settings: <output id="response_actualgeneralsettings"></output>
+		</form>
+	</div>
+
+	<!-- Image settings section -->
+	<div id="imagesettings">
+		<p>Image Settings</p>
+	    <form id="form_imagesettings" method="POST" action="/imagesettings">
+			Parameter:
+			<select name="parameter">
+			  <option value="param1">param1</option>
+			  <option value="param2">param2</option>
+			  <option value="param3">param3</option>
+			  <option value="param4">param4</option>
+			</select> 
+			<br>
+			Value:
+			<select name="value">
+			  <option value="value1">value1</option>
+			  <option value="value2">value2</option>
+			  <option value="value3">value3</option>
+			</select> 
+			<br>
+			<input id="applyimagesettingsButton" type="submit" value="Apply" />
+			Camera response: <output id="response_imagesettings"></output>
+		</form>
+
+		<form id="form_actualimagesettings" method="POST" action="/actualimagesettings">
+			<input id="actualimagesettingsButton" type="submit" value="Get actual settings" />
+			Actual Settings: <output id="response_actualimagesettings"></output>
+		</form>
+	</div>
+
+	<!-- Capture settings section -->
+	<div id="capturesettings">
+		<p>Capture Settings</p>
+	    <form id="form_capturesettings" method="POST" action="/capturesettings">
+			Parameter:
+			<select name="parameter">
+			  <option value="param1">param1</option>
+			  <option value="param2">param2</option>
+			  <option value="param3">param3</option>
+			  <option value="param4">param4</option>
+			</select> 
+			<br>
+			Value:
+			<select name="value">
+			  <option value="value1">value1</option>
+			  <option value="value2">value2</option>
+			  <option value="value3">value3</option>
+			</select> 
+			<br>
+			<input id="applycapturesettingsButton" type="submit" value="Apply" />
+			Camera response: <output id="response_capturesettings"></output>
+		</form>
+
+		<form id="form_actualcapturesettings" method="POST" action="/actualcapturesettings">
+			<input id="actualcapturesettingsButton" type="submit" value="Get actual settings" />
+			Actual Settings: <output id="response_actualcapturesettings"></output>
+		</form>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="camera.js"></script>
+</body>
+</html>	

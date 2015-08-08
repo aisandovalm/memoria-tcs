@@ -539,7 +539,7 @@ def get_time():
 		return msg_error_check
 
 #Se recibe Time con el siguiente formato: (HH,MM,SS,DD,MM,YY,GMT_Offset,type) 
-def set_time(Q, R, S, U, T, V, W, X):
+def set_time(Q, R, S, T, U, V, W, X):
 	if echo(check) == check:
 		if W < 0:
 			W = 256 + W
