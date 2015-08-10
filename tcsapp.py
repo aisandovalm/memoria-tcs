@@ -1,5 +1,5 @@
 from bottle import Bottle, run, static_file, request, route, get, response
-import os, bottle, shutil, time, tcs_bottle_config, telescope, camera
+import os, bottle, shutil, time, tcs_bottle_config, camera #, telescope
 
 app = Bottle()
 
@@ -273,47 +273,54 @@ def get_model():
 ###################################################
 ############# CAMERA ##############################
 ###################################################
-@app.route('/generalsettings', method='POST')
-def set_generalsettings():
-    param = request.forms.get('parameter')
-    value = request.forms.get('value')
-    response = camera.set_config(param, value)
-    print response
-    return response
-
-@app.route('/actualgeneralsettings', method='POST')
-def get_generalsettings():
-    response = camera.get_actual_general_config()
-    print response
-    return response
-
 @app.route('/imagesettings', method='POST')
 def set_imagesettings():
-    param = request.forms.get('parameter')
-    value = request.forms.get('value')
+    param = request.forms.get('imgparameter')
+    value = request.forms.get('imgparamvalue')
     response = camera.set_config(param, value)
     print response
-    return response
+    if response == 0:
+        return 'Parameter was set correctly, successful operation'
+    else:
+        return response
 
-@app.route('/actualimagesettings', method='POST')
+@app.route('/currentimagesettings', method='POST')
 def get_imagesettings():
-    response = camera.get_actual_image_config()
+    response = camera.get_current_image_config()
     print response
     return response
 
 @app.route('/capturesettings', method='POST')
 def set_capturesettings():
-    param = request.forms.get('parameter')
-    value = request.forms.get('value')
+    param = request.forms.get('captureparameter')
+    value = request.forms.get('captureparamvalue')
     response = camera.set_config(param, value)
+    print response
+    if response == 0:
+        return 'Parameter was set correctly, successful operation'
+    else:
+        return response
+
+@app.route('/currentcapturesettings', method='POST')
+def get_capturesettings():
+    response = camera.get_current_capture_config()
     print response
     return response
 
-@app.route('/actualcapturesettings', method='POST')
-def get_capturesettings():
-    response = camera.get_actual_capture_config()
+@app.route('/imagesequence', method='POST')
+def capture_imagesequence():
+    frames = request.forms.get('frames')
+    interval = request.forms.get('timeinterval')
+    if frames == '': #Para prevenir infinitas imagenes
+        return 'Error: Invalid number of images. Please try again'
+    if interval == '': #Para prevenir infinito tiempo entre imagenes
+        return 'Error: Invalid time interval. Please try again'
+    response = camera.capture_sequence(frames, interval)
     print response
-    return response
+    if response == 0:
+        return 'The sequence has finished, successful operation'
+    else:
+        return response
 
 
 

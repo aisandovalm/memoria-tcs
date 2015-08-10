@@ -25,13 +25,13 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	printf("Reseting USB device %s\n", filename);
+	//printf("Reseting USB device %s\n", filename);
 	rc = ioctl(fd, USBDEVFS_RESET, 0);
 	if(rc < 0){
 		perror("Error in ioctl");
 		return 1;
 	}
-	printf("Reset successful\n");
+	//printf("Reset successful\n");
 		
 	close(fd);
 	return 0;

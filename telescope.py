@@ -336,7 +336,7 @@ def _dms_to_dd(d, m, s):
 #Entrega un error si la respuesta del telescopio no es la esperada
 def _verify_response(response):
 	if response == '#':
-		return 'Command received correctly, succesful operation'
+		return 'Command received correctly, successful operation'
 	else:
 		return 'Error: failed operation'
 
