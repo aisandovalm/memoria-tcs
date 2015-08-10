@@ -1,5 +1,7 @@
 $(document).ready(function() 
 {
+	var prgrs_msg = 'Operation in progress, please wait.';
+
 	document.getElementById('imgparameter').onchange = function()
 	{
 		document.form_imagesettings.elements['response_imagesettings'].value = '';
@@ -47,6 +49,7 @@ $(document).ready(function()
 		}
 		else
 		{
+	        $('#response_imagesettings').html(prgrs_msg);
 	        $.ajax(
 	        {
 	            type: 'POST',
@@ -62,6 +65,7 @@ $(document).ready(function()
     
     $('#form_currentimagesettings').submit(function(e) 
     {
+        $('#response_currentimagesettings').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/currentimagesettings',
@@ -268,6 +272,7 @@ $(document).ready(function()
 		}
 		else
 		{
+	        $('#response_capturesettings').html(prgrs_msg);
 	        $.ajax({
 	            type: 'POST',
 	            url: '/capturesettings',
@@ -282,6 +287,7 @@ $(document).ready(function()
     
     $('#form_currentcapturesettings').submit(function(e) 
     {
+        $('#response_currentcapturesettings').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/currentcapturesettings',
@@ -295,6 +301,7 @@ $(document).ready(function()
 
     $('#form_imagesequence').submit(function(e) 
     {
+        $('#response_imagesequence').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/imagesequence',

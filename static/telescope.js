@@ -1,5 +1,9 @@
-$(document).ready(function() {
-    $('#form_test').submit(function(e) {
+$(document).ready(function() 
+{
+    var prgrs_msg = 'Operation in progress, please wait.';
+
+    $('#form_test').submit(function(e) 
+    {
         $.ajax({
             type: 'POST',
             url: '/ajax',
@@ -11,8 +15,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_getposition').submit(function(e) {
+    $('#form_getposition').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#position').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/getposition',
@@ -24,8 +30,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gotoradec').submit(function(e) {
+    $('#form_gotoradec').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_gotoradec').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gotoradec',
@@ -37,8 +45,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gotopreciseradec').submit(function(e) {
+    $('#form_gotopreciseradec').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_gotopreciseradec').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gotopreciseradec',
@@ -50,8 +60,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gotoradechdms').submit(function(e) {
+    $('#form_gotoradechdms').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_gotoradechdms').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gotoradechdms',
@@ -63,8 +75,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gotoazmalt').submit(function(e) {
+    $('#form_gotoazmalt').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_gotoazmalt').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gotoazmalt',
@@ -76,8 +90,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gotopreciseazmalt').submit(function(e) {
+    $('#form_gotopreciseazmalt').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_gotopreciseazmalt').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gotopreciseazmalt',
@@ -89,8 +105,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gotoazmaltdms').submit(function(e) {
+    $('#form_gotoazmaltdms').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_gotoazmaltdms').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gotoazmaltdms',
@@ -102,8 +120,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_syncradec').submit(function(e) {
+    $('#form_syncradec').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_syncradec').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/syncradec',
@@ -115,8 +135,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_syncpreciseradec').submit(function(e) {
+    $('#form_syncpreciseradec').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_syncpreciseradec').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/syncpreciseradec',
@@ -128,8 +150,10 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_syncradechdms').submit(function(e) {
+    $('#form_syncradechdms').submit(function(e) 
+    {
         //alert($(this).serialize());
+        $('#response_syncradechdms').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/syncradechdms',
@@ -141,7 +165,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gettrackingmode').submit(function(e) {
+    $('#form_gettrackingmode').submit(function(e) 
+    {
+        $('#response_gettrackingmode').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gettrackingmode',
@@ -153,7 +179,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_settrackingmode').submit(function(e) {
+    $('#form_settrackingmode').submit(function(e) 
+    {
+        $('#response_settrackingmode').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/settrackingmode',
@@ -165,7 +193,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_slewing').submit(function(e) {
+    $('#form_slewing').submit(function(e) 
+    {
+        $('#response_slewing').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/slewing',
@@ -178,6 +208,7 @@ $(document).ready(function() {
     });
 
     $('#form_getlocation').submit(function(e) {
+        $('#location').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/getlocation',
@@ -189,7 +220,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_setlocation').submit(function(e) {
+    $('#form_setlocation').submit(function(e) 
+    {
+        $('#response_setlocation').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/setlocation',
@@ -201,7 +234,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gettime').submit(function(e) {
+    $('#form_gettime').submit(function(e) 
+    {
+        $('#time').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gettime',
@@ -213,7 +248,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_settime').submit(function(e) {
+    $('#form_settime').submit(function(e) 
+    {
+        $('#response_settime').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: 'settime',
@@ -225,7 +262,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gpscheck').submit(function(e) {
+    $('#form_gpscheck').submit(function(e) 
+    {
+        $('#response_gpscheck').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gpscheck',
@@ -237,7 +276,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gpsgetlatitude').submit(function(e) {
+    $('#form_gpsgetlatitude').submit(function(e) 
+    {
+        $('#response_gpsgetlatitude').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gpsgetlatitude',
@@ -249,7 +290,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gpsgetlongitude').submit(function(e) {
+    $('#form_gpsgetlongitude').submit(function(e) 
+    {
+        $('#response_gpsgetlongitude').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gpsgetlongitude',
@@ -261,7 +304,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gpsgetdate').submit(function(e) {
+    $('#form_gpsgetdate').submit(function(e) 
+    {
+        $('#response_gpsgetdate').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gpsgetdate',
@@ -273,7 +318,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_gpsgettime').submit(function(e) {
+    $('#form_gpsgettime').submit(function(e) 
+    {
+        $('#response_gpsgettime').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/gpsgettime',
@@ -285,7 +332,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_rtcgetdate').submit(function(e) {
+    $('#form_rtcgetdate').submit(function(e) 
+    {
+        $('#response_rtcgetdate').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/rtcgetdate',
@@ -297,7 +346,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_rtcgettime').submit(function(e) {
+    $('#form_rtcgettime').submit(function(e) 
+    {
+        $('#response_rtcgettime').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/rtcgettime',
@@ -309,7 +360,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_rtcsetdate').submit(function(e) {
+    $('#form_rtcsetdate').submit(function(e) 
+    {
+        $('#response_rtcsetdate').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/rtcsetdate',
@@ -321,7 +374,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_rtcsettime').submit(function(e) {
+    $('#form_rtcsettime').submit(function(e) 
+    {
+        $('#response_rtcsettime').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/rtcsettime',
@@ -333,7 +388,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_version').submit(function(e) {
+    $('#form_version').submit(function(e) 
+    {
+        $('#response_version').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/version',
@@ -345,7 +402,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_deviceversion').submit(function(e) {
+    $('#form_deviceversion').submit(function(e) 
+    {
+        $('#response_deviceversion').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/deviceversion',
@@ -357,7 +416,9 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('#form_model').submit(function(e) {
+    $('#form_model').submit(function(e) 
+    {
+        $('#response_model').html(prgrs_msg);
         $.ajax({
             type: 'POST',
             url: '/model',

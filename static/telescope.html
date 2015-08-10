@@ -33,7 +33,7 @@
 			<br>
 			<input id="getpostionButton" type="submit" value="Get position" />
 		</form>
-		Position: <output id="position"></output>
+		Position: <output id="position" name="position"></output>
 		<!--<p id="position"></p>-->
 	</div>
 
@@ -57,7 +57,7 @@
 
 				<input id="gotoradecButton" type="submit" value="GOTO RADEC" />
 			</form>
-			Telescope response: <output id="response_gotoradec"></output>
+			Telescope response: <output id="response_gotoradec" name="response_gotoradec"></output>
 		</div>
 		<div id="preciseradec">
 			<p>Precise RADEC</p>
@@ -76,7 +76,7 @@
 
 				<input id="gotopreciseradecButton" type="submit" value="GOTO Precise RADEC" />
 			</form>
-			Telescope response: <output id="response_gotopreciseradec"></output>
+			Telescope response: <output id="response_gotopreciseradec" name="response_gotopreciseradec"></output>
 		</div>
 		<div id="radechdms">
 			<p>RADEC h:m:s °:':" </p>
@@ -93,7 +93,7 @@
 
 				<input id="gotoradechdmsButton" type="submit" value="GOTO RADEC hdms" />
 			</form>
-			Telescope response: <output id="response_gotoradechdms"></output>
+			Telescope response: <output id="response_gotoradechdms" name="response_gotoradechdms"></output>
 		</div>
 		<div id="azmalt">
 			<p>AZM-ALT</p>
@@ -112,7 +112,7 @@
 
 				<input id="gotoazmaltButton" type="submit" value="GOTO AZM-ALT" />
 			</form>
-			Telescope response: <output id="response_gotoazmalt"></output>
+			Telescope response: <output id="response_gotoazmalt" name="response_gotoazmalt"></output>
 		</div>
 		<div id="preciseazmalt">
 			<p>AZM-ALT</p>
@@ -131,7 +131,7 @@
 
 				<input id="gotopreciseazmaltButton" type="submit" value="GOTO Precise AZM-ALT" />
 			</form>
-			Telescope response: <output id="response_gotopreciseazmalt"></output>
+			Telescope response: <output id="response_gotopreciseazmalt" name="response_gotopreciseazmalt"></output>
 		</div>
 		<div id="azmaltdms">
 			<p>AZM-ALT °:':" </p>
@@ -148,7 +148,7 @@
 
 				<input id="gotoazmaltdmsButton" type="submit" value="GOTO AZM-ALT dms" />
 			</form>
-			Telescope response: <output id="response_gotoazmaltdms"></output>
+			Telescope response: <output id="response_gotoazmaltdms" name="response_gotoazmaltdms"></output>
 		</div>
 	</div>
 
@@ -173,7 +173,7 @@
 
 				<input id="syncradecButton" type="submit" value="SYNC RADEC" />
 			</form>
-			Telescope response: <output id="response_syncradec"></output>
+			Telescope response: <output id="response_syncradec" name="response_syncradec"></output>
 		</div>
 		<div id="syncpreciseradec">
 			<p>Precise RADEC</p>
@@ -192,7 +192,7 @@
 
 				<input id="syncpreciseradecButton" type="submit" value="SYNC Precise RADEC" />
 			</form>
-			Telescope response: <output id="response_syncpreciseradec"></output>
+			Telescope response: <output id="response_syncpreciseradec" name="response_syncpreciseradec"></output>
 		</div>
 		<div id="syncradechdms">
 			<p>RADEC h:m:s °:':" </p>
@@ -209,7 +209,7 @@
 
 				<input id="syncradechdmsButton" type="submit" value="SYNC RADEC hdms" />
 			</form>
-			Telescope response: <output id="response_syncradechdms"></output>
+			Telescope response: <output id="response_syncradechdms" name="response_syncradechdms"></output>
 		</div>
 	</div>
 
@@ -221,7 +221,7 @@
 			<form id="form_gettrackingmode" method="POST" action="/gettrackingmode">
 				<input id="gettrackingmodeButton" type="submit" value="Get tracking mode" />
 			</form>
-			Tracking mode: <output id="response_gettrackingmode"></output>
+			Tracking mode: <output id="response_gettrackingmode" name="response_gettrackingmode"></output>
 		</div>	
 		<div id="settrackingmode">
 			<p>Set tracking mode</p>
@@ -235,7 +235,7 @@
 
 				<input id="settrackingmodeButton" type="submit" value="Set tracking mode" />
 			</form>
-			Telescope response: <output id="response_settrackingmode"></output>
+			Telescope response: <output id="response_settrackingmode" name="response_settrackingmode"></output>
 		</div>	
 	</div>
 
@@ -255,7 +255,7 @@
 			<input name="rate" type="text">
 			<input id="slewingButton" type="submit" value="Slew" />
 		</form>
-		Telescope response: <output id="response_slewing"></output>
+		Telescope response: <output id="response_slewing" name="response_slewing"></output>
 	</div>
 
 	<!-- Location/Time section -->
@@ -266,7 +266,7 @@
 			<form id="form_getlocation" method="POST" action="/getlocation">
 				<input id="getlocationButton" type="submit" value="Get location">
 			</form>
-			Location: <output id="location"></output>
+			Location: <output id="location" name="location"></output>
 		</div>
 
 		<div id="setlocation">
@@ -292,15 +292,15 @@
 
 				<input id="setlocationButton" type="submit" value="Set location" />
 			</form>
-			Telescope response: <output id="response_setlocation"></output>
+			Telescope response: <output id="response_setlocation" name="response_setlocation"></output>
 		</div>
 
-		<div id="getlocation">
+		<div id="gettime">
 			<p>Get time</p>
 			<form id="form_gettime" method="POST" action="/gettime">
 				<input id="gettimeButton" type="submit" value="Get time">
 			</form>
-			Time: <output id="time"></output>
+			Time: <output id="time" name="time"></output>
 		</div>
 
 		<div id="settime">
@@ -322,7 +322,7 @@
 				</select> 
 				<input id="settimeButton" type="submit" value="Set time" />
 			</form>
-			Telescope response: <output id="response_settime"></output>
+			Telescope response: <output id="response_settime" name="response_settime"></output>
 		</div>
 	</div>
 
@@ -331,27 +331,27 @@
 		<p>GPS</p>
 		<form id="form_gpscheck" method="POST" action="/gpscheck">
 			<input id="gpscheckButton" type="submit" value="Check GPS" />
-			GPS response: <output id="response_gpscheck"></output>
+			GPS response: <output id="response_gpscheck" name="response_gpscheck"></output>
 		</form>		
 
 		<form id="form_gpsgetlatitude" method="POST" action="/gpsgetlatitude">
 			<input id="gpsgetlatitudeButton" type="submit" value="Get latitude" />
-			Latitude: <output id="response_gpsgetlatitude"></output>
+			Latitude: <output id="response_gpsgetlatitude" name="response_gpsgetlatitude"></output>
 		</form>	
 
 		<form id="form_gpsgetlongitude" method="POST" action="/gpsgetlongitude">
 			<input id="gpsgetlongitudeButton" type="submit" value="Get longitude" />
-			Longitude: <output id="response_gpsgetlongitude"></output>
+			Longitude: <output id="response_gpsgetlongitude" name="response_gpsgetlongitude"></output>
 		</form>
 
 		<form id="form_gpsgetdate" method="POST" action="/gpsgetdate">
 			<input id="gpsgetdateButton" type="submit" value="Get date" />
-			Date: <output id="response_gpsgetdate"></output>
+			Date: <output id="response_gpsgetdate" name="response_gpsgetdate"></output>
 		</form>
 
 		<form id="form_gpsgettime" method="POST" action="/gpsgettime">
 			<input id="gpsgettimeButton" type="submit" value="Get time" />
-			Time: <output id="response_gpsgettime"></output>
+			Time: <output id="response_gpsgettime" name="response_gpsgettime"></output>
 		</form>
 	</div>
 
@@ -360,12 +360,12 @@
 		<p>RTC</p>
 		<form id="form_rtcgetdate" method="POST" action="/rtcgetdate">
 			<input id="rtcgetdateButton" type="submit" value="Get date" />
-			Date: <output id="response_rtcgetdate"></output>
+			Date: <output id="response_rtcgetdate" name="response_rtcgetdate"></output>
 		</form>
 
 		<form id="form_rtcgettime" method="POST" action="/rtcgettime">
 			<input id="rtcgettimeButton" type="submit" value="Get time" />
-			Time: <output id="response_rtcgettime"></output>
+			Time: <output id="response_rtcgettime" name="response_rtcgettime"></output>
 		</form>
 
 		<form id="form_rtcsetdate" method="POST" action="/rtcsetdate">
@@ -376,7 +376,7 @@
 			
 			<input id="rtcsetdateButton" type="submit" value="Set date" />
 		</form>
-		RTC response: <output id="response_rtcsettime"></output>
+		RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
 
 		<form id="form_rtcsettime" method="POST" action="/rtcsettime">
 			Time:<br>
@@ -386,7 +386,7 @@
 			
 			<input id="rtcsettimeButton" type="submit" value="Set time" />
 		</form>
-		RTC response: <output id="response_rtcsettime"></output>
+		RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
 	</div>
 
 	<!-- General section -->
@@ -394,17 +394,17 @@
 		<p>General info</p>
 		<form id="form_version" method="POST" action="/version">
 			<input id="versionButton" type="submit" value="Version" />
-			Version: <output id="response_version"></output>
+			Version: <output id="response_version" name="response_version"></output>
 		</form>		
 
 		<form id="form_deviceversion" method="POST" action="/deviceversion">
 			<input id="deviceversionButton" type="submit" value="Device version" />
-			Device version: <output id="response_deviceversion"></output>
+			Device version: <output id="response_deviceversion" name="response_deviceversion"></output>
 		</form>
 
 		<form id="form_model" method="POST" action="/model">
 			<input id="modelButton" type="submit" value="Model" />
-			Model: <output id="response_model"></output>
+			Model: <output id="response_model" name="response_model"></output>
 		</form>
 	</div>
 
