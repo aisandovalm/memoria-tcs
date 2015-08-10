@@ -1,5 +1,5 @@
 from bottle import Bottle, run, static_file, request, route, get, response
-import os, bottle, shutil, time, tcs_bottle_config, camera #, telescope
+import os, bottle, shutil, time, tcs_bottle_config, camera , telescope
 
 app = Bottle()
 
@@ -242,7 +242,10 @@ def rtc_gettime():
 
 @app.route('/rtcsetdate', method='POST')
 def rtc_setdate():
-    response = telescope.rtc_set_date()
+    day = int(request.forms.get('day'))
+    month = int(request.forms.get('month'))
+    year = int(request.forms.get('year'))
+    response = telescope.rtc_set_date(day, month, year)
     print response
     return response
 
@@ -260,7 +263,8 @@ def get_version():
 
 @app.route('/deviceversion', method='POST')
 def get_deviceversion():
-    response = telescope.get_device_version()
+    device = request.forms.get('device')
+    response = telescope.get_device_version(device)
     print response
     return response
 
@@ -322,17 +326,19 @@ def capture_imagesequence():
     else:
         return response
 
+@app.route('/batterylevel')
+def get_batterylevel():
+    response = camera.get_batterylevel()
+    print response
+    return response
+
 @app.route('/capturepreview')
-def capture_preview():
-    timestring = 'gphoto_' + time.strftime('%Y%m%d_%H%M%S') + '.jpg'
-    capture = camera.execute(['--capture-image-and-download'])    
-    if "capt0000.jpg" in capture:
-        # move the image to the static folder
-        shutil.copy('capt0000.jpg', 'static/' + timestring)
-        os.remove('capt0000.jpg')
-        return timestring
-        
-    return "false"
+def capturepreview():
+    if os.path.isfile('static/preview.jpg'):
+        os.remove('static/preview.jpg')
+
+    response = camera.capture_preview()
+    return response
 
 
 

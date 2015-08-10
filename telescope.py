@@ -25,9 +25,16 @@ def get_RA_DEC(format):
 	if echo(check) == check:
 		nexstar.write('E')
 		response = nexstar.read(10) #Se espera respuesta de 10 bytes
+		print 'get_RA_DEC: '
+		print response
+		print response[0:4]
+		print response[5:9]
 
 		ra = _hex_to_perc_of_rev(response[0:4])
 		dec = _hex_to_perc_of_rev(response[5:9])
+
+		print ra
+		print dec
 
 		if format == 'percent_of_rev':
 			#return ra, dec
@@ -57,13 +64,14 @@ def get_precise_RA_DEC(format):
 		dec = _hex_precise_to_perc_of_rev(response[9:17])
 
 		if format == 'percent_of_rev':
-			return (ra, dec)
+			return "RA: " + str(ra) + ", DEC: " + str(dec)
 		elif format == 'degrees':
-			return (ra * 360, dec * 360)
+			return "RA: " + str(ra*360) + ", DEC: " + str(dec*360)
 		elif format == 'H/DMS':
 			ra_h, ra_m, ra_s  = _dd_to_hms(ra*360)
 			dec_d, dec_m, dec_s = _dd_to_dms(dec*360)
-			return ra_h, ra_m, ra_s, dec_d, dec_m, dec_s
+			return ("RA: " + str(ra_h) + "h" + str(ra_m) + "m" + str(ra_s) + "s"
+				+ " DEC: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
 		else:
 			return msg_error_format
 	else:
@@ -78,13 +86,14 @@ def get_AZM_ALT(format):
 		alt = _hex_to_perc_of_rev(response[5:9])
 
 		if format == 'percent_of_rev':
-			return (azm, alt)
+			return "AZM: " + str(azm) + ", ALT: " + str(alt)
 		elif format == 'degrees':
-			return (azm * 360, alt * 360)
-		elif format == 'DMS':
-			azm_h, azm_m, azm_s  = _dd_to_dms(azm*360)
+			return "AZM: " + str(azm*360) + ", ALT: " + str(alt*360)
+		elif format == 'H/DMS':
+			azm_d, azm_m, azm_s  = _dd_to_dms(azm*360)
 			alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
-			return azm_h, azm_m, azm_s, alt_d, alt_m, alt_s
+			return ("AZM: " + str(azm_d) + "°" + str(azm_m) + "'" + str(azm_s) + '"'
+				+ " ALT: " + str(alt_d) + "°" + str(alt_m) + "'" + str(alt_s) + '"')
 		else:
 			return msg_error_format
 	else:
@@ -99,13 +108,14 @@ def get_precise_AZM_ALT(format):
 		alt = _hex_precise_to_perc_of_rev(response[9:17])
 
 		if format == 'percent_of_rev':
-			return (azm, alt)
+			return "AZM: " + str(azm) + ", ALT: " + str(alt)
 		elif format == 'degrees':
-			return (azm * 360, alt * 360)
-		elif format == 'DMS':
-			azm_h, azm_m, azm_s  = _dd_to_dms(azm*360)
+			return "AZM: " + str(azm*360) + ", ALT: " + str(alt*360)
+		elif format == 'H/DMS':
+			azm_d, azm_m, azm_s  = _dd_to_dms(azm*360)
 			alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
-			return azm_h, azm_m, azm_s, alt_d, alt_m, alt_s
+			return ("AZM: " + str(azm_d) + "°" + str(azm_m) + "'" + str(azm_s) + '"'
+				+ " ALT: " + str(alt_d) + "°" + str(alt_m) + "'" + str(alt_s) + '"')
 		else:
 			return msg_error_format
 	else:
@@ -113,11 +123,11 @@ def get_precise_AZM_ALT(format):
 
 #Valor hexadecimal a fracción de revolución
 def _hex_to_perc_of_rev(value):
-	return int(value, 16) / 2.**16
+	return int(value, 16) / 65536.0
 
 #Valor hexadecimal preciso a fracción de revolución
 def _hex_precise_to_perc_of_rev(value):
-	return int(value, 16) / 2.**32
+	return int(value, 16) / 4294967296.0
 
 #Grado decimal a Horas:Minutos:Segundos
 def _dd_to_hms(dd):
@@ -256,6 +266,11 @@ def goto_AZM_ALT(azm, alt, format):
 		return msg_error_check
 
 def goto_precise_AZM_ALT(azm, alt, format):
+	print 'Funcion goto_precise_AZM_ALT'
+	print azm
+	print _perc_of_rev_to_hex_precise(azm)
+	print alt
+	print _perc_of_rev_to_hex_precise(alt)
 	if echo(check) == check:
 		if format == 'percent_of_rev':
 			command = ('b' + _perc_of_rev_to_hex_precise(azm) + ',' 
@@ -332,13 +347,6 @@ def _dms_to_dd(d, m, s):
 		degrees = float(d) + float(m)/60.0 + float(s)/3600.0
 
 	return degrees
-
-#Entrega un error si la respuesta del telescopio no es la esperada
-def _verify_response(response):
-	if response == '#':
-		return 'Command received correctly, successful operation'
-	else:
-		return 'Error: failed operation'
 
 #################
 #Funciones Sync:#
@@ -527,7 +535,7 @@ def get_time():
 		else:
 			time_zone = 'GMT + ' + W		
 		X = ord(response[7]) #1: enable Daylight Savings, 0: Standard Time
-		if X == 1:
+		if X == 0:
 			time_type = 'Standard Time'
 		else:
 			time_type = 'Daylight Savings'
@@ -714,7 +722,10 @@ def get_version():
 	if echo(check) == check:
 		nexstar.write('V')
 		response = nexstar.read(3)
-		return ord(response[0]), ord(response[1])
+		if response[2] == '#':
+			return ord(response[0]), ord(response[1])
+		else:
+			return 'Error: The telescope has send wrong information'
 	else:
 		return msg_error_check
 
@@ -735,7 +746,8 @@ def get_device_version(device):
 			chr(0) + chr(0) + chr(2))
 		nexstar.write(command)
 		response = nexstar.read(3)
-		return ord(response[0]), ord(response[1])
+		#return ord(response[0]), ord(response[1])
+		return 'Major: ' + str(ord(response[0])) + ', minor: ' + str(ord(response[1]))
 	else:
 		return msg_error_check
 
@@ -793,4 +805,11 @@ def cancel_goto():
 	nexstar.write('M')
 	response = nexstar.read(1)
 	return _verify_response(response)	
+
+#Entrega un error si la respuesta del telescopio no es la esperada
+def _verify_response(response):
+	if response == '#':
+		return 'Command received correctly, successful operation'
+	else:
+		return 'Error: failed operation'
 

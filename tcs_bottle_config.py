@@ -10,5 +10,5 @@ config = {
 	'bottle_port' : 80,
 	'bottle_debug': True,
 	'bottle_reloader': True,
-	'bottle_ip' : '192.168.100.2'
+	'bottle_ip' : '200.1.17.238'
 }

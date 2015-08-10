@@ -313,21 +313,34 @@ $(document).ready(function()
         e.preventDefault();
     });
 
+    $('#batteryButton').click(function () 
+    {
+		$('#response_battery').html(prgrs_msg);
+		 $.get('/batterylevel', function(response)
+        { 	
+			$('#response_battery').html(response);
+		});
+	});
+
     $('#capturepreview').click(function () 
     {
 		$('#response_preview').html(prgrs_msg);
 		$('#content').empty();
         $.get('/capturepreview', function(data)
         { 	
-			if(data != "false")
+			if(data == "preview.jpg")
 			{
-				$('#content').append('<img id="image" />');
+				$('#previewimage').append('<img id="image" />');
 				
 				var newimg = new Image();
 				$(newimg).load(function(){
 					$('#image').attr('src', this.src);
 				}).attr('src', '/static/' + data);
-			}			
+			}
+			else
+			{
+				$('#response_preview').html(data);
+			}	
 		});
 	});
 });

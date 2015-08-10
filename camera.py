@@ -15,6 +15,15 @@ def get_config(param):
 	execute_response = subprocess.check_output(command)
 	return execute_response
 
+def get_batterylevel():
+	response = _verify_camera()
+	if response == "Camera not found":
+		return 'Error: ' + response + '. Check the camera connections and make sure is On'
+	
+	bl = get_config('batterylevel').split("\n")[2].split(" ")[1]
+	response = 'Battery level: ' + bl
+	return response
+
 def get_current_image_config():
 	response = _verify_camera()
 	if response == "Camera not found":
@@ -61,16 +70,15 @@ def set_config(param, value):
 	execute_response = _execute_command(command)
 	return execute_response
 
-#El nombre de la imagen viene con extensión
-def capture_image_and_download(name):
-	command = ['--capture_image_and_download', '--filename', name]
-	execute_response = _execute_command(command)
-	return execute_response	
-
-'''
 def capture_preview():
-	command = 	
-'''
+	response = _verify_camera()
+	if response == "Camera not found":
+		return 'Error: ' + response + '. Check the camera connections and make sure is On'
+
+	command = ['--capture_image_and_download', '--filename="/home/pi/tcs/static/preview.jpg"']
+	execute_response = _execute_command(command)
+	return 'preview.jpg'
+
 
 def _execute_command(command):
 	#response = _verify_camera()

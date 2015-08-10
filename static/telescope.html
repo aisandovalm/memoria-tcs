@@ -115,7 +115,7 @@
 			Telescope response: <output id="response_gotoazmalt" name="response_gotoazmalt"></output>
 		</div>
 		<div id="preciseazmalt">
-			<p>AZM-ALT</p>
+			<p>Precise AZM-ALT</p>
 			<form id="form_gotopreciseazmalt" method="POST" action="/gotopreciseazmalt">
 				Format:
 				<select name="format">
@@ -375,8 +375,8 @@
 			<input name="year" type="text">Year&nbsp;
 			
 			<input id="rtcsetdateButton" type="submit" value="Set date" />
+			RTC response: <output id="response_rtcsetdate" name="response_rtcsetdate"></output>
 		</form>
-		RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
 
 		<form id="form_rtcsettime" method="POST" action="/rtcsettime">
 			Time:<br>
@@ -385,8 +385,8 @@
 			<input name="seconds" type="text">Seconds&nbsp;
 			
 			<input id="rtcsettimeButton" type="submit" value="Set time" />
+			RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
 		</form>
-		RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
 	</div>
 
 	<!-- General section -->
@@ -398,6 +398,12 @@
 		</form>		
 
 		<form id="form_deviceversion" method="POST" action="/deviceversion">
+			<select name="device">
+			  <option value="AZM/RA Motor">AZM/RA Motor</option>
+			  <option value="ALT/DEC Motor">ALT/DEC Motor</option>
+			  <option value="GPS Unit">GPS Unit</option>
+			  <option value="RTC">RTC</option>
+			</select> 
 			<input id="deviceversionButton" type="submit" value="Device version" />
 			Device version: <output id="response_deviceversion" name="response_deviceversion"></output>
 		</form>
