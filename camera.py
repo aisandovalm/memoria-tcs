@@ -46,7 +46,7 @@ def capture_sequence(frames, interval):
 	response = _verify_camera()
 	if response == "Camera not found":
 		return 'Error: ' + response + '. Check the camera connections and make sure is On'
-		
+
 	command = ['--capture-image', '-F', frames, '-I', interval]
 	execute_response = _execute_command(command)
 	return execute_response
@@ -76,6 +76,18 @@ def _execute_command(command):
 	#response = _verify_camera()
 	gphoto_command = ['sudo', 'gphoto2'] + command
 	gphoto_response = subprocess.check_call(gphoto_command)
+	return gphoto_response
+
+def execute(command):
+	
+	if _detectcamera() == False:
+		return "Camera not found"
+	
+	resetusb()	
+	gphotocommand = ['sudo', 'gphoto2'] + command
+	gphoto_response = subprocess.check_output(gphotocommand)
+	resetusb()
+	
 	return gphoto_response
 
 def _verify_camera():

@@ -266,7 +266,7 @@ $(document).ready(function()
 
     $('#form_capturesettings').submit(function(e) 
     {
-    	if (document.form_imagesettings.imgparamvalue.value == " ") 
+    	if (document.form_capturesettings.captureparamvalue.value == " ") 
 		{
 			alert("Invalid operation: Please select parameter and value and then click 'Apply setting'");
 		}
@@ -312,4 +312,22 @@ $(document).ready(function()
         });
         e.preventDefault();
     });
+
+    $('#capturepreview').click(function () 
+    {
+		$('#response_preview').html(prgrs_msg);
+		$('#content').empty();
+        $.get('/capturepreview', function(data)
+        { 	
+			if(data != "false")
+			{
+				$('#content').append('<img id="image" />');
+				
+				var newimg = new Image();
+				$(newimg).load(function(){
+					$('#image').attr('src', this.src);
+				}).attr('src', '/static/' + data);
+			}			
+		});
+	});
 });

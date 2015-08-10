@@ -322,6 +322,18 @@ def capture_imagesequence():
     else:
         return response
 
+@app.route('/capturepreview')
+def capture_preview():
+    timestring = 'gphoto_' + time.strftime('%Y%m%d_%H%M%S') + '.jpg'
+    capture = camera.execute(['--capture-image-and-download'])    
+    if "capt0000.jpg" in capture:
+        # move the image to the static folder
+        shutil.copy('capt0000.jpg', 'static/' + timestring)
+        os.remove('capt0000.jpg')
+        return timestring
+        
+    return "false"
+
 
 
 bottle.debug(tcs_bottle_config.config['bottle_debug'])
