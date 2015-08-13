@@ -422,14 +422,14 @@ def set_tracking_mode(mode):
 #Funciones Slewing:#
 ####################
 #Recibe direction: azm_ra o alt_dec y rate en arcseconds/second
-def slew_var_rate(direction, rate):
+def slew_var_rate(direction, sign, rate):
 	if echo(check) == check:
 		if direction == 'azm_ra':
 			direction_chr = chr(16)
 		elif direction == 'alt_dec':
 			direction_chr =  chr(17)
 
-		if rate < 0:
+		if sign == 'negative':
 			direction_sign_chr = chr(7)
 		else:
 			direction_sign_chr = chr(6)
@@ -446,14 +446,14 @@ def slew_var_rate(direction, rate):
 	else:
 		return msg_error_check
 
-def slew_fixed_rate(direction, rate):
+def slew_fixed_rate(direction, sign, rate):
 	if echo(check) == check:
 		if direction == 'azm_ra':
 			direction_chr = chr(16)
 		elif direction == 'alt_dec':
 			direction_chr =  chr(17)
 
-		if rate < 0:
+		if sign == 'negative':
 			direction_sign_chr = chr(37)
 		else:
 			direction_sign_chr = chr(36)
@@ -466,6 +466,14 @@ def slew_fixed_rate(direction, rate):
 		return _verify_response(response)
 	else:
 		return msg_error_check
+
+def stop_slewing():
+	slew_fixed_rate('azm_ra', 'positive', 0)
+	slew_fixed_rate('alt_dec', 'positive', 0)
+	slew_var_rate('azm_ra', 'positive', 0)
+	slew_var_rate('alt_dec', 'positive', 0)
+
+	return 'Slewing has stopped'
 
 
 ##########################
@@ -569,6 +577,7 @@ def is_gps_linked():
 			 + chr(0) + chr(1))
 		nexstar.write(command)
 		response = nexstar.read(2)
+		print int(ord(response[0]))
 
 		if int(ord(response[0])) == 0:
 			output = 'GPS Not Linked'
@@ -581,71 +590,87 @@ def is_gps_linked():
 
 def gps_get_latitude(format):
 	if echo(check) == check:
-		command = ('P' + chr(1) + chr(176) + chr(1) + chr(0) + chr(0)
-			 + chr(0) + chr(3))
-		nexstar.write(command)
-		response = nexstar.read(4)
+		if is_gps_linked() == 'GPS Not Linked':
+			return 'Error: GPS Not Linked'
+		else:
+			command = ('P' + chr(1) + chr(176) + chr(1) + chr(0) + chr(0)
+				 + chr(0) + chr(3))
+			nexstar.write(command)
+			response = nexstar.read(4)
+			print response
+			print response[3]
 
-		latitude = (ord(response[0]) * 2.**16 + ord(response[1]) * 2.**8 +
-			ord(response[2])) / (2.**24)
+			latitude = (ord(response[0]) * 2.**16 + ord(response[1]) * 2.**8 +
+				ord(response[2])) / (2.**24)
 
-		if format == 'percent_of_rev':
-			return latitude
-		elif format == 'degrees':
-			return latitude * 360
+			if format == 'percent_of_rev':
+				return latitude
+			elif format == 'degrees':
+				return latitude * 360
 	else:
 		return msg_error_check
 
 def gps_get_longitude(format):
 	if echo(check) == check:
-		command = ('P' + chr(1) + chr(176) + chr(2) + chr(0) + chr(0)
-			 + chr(0) + chr(3))
-		nexstar.write(command)
-		response = nexstar.read(4)
+		if is_gps_linked() == 'GPS Not Linked':
+			return 'Error: GPS Not Linked'
+		else:
+			command = ('P' + chr(1) + chr(176) + chr(2) + chr(0) + chr(0)
+				 + chr(0) + chr(3))
+			nexstar.write(command)
+			response = nexstar.read(4)
+			print response
+			print response[3]
 
-		longitude = (ord(response[0]) * 2.**16 + ord(response[1]) * 2.**8 +
-			ord(response[2])) / (2.**24)
+			longitude = (ord(response[0]) * 2.**16 + ord(response[1]) * 2.**8 +
+				ord(response[2])) / (2.**24)
 
-		if format == 'percent_of_rev':
-			return longitude
-		elif format == 'degrees':
-			return longitude * 360
+			if format == 'percent_of_rev':
+				return longitude
+			elif format == 'degrees':
+				return longitude * 360
 	else:
 		return msg_error_check
 
 def gps_get_date():
 	if echo(check) == check:
-		command = ('P' + chr(1) + chr(176) + chr(3) + chr(0) + chr(0)
-			 + chr(0) + chr(2))
-		nexstar.write(command)
-		response = nexstar.read(3)
+		if is_gps_linked() == 'GPS Not Linked':
+			return 'Error: GPS Not Linked'
+		else:
+			command = ('P' + chr(1) + chr(176) + chr(3) + chr(0) + chr(0)
+				 + chr(0) + chr(2))
+			nexstar.write(command)
+			response = nexstar.read(3)
 
-		month = ord(response[0])
-		day = ord(response[1])
+			month = ord(response[0])
+			day = ord(response[1])
 
-		year_command = ('P' + chr(1) + chr(176) + chr(4) + chr(0) + chr(0)
-			 + chr(0) + chr(2))
-		nexstar.write(year_command)
-		year_response = nexstar.read(3)
+			year_command = ('P' + chr(1) + chr(176) + chr(4) + chr(0) + chr(0)
+				 + chr(0) + chr(2))
+			nexstar.write(year_command)
+			year_response = nexstar.read(3)
 
-		year = (ord(year_response[0]) * 2.**8 + ord(year_response[1]))
+			year = (ord(year_response[0]) * 2.**8 + ord(year_response[1]))
 
-		return (str(day) + '/' + str(month) + '/' + str(year))
+			return (str(day) + '/' + str(month) + '/' + str(year))
 	else:
 		return msg_error_check
 
 def gps_get_time():
 	if echo(check) == check:
-		command = ('P' + chr(1) + chr(176) + chr(51) + chr(0) + chr(0)
-			 + chr(0) + chr(3))
-		nexstar.write(command)
-		response = nexstar.read(4)
+		if is_gps_linked() == 'GPS Not Linked':
+			return 'Error: GPS Not Linked'
+		else:
+			command = ('P' + chr(1) + chr(176) + chr(51) + chr(0) + chr(0)
+				 + chr(0) + chr(3))
+			nexstar.write(command)
+			response = nexstar.read(4)
 
-		hours = ord(response[0])
-		minutes = ord(response[1])
-		seconds = ord(response[2])
+			hours = ord(response[0])
+			minutes = ord(response[1])
+			seconds = ord(response[2])
 
-		return (str(hours) + ':' + str(minutes) + ':' + str(seconds))
+			return (str(hours) + ':' + str(minutes) + ':' + str(seconds))
 	else:
 		return msg_error_check
 
@@ -723,7 +748,7 @@ def get_version():
 		nexstar.write('V')
 		response = nexstar.read(3)
 		if response[2] == '#':
-			return ord(response[0]), ord(response[1])
+			return 'Major: ' + str(ord(response[0])) + ', minor: ' + str(ord(response[1]))
 		else:
 			return 'Error: The telescope has send wrong information'
 	else:
@@ -746,7 +771,6 @@ def get_device_version(device):
 			chr(0) + chr(0) + chr(2))
 		nexstar.write(command)
 		response = nexstar.read(3)
-		#return ord(response[0]), ord(response[1])
 		return 'Major: ' + str(ord(response[0])) + ', minor: ' + str(ord(response[1]))
 	else:
 		return msg_error_check
@@ -778,7 +802,7 @@ def get_model():
 		elif model == 12:
 			return '6/8 SE'
 		else:
-			return 'Modelo desconocido'
+			return 'Modelo desconocido (model id: ' + str(ord(response[0])) + ')'
 	else:
 		return msg_error_check
 

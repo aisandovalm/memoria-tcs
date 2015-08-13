@@ -325,17 +325,19 @@ $(document).ready(function()
     $('#capturepreview').click(function () 
     {
 		$('#response_preview').html(prgrs_msg);
-		$('#content').empty();
+		$('#previewimage').empty();
         $.get('/capturepreview', function(data)
         { 	
 			if(data == "preview.jpg")
 			{
+				$('#response_preview').html('Uploading image');
 				$('#previewimage').append('<img id="image" />');
 				
 				var newimg = new Image();
 				$(newimg).load(function(){
 					$('#image').attr('src', this.src);
 				}).attr('src', '/static/' + data);
+				$('#response_preview').html('Image loaded');
 			}
 			else
 			{

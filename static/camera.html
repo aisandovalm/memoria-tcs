@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Camera control</title>
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
 </head>
 <body>
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<li><a href="/static/telescope.html">Control telescope</a></li>
+				<li class="active"><a href="/static/camera.html">Control camera</a></li>
+			</ul>
+		</div>
+	</div>
+
 	<!-- Image settings section -->
-	<div id="imagesettings">
-		<p>Image Settings</p>
+	<div id="imagesettings" class="container-fluid">
+		<h4>Image Settings</h4>
 	    <form id="form_imagesettings" name="form_imagesettings" method="POST" action="/imagesettings">
-			Parameter:
-			<select id="imgparameter" name="imgparameter">
-				<option value=" " selected="selected">Select parameter </option>
-				<option value="imagesize">Image Size</option>
-				<option value="iso">ISO Speed</option>
-			 	<option value="whitebalance">WhiteBalance</option>
-			</select> 
-			<br>
-			Value:
-			<select name="imgparamvalue">
-				<option value=" " selected="selected">Please select a parameter first</option>
-			</select> 
-			<br>
-			<input id="applyimagesettingsButton" type="submit" value="Apply setting" />
-			Camera response: <output id="response_imagesettings" name="response_imagesettings"></output>
+	    	<div class="form-group">
+	    		<label for="imgparameter">Parameter:</label>
+				<select id="imgparameter" name="imgparameter">
+					<option value=" " selected="selected">Select parameter </option>
+					<option value="imagesize">Image Size</option>
+					<option value="iso">ISO Speed</option>
+				 	<option value="whitebalance">WhiteBalance</option>
+				</select> 
+			</div>
+			<div class="form-group">
+	    		<label for="imgparamvalue">Value:</label>
+				<select name="imgparamvalue">
+					<option value=" " selected="selected">Please select a parameter first</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary" id="applyimagesettingsButton" type="submit" value="Apply setting" />
+				Camera response: <output id="response_imagesettings" name="response_imagesettings"></output>
+			</div>
 		</form>
 
 		<form id="form_currentimagesettings" method="POST" action="/currentimagesettings">
-			<input id="currentimagesettingsButton" type="submit" value="Get current settings" />
+			<input class="btn btn-info" id="currentimagesettingsButton" type="submit" value="Get current settings" />
 			Current Settings: <output id="response_currentimagesettings"></output>
 		</form>
 	</div>
+
+	<hr>
 
 	<!-- Capture settings section -->
 	<div id="capturesettings">
@@ -71,7 +89,7 @@
 			Number of images:
 			<input id="frames" name="frames" type="text">
 			<br>
-			Time interval between each image:
+			Time interval between each image (> 1):
 			<input name="timeinterval" type="text">seconds
 
 			<input id="imagesequenceButton" type="submit" value="Capture image sequence" />
@@ -95,6 +113,7 @@
 	<div id="previewimage"/>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<!--<script src="jquery_v1_8_2.js"></script>-->
     <script src="camera.js"></script>
 </body>
 </html>	

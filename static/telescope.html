@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Telescope control</title>
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
 </head>
 <body>
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<li class="active"><a href="/static/telescope.html">Control telescope</a></li>
+				<li><a href="/static/camera.html">Control camera</a></li>
+			</ul>
+		</div>
+	</div>
 	<!-- Test section -->
 	<div id="testsection">
 	    <form id="form_test" method="POST" action="/ajax">
@@ -250,12 +261,21 @@
 			<select name="ratetype">
 			  <option value="var">Variable</option>
 			  <option value="fixed">Fixed</option>
+			</select>
+			<select name="ratesign">
+			  <option value="positive">+</option>
+			  <option value="negative">-</option>
 			</select> 
 			Rate:
 			<input name="rate" type="text">
 			<input id="slewingButton" type="submit" value="Slew" />
 		</form>
 		Telescope response: <output id="response_slewing" name="response_slewing"></output>
+
+		<div id="stopslewing">
+		<button id="stopslewingButton">Stop Slewing</button>
+		<output id="response_stopslewing" name="response_stopslewing">
+	</div>
 	</div>
 
 	<!-- Location/Time section -->
@@ -335,11 +355,19 @@
 		</form>		
 
 		<form id="form_gpsgetlatitude" method="POST" action="/gpsgetlatitude">
+			<select name="format">
+			  <option value="percent_of_rev">Percentage of revolution</option>
+			  <option value="degrees">Degrees</option>
+			</select>
 			<input id="gpsgetlatitudeButton" type="submit" value="Get latitude" />
 			Latitude: <output id="response_gpsgetlatitude" name="response_gpsgetlatitude"></output>
 		</form>	
 
 		<form id="form_gpsgetlongitude" method="POST" action="/gpsgetlongitude">
+			<select name="format">
+			  <option value="percent_of_rev">Percentage of revolution</option>
+			  <option value="degrees">Degrees</option>
+			</select> 
 			<input id="gpsgetlongitudeButton" type="submit" value="Get longitude" />
 			Longitude: <output id="response_gpsgetlongitude" name="response_gpsgetlongitude"></output>
 		</form>
@@ -415,6 +443,7 @@
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<!--<script src="jquery_v1_8_2.js"></script>-->
     <script src="telescope.js"></script>
 </body>
 </html>

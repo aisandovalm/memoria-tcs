@@ -1,5 +1,5 @@
 from bottle import Bottle, run, static_file, request, route, get, response
-import os, bottle, shutil, time, tcs_bottle_config, camera , telescope
+import os, bottle, shutil, time, tcs_bottle_config, camera #, telescope
 
 app = Bottle()
 
@@ -9,6 +9,10 @@ def enable_cors():
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
+@app.route('/')
+def root():
+    return static_file('telescope.html', root=tcs_bottle_config.config['bottle_staticfilepath'], mimetype="text/html")
 
 @app.route('/static/<filepath:path>')
 def server_static(filepath):
@@ -148,13 +152,20 @@ def set_trackingmode():
 def slewing():
     rate_type = request.forms.get('ratetype')
     direction = request.forms.get('direction')
+    sign = request.forms.get('ratesign')
     rate = int(request.forms.get('rate'))
 
     if rate_type == 'var':
-        response = telescope.slew_var_rate(direction, rate)
+        response = telescope.slew_var_rate(direction, sign, rate)
     else:
-        response = telescope.slew_fixed_rate(direction, rate)
+        response = telescope.slew_fixed_rate(direction, sign, rate)
 
+    print response
+    return response
+
+@app.route('/stopslewing')
+def stopslewing():
+    response = telescope.stop_slewing()
     print response
     return response
 
@@ -206,13 +217,15 @@ def gps_check():
 
 @app.route('/gpsgetlatitude', method='POST')
 def gps_getlatitude():
-    response = telescope.gps_get_latitude()
+    format = request.forms.get('format')
+    response = telescope.gps_get_latitude(format)
     print response
     return response
 
 @app.route('/gpsgetlongitude', method='POST')
 def gps_getlongitude():
-    response = telescope.gps_get_longitude()
+    format = request.forms.get('format')
+    response = telescope.gps_get_longitude(format)
     print response
     return response
 
@@ -335,10 +348,17 @@ def get_batterylevel():
 @app.route('/capturepreview')
 def capturepreview():
     if os.path.isfile('static/preview.jpg'):
+        print 'Existe el archivo...'
         os.remove('static/preview.jpg')
 
     response = camera.capture_preview()
-    return response
+    print 'response: ' + response
+    if response == 'captured':
+        shutil.copy('capt0000.jpg', 'static/preview.jpg')
+        os.remove('capt0000.jpg')
+        return 'preview.jpg'
+    else:
+        return 'Error'
 
 
 

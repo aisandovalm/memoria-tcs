@@ -207,6 +207,15 @@ $(document).ready(function()
         e.preventDefault();
     });
 
+    $('#stopslewingButton').click(function () 
+    {
+        $('#response_stopslewing').html(prgrs_msg);
+         $.get('/stopslewing', function(response)
+        {   
+            $('#response_stopslewing').html(response);
+        });
+    });
+
     $('#form_getlocation').submit(function(e) {
         $('#location').html(prgrs_msg);
         $.ajax({

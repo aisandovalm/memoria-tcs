@@ -56,7 +56,7 @@ def capture_sequence(frames, interval):
 	if response == "Camera not found":
 		return 'Error: ' + response + '. Check the camera connections and make sure is On'
 
-	command = ['--capture-image', '-F', frames, '-I', interval]
+	command = ['-F', frames, '-I', interval, '--capture-image-and-download', '--filename=images/%Y%m%d%H%M%S.jpg']
 	execute_response = _execute_command(command)
 	return execute_response
 
@@ -75,9 +75,9 @@ def capture_preview():
 	if response == "Camera not found":
 		return 'Error: ' + response + '. Check the camera connections and make sure is On'
 
-	command = ['--capture_image_and_download', '--filename="/home/pi/tcs/static/preview.jpg"']
+	command = ['--capture-image-and-download']
 	execute_response = _execute_command(command)
-	return 'preview.jpg'
+	return 'captured'
 
 
 def _execute_command(command):
