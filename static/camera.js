@@ -62,21 +62,15 @@ $(document).ready(function()
 	    }
 	    e.preventDefault();
     });
-    
-    $('#form_currentimagesettings').submit(function(e) 
-    {
-        $('#response_currentimagesettings').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/currentimagesettings',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_currentimagesettings').html(response);
-            }
-        });
-        e.preventDefault();
-    });
 
+    $('#currentimagesettingsButton').click(function () 
+    {
+		$('#response_currentimagesettings').html(prgrs_msg);
+		 $.get('/currentimagesettings', function(response)
+        { 	
+			$('#response_currentimagesettings').html(response);
+		});
+	});
 
 	document.getElementById('captureparameter').onchange = function()
 	{
@@ -285,19 +279,14 @@ $(document).ready(function()
         e.preventDefault();
     });
     
-    $('#form_currentcapturesettings').submit(function(e) 
+    $('#currentcapturesettingsButton').click(function () 
     {
-        $('#response_currentcapturesettings').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/currentcapturesettings',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_currentcapturesettings').html(response);
-            }
-        });
-        e.preventDefault();
-    });
+		$('#response_currentcapturesettings').html(prgrs_msg);
+		 $.get('/currentcapturesettings', function(response)
+        { 	
+			$('#response_currentcapturesettings').html(response);
+		});
+	});
 
     $('#form_imagesequence').submit(function(e) 
     {

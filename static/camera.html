@@ -40,77 +40,91 @@
 			</div>
 		</form>
 
-		<form id="form_currentimagesettings" method="POST" action="/currentimagesettings">
-			<input class="btn btn-info" id="currentimagesettingsButton" type="submit" value="Get current settings" />
-			Current Settings: <output id="response_currentimagesettings"></output>
-		</form>
+		<button class="btn btn-info" id="currentimagesettingsButton">Get current settings</button>
+		Current Settings: <output id="response_currentimagesettings"></output>
+		
 	</div>
 
 	<hr>
 
 	<!-- Capture settings section -->
-	<div id="capturesettings">
-		<p>Capture Settings</p>
+	<div id="capturesettings" class="container-fluid">
+		<h4>Capture Settings</h4>
 	    <form id="form_capturesettings" name="form_capturesettings" method="POST" action="/capturesettings">
-			Parameter:
-			<select id="captureparameter" name="captureparameter">
-				<option value=" " selected="selected">Select parameter</option>
-				<option value="exposurecompensation">Exposure Compensation</option>
-				<option value="flashmode">Flash Mode</option>
-				<option value="f-number">F-Number</option>
-				<option value="imagequality">Image Quality</option>
-				<option value="focusmode">Focus Mode</option>
-				<option value="expprogram">Exposure Program</option>
-				<option value="capturemode">Still Capture Mode</option>
-				<option value="focusmetermode">Focus Metering Mode</option>
-				<option value="exposuremetermode">Exposure Metering Mode</option>
-				<option value="shutterspeed">Shutter Speed</option>
-			</select> 
-			<br>
-			Value:
-			<select name="captureparamvalue">
-				<option value=" " selected="selected">Please select a parameter first</option>
-			</select> 
-			<br>
-			<input id="applycapturesettingsButton" type="submit" value="Apply setting" />
-			Camera response: <output id="response_capturesettings" name="response_capturesettings"></output>
+	    	<div class="form-group">
+	    		<label for="captureparameter">Parameter:</label>
+				<select id="captureparameter" name="captureparameter">
+					<option value=" " selected="selected">Select parameter</option>
+					<option value="exposurecompensation">Exposure Compensation</option>
+					<option value="flashmode">Flash Mode</option>
+					<option value="f-number">F-Number</option>
+					<option value="imagequality">Image Quality</option>
+					<option value="focusmode">Focus Mode</option>
+					<option value="expprogram">Exposure Program</option>
+					<option value="capturemode">Still Capture Mode</option>
+					<option value="focusmetermode">Focus Metering Mode</option>
+					<option value="exposuremetermode">Exposure Metering Mode</option>
+					<option value="shutterspeed">Shutter Speed</option>
+				</select>
+			</div>
+			<div class="form-group">
+	    		<label for="captureparamvalue">Value:</label>
+				<select name="captureparamvalue">
+					<option value=" " selected="selected">Please select a parameter first</option>
+				</select> 
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary" id="applycapturesettingsButton" type="submit" value="Apply setting" />
+				Camera response: <output id="response_capturesettings" name="response_capturesettings"></output>
+			</div>
 		</form>
 
-		<form id="form_currentcapturesettings" method="POST" action="/currentcapturesettings">
-			<input id="currentcapturesettingsButton" type="submit" value="Get current settings" />
-			Current Settings: <output id="response_currentcapturesettings"></output>
+		<button class="btn btn-info" id="currentcapturesettingsButton">Get current settings</button>
+		Current Settings: <output id="response_currentcapturesettings"></output>
 		</form>
 	</div>
+
+	<hr>
 
 	<!-- Capture sequence section -->
-	<div id="sequence">
-		<p>Capture image sequence</p>
+	<div id="sequence" class="container-fluid">
+		<h4>Capture image sequence</h4>
 		<form id="form_imagesequence" method="POST" action="/imagesequence">
-			Number of images:
-			<input id="frames" name="frames" type="text">
-			<br>
-			Time interval between each image (> 1):
-			<input name="timeinterval" type="text">seconds
-
-			<input id="imagesequenceButton" type="submit" value="Capture image sequence" />
+			<div class="form-group">
+				<label for="frames">Number of images:</label>
+				<input id="frames" name="frames" type="text">
+			</div>
+			<div class="form-group">
+				<label for="time">Time interval between each image (> 1):</label>
+				<input name="timeinterval" type="text"> [seconds]
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary" id="imagesequenceButton" type="submit" value="Capture image sequence" />
+				Camera response: <output id="response_imagesequence" name="response_imagesequence"></output>
+			</div>
 		</form>
-		Camera response: <output id="response_imagesequence" name="response_imagesequence"></output>
 	</div>
 
+	<hr>
+
 	<!-- Baterry level section -->
-	<div id="battery">
-		<p>Battery level</p>
-		<button id="batteryButton">Get battery level</button>
+	<div id="battery" class="container-fluid">
+		<h4>Battery level</h4>
+		<button class="btn btn-info" id="batteryButton">Get battery level</button>
 		Camera response: <output id="response_battery" name="response_battery">
 	</div>
 
+	<hr>
+
 	<!-- Capture preview section -->
-	<div id="preview">
-		<p>Capture preview image</p>
-		<button id="capturepreview">Capture Photo</button>
+	<div id="preview" class="container-fluid">
+		<h4>Capture preview image</h4>
+		<button class="btn btn-primary" id="capturepreview">Capture Photo</button>
 		Camera response: <output id="response_preview" name="response_preview">
 	</div>
-	<div id="previewimage"/>
+	<div id="previewimage" class="container-fluid"/>
+
+	<hr>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<!--<script src="jquery_v1_8_2.js"></script>-->

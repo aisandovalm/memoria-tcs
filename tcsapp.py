@@ -301,7 +301,7 @@ def set_imagesettings():
     else:
         return response
 
-@app.route('/currentimagesettings', method='POST')
+@app.route('/currentimagesettings')
 def get_imagesettings():
     response = camera.get_current_image_config()
     print response
@@ -318,7 +318,7 @@ def set_capturesettings():
     else:
         return response
 
-@app.route('/currentcapturesettings', method='POST')
+@app.route('/currentcapturesettings')
 def get_capturesettings():
     response = camera.get_current_capture_config()
     print response
