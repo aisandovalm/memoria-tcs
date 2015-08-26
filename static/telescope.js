@@ -2,19 +2,6 @@ $(document).ready(function()
 {
     var prgrs_msg = 'Operation in progress, please wait.';
 
-    $('#form_test').submit(function(e) 
-    {
-        $.ajax({
-            type: 'POST',
-            url: '/ajax',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#ajaxP').html(response);
-            }
-        });
-        e.preventDefault();
-    });
-
     $('#form_getposition').submit(function(e) 
     {
         //alert($(this).serialize());
@@ -165,18 +152,15 @@ $(document).ready(function()
         e.preventDefault();
     });
 
-    $('#form_gettrackingmode').submit(function(e) 
+    
+    $('#gettrackingmodeButton').click(function()
     {
+        //stopPropagation();
         $('#response_gettrackingmode').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/gettrackingmode',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_gettrackingmode').html(response);
-            }
+        $.get('/gettrackingmode', function(response)
+        {
+            $('#response_gettrackingmode').html(response);
         });
-        e.preventDefault();
     });
 
     $('#form_settrackingmode').submit(function(e) 
@@ -210,23 +194,19 @@ $(document).ready(function()
     $('#stopslewingButton').click(function () 
     {
         $('#response_stopslewing').html(prgrs_msg);
-         $.get('/stopslewing', function(response)
+        $.get('/stopslewing', function(response)
         {   
             $('#response_stopslewing').html(response);
         });
     });
 
-    $('#form_getlocation').submit(function(e) {
+    $('#getlocationButton').click(function() 
+    {
         $('#location').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/getlocation',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#location').html(response);
-            }
+        $.get('/getlocation', function(response)
+        {
+            $('#location').html(response);
         });
-        e.preventDefault();
     });
 
     $('#form_setlocation').submit(function(e) 
@@ -243,18 +223,13 @@ $(document).ready(function()
         e.preventDefault();
     });
 
-    $('#form_gettime').submit(function(e) 
+    $('#gettimeButton').click(function() 
     {
         $('#time').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/gettime',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#time').html(response);
-            }
+        $.get('/gettime', function(response)
+        {
+            $('#time').html(response);
         });
-        e.preventDefault();
     });
 
     $('#form_settime').submit(function(e) 
@@ -262,7 +237,7 @@ $(document).ready(function()
         $('#response_settime').html(prgrs_msg);
         $.ajax({
             type: 'POST',
-            url: 'settime',
+            url: '/settime',
             data: $(this).serialize(),
             success: function(response) {
                 $('#response_settime').html(response);
@@ -271,18 +246,13 @@ $(document).ready(function()
         e.preventDefault();
     });
 
-    $('#form_gpscheck').submit(function(e) 
+    $('#gpscheckButton').click(function() 
     {
         $('#response_gpscheck').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/gpscheck',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_gpscheck').html(response);
-            }
+        $.get('/gpscheck', function(response)
+        {
+            $('#response_gpscheck').html(response);
         });
-        e.preventDefault();
     });
 
     $('#form_gpsgetlatitude').submit(function(e) 
@@ -313,60 +283,40 @@ $(document).ready(function()
         e.preventDefault();
     });
 
-    $('#form_gpsgetdate').submit(function(e) 
+    $('#gpsgetdateButton').click(function() 
     {
         $('#response_gpsgetdate').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/gpsgetdate',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_gpsgetdate').html(response);
-            }
+        $.get('/gpsgetdate', function(response)
+        {
+            $('#response_gpsgetdate').html(response);
         });
-        e.preventDefault();
     });
 
-    $('#form_gpsgettime').submit(function(e) 
+    $('#gpsgettimeButton').click(function() 
     {
         $('#response_gpsgettime').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/gpsgettime',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_gpsgettime').html(response);
-            }
+        $.get('/gpsgettime', function(response)
+        {
+            $('#response_gpsgettime').html(response);
         });
-        e.preventDefault();
     });
 
-    $('#form_rtcgetdate').submit(function(e) 
+    $('#rtcgetdateButton').click(function() 
     {
         $('#response_rtcgetdate').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/rtcgetdate',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_rtcgetdate').html(response);
-            }
+        $.get('/rtcgetdate', function(response)
+        {
+            $('#response_rtcgetdate').html(response);
         });
-        e.preventDefault();
     });
 
-    $('#form_rtcgettime').submit(function(e) 
+    $('#rtcgettimeButton').click(function() 
     {
         $('#response_rtcgettime').html(prgrs_msg);
-        $.ajax({
-            type: 'POST',
-            url: '/rtcgettime',
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#response_rtcgettime').html(response);
-            }
+        $.get('/rtcgettime', function(response)
+        {
+            $('#response_rtcgettime').html(response);
         });
-        e.preventDefault();
     });
 
     $('#form_rtcsetdate').submit(function(e) 

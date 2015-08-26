@@ -2,15 +2,19 @@
 # -*- coding: UTF-8 -*-
 
 import serial, io, math
+from serial import SerialException
 
 #Parametros para conexion serial con Telescopio
 device = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0';
 
 #Se establece conexión serial con el Telescopio, la instancia de la conexión se pasa a la variable "nexstar"
-nexstar = serial.Serial(device, baudrate=9600, timeout=1)
+try:
+	nexstar = serial.Serial(device, baudrate=9600, timeout=1)
+except SerialException:
+	print "Error: Port not found, make sure that the USB/Serial cable is connected to the Raspberry Pi, then restart the app or it will not work properly"
 
 check = 1
-msg_error_check = 'Communication problem, check the conections and make sure that the telescope is on'
+msg_error_check = 'Communication problem, check the conections and make sure that the telescope is on. Restart the app'
 msg_error_format = 'Error: Invalid format'
 msg_error_goto = 'Error: A problem has ocurred with the GOTO command, check the values and try again'
 
@@ -202,11 +206,14 @@ def _dd_to_dms(dd):
 # #format: especifíca en qué formato se reciben las coordenadas #
 #################################################################
 def goto_RA_DEC(ra, dec, format):
+	print ra, dec, format
 	if echo(check) == check:
 		if format == 'percent_of_rev':
 			command = ('R' + _perc_of_rev_to_hex(ra) + ',' + _perc_of_rev_to_hex(dec))
 		elif format == 'degrees':
 			command = ('R' + _degrees_to_hex(ra) + ',' + _degrees_to_hex(dec))
+
+		print command
 
 		nexstar.write(command)
 		response = nexstar.read(1)
@@ -511,7 +518,7 @@ def get_location():
 		E = ord(response[4])
 		F = ord(response[5])
 		G = ord(response[6])
-		H = 'E' if ord(response[3]) == 0 else 'W'
+		H = 'E' if ord(response[7]) == 0 else 'W'
 		longitude = (str(E) + '°' + str(F) + "'" + str(G) + '"' + str(H))
 
 		return (latitude + ', ' + longitude)
@@ -560,7 +567,7 @@ def set_time(Q, R, S, T, U, V, W, X):
 		if W < 0:
 			W = 256 + W
 
-		command = ('W' + chr(Q) + chr(R) + chr(S) + chr(T) + chr(U) + chr(V) + chr(W) + chr(X))
+		command = ('H' + chr(Q) + chr(R) + chr(S) + chr(T) + chr(U) + chr(V) + chr(W) + chr(X))
 		nexstar.write(command)
 		response =  nexstar.read(1)
 		return _verify_response(response)
@@ -709,6 +716,15 @@ def rtc_get_time():
 		minutes = ord(response[1])
 		seconds = ord(response[2])
 
+		#Formatear correctamente el tiempo
+		if hours < 10:
+			hours = str(0) + str(hours)
+		if minutes < 10:
+			minutes = str(0) + str(minutes)
+
+		if seconds < 10:
+			seconds = str(0) + str(seconds)
+
 		return (str(hours) + ':' + str(minutes) + ':' + str(seconds))
 	else:
 		return msg_error_check
@@ -720,12 +736,6 @@ def rtc_set_date(day, month, year):
 		nexstar.write(command)
 		response = nexstar.read(1)
 		return _verify_response(response)
-
-		#DUDA CON SET YEAR!
-		#nexstar.write('P' + chr(3) + chr(178) + chr(132) + chr(month) +
-		#	chr(day) + chr(0) + chr(0))
-		#response = nexstar.read(1)
-		#_verify_response(response)
 	else:
 		return msg_error_check
 
@@ -811,7 +821,10 @@ def echo(x):
 	command = ('K' + chr(x))
 	nexstar.write(command)
 	response = nexstar.read(2)
-	return ord(response[0])
+	if len(response) == 0:
+		return 0
+	else:
+		return ord(response[0])
 
 def is_alignment_complete():
 	nexstar.write('J')

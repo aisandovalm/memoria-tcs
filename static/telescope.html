@@ -14,432 +14,511 @@
 			</ul>
 		</div>
 	</div>
-	<!-- Test section -->
-	<div id="testsection">
-	    <form id="form_test" method="POST" action="/ajax">
-	        <input id="ajaxTextbox" name="text" type"text" />
-	        <input id="ajaxButton" type="submit" value="Submit" />
-	    </form>
-	    <p id="ajaxP">Nothing to see here.</p>
-	</div>
 
 	<!-- Get position section -->
-	<div id="getposition">
-		<p>GET POSITION</p>
-		<form id="form_getposition" method="POST" action="/getposition">
-			Coordinates:
-			<select name="coordinates">
-			  <option value="RA/DEC">RA/DEC</option>
-			  <option value="precise RA/DEC">precise RA/DEC</option>
-			  <option value="AZM/ALT">AZM/ALT</option>
-			  <option value="precise AZM/ALT">precise AZM/ALT</option>
-			</select> 
-			<br>
-			Format:
-			<select name="format">
-			  <option value="percent_of_rev">Percentage of revolution</option>
-			  <option value="degrees">Degrees</option>
-			  <option value="H/DMS">H/DMS</option>
-			</select> 
-			<br>
-			<input id="getpostionButton" type="submit" value="Get position" />
+	<div id="getposition" class="container-fluid">
+		<h4>GET POSITION</h4>
+		<form id="form_getposition" name="form_getposition" method="POST" action="/getposition">
+			<div class="form-group">
+				<label for="coordinates">Coordinates:</label>
+				<select name="coordinates">
+				  <option value="RA/DEC">RA/DEC</option>
+				  <option value="precise RA/DEC">precise RA/DEC</option>
+				  <option value="AZM/ALT">AZM/ALT</option>
+				  <option value="precise AZM/ALT">precise AZM/ALT</option>
+				</select> 
+			</div>
+			<div class="form-group">
+				<label for="format">Format:</label>
+				<select name="format">
+				  <option value="percent_of_rev">Percentage of revolution</option>
+				  <option value="degrees">Degrees</option>
+				  <option value="H/DMS">H/DMS</option>
+				</select> 
+			</div>
+			<div class="form-group">
+				<input class="btn btn-info" id="getpositionButton" type="submit" value="Get position" />
+				Position: <output id="position" name="position"></output>
+			</div>
 		</form>
-		Position: <output id="position" name="position"></output>
-		<!--<p id="position"></p>-->
 	</div>
+
+	<hr>
 
 	<!-- GOTO section -->
-	<div id="goto">
-		<p>GOTO</p>
-		<div id="radec">
-			<p>RADEC</p>
-			<form id="form_gotoradec" method="POST" action="/gotoradec">
-				Format:
-				<select name="format">
-				  <option value="percent_of_rev">Percentage of revolution</option>
-				  <option value="degrees">Degrees</option>
-				</select> 
-				<br>
-				RA:
-				<input name="ra" type="text">
-				<br>
-				DEC:
-				<input name="dec" type="text">
-
-				<input id="gotoradecButton" type="submit" value="GOTO RADEC" />
+	<div id="goto" class="container-fluid">
+		<h4>GOTO</h4>
+		<div id="radec" class="container-fluid">
+			<h5>RADEC</h5>
+			<form id="form_gotoradec" name="form_gotoradec" method="POST" action="/gotoradec">
+				<div class="form-group">
+					<label id="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label for="ra">RA:</label>
+					<input name="ra" type="text">
+				</div>
+				<div class="form-group">
+					<label for="dec">DEC:</label>
+					<input name="dec" type="text">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="gotoradecButton" type="submit" value="GOTO RADEC" />
+					Telescope response: <output id="response_gotoradec" name="response_gotoradec"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_gotoradec" name="response_gotoradec"></output>
 		</div>
-		<div id="preciseradec">
-			<p>Precise RADEC</p>
-			<form id="form_gotopreciseradec" method="POST" action="/gotopreciseradec">
-				Format:
-				<select name="format">
-				  <option value="percent_of_rev">Percentage of revolution</option>
-				  <option value="degrees">Degrees</option>
-				</select> 
-				<br>
-				RA:
-				<input name="ra" type="text">
-				<br>
-				DEC:
-				<input name="dec" type="text">
-
-				<input id="gotopreciseradecButton" type="submit" value="GOTO Precise RADEC" />
+		<div id="preciseradec" class="container-fluid">
+			<h5>Precise RADEC</h5>
+			<form id="form_gotopreciseradec" name="form_gotopreciseradec" method="POST" action="/gotopreciseradec">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label for="ra">RA:</label>
+					<input name="ra" type="text">
+				</div>
+				<div class="form-group">
+					<label for="dec">DEC:</label>
+					<input name="dec" type="text">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="gotopreciseradecButton" type="submit" value="GOTO Precise RADEC" />
+					Telescope response: <output id="response_gotopreciseradec" name="response_gotopreciseradec"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_gotopreciseradec" name="response_gotopreciseradec"></output>
+			
 		</div>
-		<div id="radechdms">
-			<p>RADEC h:m:s °:':" </p>
-			<form id="form_gotoradechdms" method="POST" action="/gotoradechdms">
-				RA:
-				<input name="ra_h" type="text">Hours&nbsp;
-				<input name="ra_m" type="text">Minutes&nbsp;
-				<input name="ra_s" type="text">Seconds
-				<br> 
-				DEC:
-				<input name="dec_d" type="text">Degrees&nbsp;
-				<input name="dec_m" type="text">Arcminutes&nbsp;
-				<input name="dec_s" type="text">Arcseconds
-
-				<input id="gotoradechdmsButton" type="submit" value="GOTO RADEC hdms" />
+		<div id="radechdms" class="container-fluid">
+			<h5>RADEC [Hours:Minutes:Seconds] [Degrees:Arcminutes:Arcseconds] </h5>
+			<form id="form_gotoradechdms" name="form_gotoradechdms" method="POST" action="/gotoradechdms">
+				<div class="form-group">
+					<label for="ra">RA:</label>
+					<input name="ra_h" type="text">Hours&nbsp;
+					<input name="ra_m" type="text">Minutes&nbsp;
+					<input name="ra_s" type="text">Seconds
+				</div>
+				<div class="form-group">
+					<label for="dec">DEC:</label>
+					<input name="dec_d" type="text">Degrees&nbsp;
+					<input name="dec_m" type="text">Arcminutes&nbsp;
+					<input name="dec_s" type="text">Arcseconds
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="gotoradechdmsButton" type="submit" value="GOTO RADEC hdms" />
+					Telescope response: <output id="response_gotoradechdms" name="response_gotoradechdms"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_gotoradechdms" name="response_gotoradechdms"></output>
 		</div>
-		<div id="azmalt">
-			<p>AZM-ALT</p>
-			<form id="form_gotoazmalt" method="POST" action="/gotoazmalt">
-				Format:
-				<select name="format">
-				  <option value="percent_of_rev">Percentage of revolution</option>
-				  <option value="degrees">Degrees</option>
-				</select> 
-				<br>
-				AZM:
-				<input name="azm" type="text">
-				<br>
-				ALT:
-				<input name="alt" type="text">
-
-				<input id="gotoazmaltButton" type="submit" value="GOTO AZM-ALT" />
+		<div id="azmalt" class="container-fluid">
+			<h5>AZM-ALT</h5>
+			<form id="form_gotoazmalt" name="form_gotoazmalt" method="POST" action="/gotoazmalt">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="azm">AZM:</label>
+					<input name="azm" type="text">
+				</div>
+				<div class="form-group">
+					<label for="alt">ALT:</label>
+					<input name="alt" type="text">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="gotoazmaltButton" type="submit" value="GOTO AZM-ALT" />
+					Telescope response: <output id="response_gotoazmalt" name="response_gotoazmalt"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_gotoazmalt" name="response_gotoazmalt"></output>
 		</div>
-		<div id="preciseazmalt">
-			<p>Precise AZM-ALT</p>
-			<form id="form_gotopreciseazmalt" method="POST" action="/gotopreciseazmalt">
-				Format:
-				<select name="format">
-				  <option value="percent_of_rev">Percentage of revolution</option>
-				  <option value="degrees">Degrees</option>
-				</select> 
-				<br>
-				AZM:
-				<input name="azm" type="text">
-				<br>
-				ALT:
-				<input name="alt" type="text">
-
-				<input id="gotopreciseazmaltButton" type="submit" value="GOTO Precise AZM-ALT" />
+		<div id="preciseazmalt" class="container-fluid">
+			<h5>Precise AZM-ALT</h5>
+			<form id="form_gotopreciseazmalt" name="form_gotopreciseazmalt" method="POST" action="/gotopreciseazmalt">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="azm">AZM:</label>
+					<input name="azm" type="text">
+				</div>
+				<div class="form-group">
+					<label for="alt">ALT:</label>
+					<input name="alt" type="text">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="gotopreciseazmaltButton" type="submit" value="GOTO Precise AZM-ALT" />
+					Telescope response: <output id="response_gotopreciseazmalt" name="response_gotopreciseazmalt"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_gotopreciseazmalt" name="response_gotopreciseazmalt"></output>
+			
 		</div>
-		<div id="azmaltdms">
-			<p>AZM-ALT °:':" </p>
-			<form id="form_gotoazmaltdms" method="POST" action="/gotoazmaltdms">
-				AZM:
-				<input name="azm_d" type="text">Degrees&nbsp;
-				<input name="azm_m" type="text">Arcminutes&nbsp;
-				<input name="azm_s" type="text">Arcseconds
-				<br> 
-				ALT:
-				<input name="alt_d" type="text">Degrees&nbsp;
-				<input name="alt_m" type="text">Arcminutes&nbsp;
-				<input name="alt_s" type="text">Arcseconds
-
-				<input id="gotoazmaltdmsButton" type="submit" value="GOTO AZM-ALT dms" />
+		<div id="azmaltdms" class="container-fluid">
+			<h5>AZM-ALT [Degrees:Arcminutes:Arcseconds] </h5>
+			<form id="form_gotoazmaltdms" name="form_gotoazmaltdms" method="POST" action="/gotoazmaltdms">
+				<div class="form-group">
+					<label for="azm">AZM:</label>
+					<input name="azm_d" type="text">Degrees&nbsp;
+					<input name="azm_m" type="text">Arcminutes&nbsp;
+					<input name="azm_s" type="text">Arcseconds
+				</div>
+				<div class="form-group">
+					<label for"alt">ALT:</label>
+					<input name="alt_d" type="text">Degrees&nbsp;
+					<input name="alt_m" type="text">Arcminutes&nbsp;
+					<input name="alt_s" type="text">Arcseconds
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="gotoazmaltdmsButton" type="submit" value="GOTO AZM-ALT dms" />
+					Telescope response: <output id="response_gotoazmaltdms" name="response_gotoazmaltdms"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_gotoazmaltdms" name="response_gotoazmaltdms"></output>
 		</div>
 	</div>
 
+	<hr>
 
 	<!-- SYNC section -->
-	<div id="sync">
-		<p>SYNC</p>
-		<div id="syncradec">
-			<p>RADEC</p>
-			<form id="form_syncradec" method="POST" action="/syncradec">
-				Format:
-				<select name="format">
-				  <option value="percent_of_rev">Percentage of revolution</option>
-				  <option value="degrees">Degrees</option>
-				</select> 
-				<br>
-				RA:
-				<input name="ra" type="text">
-				<br>
-				DEC:
-				<input name="dec" type="text">
-
-				<input id="syncradecButton" type="submit" value="SYNC RADEC" />
+	<div id="sync" class="container-fluid">
+		<h4>SYNC</h4>
+		<div id="syncradec" class="container-fluid">
+			<h5>RADEC</h5>
+			<form id="form_syncradec" name="form_syncradec" method="POST" action="/syncradec">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label for="ra">RA:</label>
+					<input name="ra" type="text">
+				</div>
+				<div class="form-group">
+					<label for"dec">DEC:</label>
+					<input name="dec" type="text">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="syncradecButton" type="submit" value="SYNC RADEC" />
+					Telescope response: <output id="response_syncradec" name="response_syncradec"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_syncradec" name="response_syncradec"></output>
 		</div>
-		<div id="syncpreciseradec">
-			<p>Precise RADEC</p>
-			<form id="form_syncpreciseradec" method="POST" action="/syncpreciseradec">
-				Format:
-				<select name="format">
-				  <option value="percent_of_rev">Percentage of revolution</option>
-				  <option value="degrees">Degrees</option>
-				</select> 
-				<br>
-				RA:
-				<input name="ra" type="text">
-				<br>
-				DEC:
-				<input name="dec" type="text">
-
-				<input id="syncpreciseradecButton" type="submit" value="SYNC Precise RADEC" />
+		<div id="syncpreciseradec" class="container-fluid">
+			<h5>Precise RADEC</h5>
+			<form id="form_syncpreciseradec" name="form_syncpreciseradec" method="POST" action="/syncpreciseradec">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="ra">RA:</label>
+					<input name="ra" type="text">
+				</div>
+				<div class="form-group">
+					<label for="dec">DEC:</label>
+					<input name="dec" type="text">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="syncpreciseradecButton" type="submit" value="SYNC Precise RADEC" />
+					Telescope response: <output id="response_syncpreciseradec" name="response_syncpreciseradec"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_syncpreciseradec" name="response_syncpreciseradec"></output>
 		</div>
-		<div id="syncradechdms">
-			<p>RADEC h:m:s °:':" </p>
-			<form id="form_syncradechdms" method="POST" action="/syncradechdms">
-				RA:
-				<input name="ra_h" type="text">Hours&nbsp;
-				<input name="ra_m" type="text">Minutes&nbsp;
-				<input name="ra_s" type="text">Seconds
-				<br> 
-				DEC:
-				<input name="dec_d" type="text">Degrees&nbsp;
-				<input name="dec_m" type="text">Arcminutes&nbsp;
-				<input name="dec_s" type="text">Arcseconds
-
-				<input id="syncradechdmsButton" type="submit" value="SYNC RADEC hdms" />
+		<div id="syncradechdms" class="container-fluid">
+			<h5>RADEC [Hours:Minutes:Seconds] [Degrees:Arcminutes:Arcseconds] </h5>
+			<form id="form_syncradechdms" name="form_syncradechdms" method="POST" action="/syncradechdms">
+				<div class="form-group">
+					<label for="ra">RA:</label>
+					<input name="ra_h" type="text">Hours&nbsp;
+					<input name="ra_m" type="text">Minutes&nbsp;
+					<input name="ra_s" type="text">Seconds
+				</div>
+				<div class="form-group">
+					<label for="dec">DEC:</label>
+					<input name="dec_d" type="text">Degrees&nbsp;
+					<input name="dec_m" type="text">Arcminutes&nbsp;
+					<input name="dec_s" type="text">Arcseconds
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="syncradechdmsButton" type="submit" value="SYNC RADEC hdms" />
+					Telescope response: <output id="response_syncradechdms" name="response_syncradechdms"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_syncradechdms" name="response_syncradechdms"></output>
 		</div>
 	</div>
 
-	<!-- Tracking section -->
-	<div id="tracking">
-		<p>TRACKING</p>
-		<div id="gettrackingmode">
-			<p>Get tracking mode</p>
-			<form id="form_gettrackingmode" method="POST" action="/gettrackingmode">
-				<input id="gettrackingmodeButton" type="submit" value="Get tracking mode" />
-			</form>
+<hr>
+
+		<!-- Tracking section -->
+	<div id="tracking" class="container-fluid">
+		<h4>TRACKING</h4>
+		<div id="gettrackingmode" class="container-fluid">
+			<h5>Get tracking mode</h5>
+			<button class="btn btn-info" id="gettrackingmodeButton" onclick="_gettracking()">Get tracking mode</button>
 			Tracking mode: <output id="response_gettrackingmode" name="response_gettrackingmode"></output>
-		</div>	
-		<div id="settrackingmode">
-			<p>Set tracking mode</p>
-			<form id="form_settrackingmode" method="POST" action="/settrackingmode">
-				<select name="trackingmode">
-				  <option value="0">Off</option>
-				  <option value="1">Alt/Azm</option>
-				  <option value="2">EQ North</option>
-				  <option value="3">EQ South</option>
-				</select> 
-
-				<input id="settrackingmodeButton" type="submit" value="Set tracking mode" />
+		</div>
+		<br>
+		<div id="settrackingmode" class="container-fluid">
+			<h5>Set tracking mode</h5>
+			<form id="form_settrackingmode" name="form_settrackingmode" method="POST" action="/settrackingmode">
+				<div class="form-group">
+					<label for="trackingmode"></label>
+					<select name="trackingmode">
+					  <option value="0">Off</option>
+					  <option value="1">Alt/Azm</option>
+					  <option value="2">EQ North</option>
+					  <option value="3">EQ South</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="settrackingmodeButton" type="submit" value="Set tracking mode"/>
+					Telescope response: <output id="response_settrackingmode" name="response_settrackingmode"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_settrackingmode" name="response_settrackingmode"></output>
 		</div>	
 	</div>
+
+<hr>
 
 	<!-- Slewing section -->
-	<div id="slewing">
-		<p>SLEWING</p>
-		<form id="form_slewing" method="POST" action="/slewing">
-			<select name="direction">
-			  <option value="azm_ra">Azm-Ra</option>
-			  <option value="alt_dec">Alt-Dec</option>
-			</select> 
-			<select name="ratetype">
-			  <option value="var">Variable</option>
-			  <option value="fixed">Fixed</option>
-			</select>
-			<select name="ratesign">
-			  <option value="positive">+</option>
-			  <option value="negative">-</option>
-			</select> 
-			Rate:
-			<input name="rate" type="text">
-			<input id="slewingButton" type="submit" value="Slew" />
+	<div id="slewing" class="container-fluid">
+		<h4>SLEWING</h4>
+		<form id="form_slewing" name="form_slewing" method="POST" action="/slewing">
+			<div class="form-group">
+				<label for="direction">Direction</label>
+				<select name="direction">
+				  <option value="azm_ra">Azm-Ra</option>
+				  <option value="alt_dec">Alt-Dec</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="ratetype">Rate type</label>
+				<select name="ratetype">
+				  <option value="var">Variable</option>
+				  <option value="fixed">Fixed</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="ratesign">Rate sign</label>
+				<select name="ratesign">
+				  <option value="positive">+</option>
+				  <option value="negative">-</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="rate">Rate:</label>
+				<input name="rate" type="text">
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary" id="slewingButton" type="submit" value="Slew" />
+				Telescope response: <output id="response_slewing" name="response_slewing"></output>
+			</div>
 		</form>
-		Telescope response: <output id="response_slewing" name="response_slewing"></output>
+		
 
 		<div id="stopslewing">
-		<button id="stopslewingButton">Stop Slewing</button>
-		<output id="response_stopslewing" name="response_stopslewing">
+			<button class="btn btn-primary" id="stopslewingButton">Stop Slewing</button>
+			Telescope response: <output id="response_stopslewing" name="response_stopslewing">
+		</div>
 	</div>
-	</div>
+
+<hr>
 
 	<!-- Location/Time section -->
-	<div id="locationtime">
-		<p>Location/Time</p>
-		<div id="getlocation">
-			<p>Get location</p>
-			<form id="form_getlocation" method="POST" action="/getlocation">
-				<input id="getlocationButton" type="submit" value="Get location">
-			</form>
+	<div id="locationtime" class="container-fluid">
+		<h4>Location/Time</h4>
+		<div id="getlocation" class="container-fluid">
+			<h5>Get location</h5>
+			<button class="btn btn-info" id="getlocationButton">Get location</button>
 			Location: <output id="location" name="location"></output>
 		</div>
-
-		<div id="setlocation">
-			<p>Set location</p>
-			<form id="form_setlocation" method="POST" action="/setlocation">
-				Latitud:<br>
-				<input name="a" type="text">Degrees&nbsp;
-				<input name="b" type="text">Arcminutes&nbsp;
-				<input name="c" type="text">Arcseconds&nbsp;
-				<select name="d">
-				  <option value="0">North</option>
-				  <option value="1">South</option>
-				</select> 
-				<br> 
-				Longitud:<br>
-				<input name="e" type="text">Degrees&nbsp;
-				<input name="f" type="text">Arcminutes&nbsp;
-				<input name="g" type="text">Arcseconds&nbsp;
-				<select name="h">
-				  <option value="0">East</option>
-				  <option value="1">West</option>
-				</select> 
-
-				<input id="setlocationButton" type="submit" value="Set location" />
+		<br>
+		<div id="setlocation" class="container-fluid">
+			<h5>Set location</h5>
+			<form id="form_setlocation" name="form_setlocation" method="POST" action="/setlocation">
+				<div class="form-group">
+					<label for="latitude">Latitude:</label>
+					<input name="a" type="text">Degrees&nbsp;
+					<input name="b" type="text">Arcminutes&nbsp;
+					<input name="c" type="text">Arcseconds&nbsp;
+					<select name="d">
+					  <option value="0">North</option>
+					  <option value="1">South</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label for="longitude">Longitude:</label>
+					<input name="e" type="text">Degrees&nbsp;
+					<input name="f" type="text">Arcminutes&nbsp;
+					<input name="g" type="text">Arcseconds&nbsp;
+					<select name="h">
+					  <option value="0">East</option>
+					  <option value="1">West</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="setlocationButton" type="submit" value="Set location" />
+					Telescope response: <output id="response_setlocation" name="response_setlocation"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_setlocation" name="response_setlocation"></output>
 		</div>
-
-		<div id="gettime">
-			<p>Get time</p>
-			<form id="form_gettime" method="POST" action="/gettime">
-				<input id="gettimeButton" type="submit" value="Get time">
-			</form>
+		<div id="gettime" class="container-fluid">
+			<h5>Get time</h5>
+			<button class="btn btn-info" id="gettimeButton">Get time</button>
 			Time: <output id="time" name="time"></output>
 		</div>
-
-		<div id="settime">
-			<p>Set time</p>
-			<form id="form_settime" method="POST" action="/settime">
-				Time:<br>
-				<input name="q" type="text">Hours&nbsp;
-				<input name="r" type="text">Minutes&nbsp;
-				<input name="s" type="text">Seconds&nbsp;
-				<br> 
-				Date:<br>
-				<input name="t" type="text">Months&nbsp;
-				<input name="u" type="text">Day&nbsp;
-				<input name="v" type="text">Year&nbsp;
-				<input name="w" type="text">Offset from GMT (Santiago, Chile = GMT-3)&nbsp;
-				<select name="x">
-				  <option value="0">Standard time</option>
-				  <option value="1">Daylight savings</option>
-				</select> 
-				<input id="settimeButton" type="submit" value="Set time" />
+		<br>
+		<div id="settime" class="container-fluid">
+			<h5>Set time</h5>
+			<form id="form_settime" name="form_settime" method="POST" action="/settime">
+				<div class="form-group">
+					<label for="time">Time:</label>
+					<input name="q" type="text">Hours&nbsp;
+					<input name="r" type="text">Minutes&nbsp;
+					<input name="s" type="text">Seconds
+				</div>
+				<div class="form-group">
+					<label for="date">Date:</label>
+					<input name="t" type="text">Month&nbsp;
+					<input name="u" type="text">Day&nbsp;
+					<input name="v" type="text">Year&nbsp;
+					<input name="w" type="text">Offset from GMT (Santiago, Chile = GMT-3)
+					<select name="x">
+					  <option value="0">Standard time</option>
+					  <option value="1">Daylight savings</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="settimeButton" type="submit" value="Set time" />
+					Telescope response: <output id="response_settime" name="response_settime"></output>
+				</div>
 			</form>
-			Telescope response: <output id="response_settime" name="response_settime"></output>
 		</div>
 	</div>
 
+<hr>
+
 	<!-- GPS section -->
-	<div id="gps">
-		<p>GPS</p>
-		<form id="form_gpscheck" method="POST" action="/gpscheck">
-			<input id="gpscheckButton" type="submit" value="Check GPS" />
+	<div id="gps" class="container-fluid">
+		<h4>GPS</h4>
+		<div id="check" class="container-fluid">
+			<h5>Check GPS</h5>
+			<button class="btn btn-info" id="gpscheckButton">Check GPS</button>
 			GPS response: <output id="response_gpscheck" name="response_gpscheck"></output>
-		</form>		
-
-		<form id="form_gpsgetlatitude" method="POST" action="/gpsgetlatitude">
-			<select name="format">
-			  <option value="percent_of_rev">Percentage of revolution</option>
-			  <option value="degrees">Degrees</option>
-			</select>
-			<input id="gpsgetlatitudeButton" type="submit" value="Get latitude" />
-			Latitude: <output id="response_gpsgetlatitude" name="response_gpsgetlatitude"></output>
-		</form>	
-
-		<form id="form_gpsgetlongitude" method="POST" action="/gpsgetlongitude">
-			<select name="format">
-			  <option value="percent_of_rev">Percentage of revolution</option>
-			  <option value="degrees">Degrees</option>
-			</select> 
-			<input id="gpsgetlongitudeButton" type="submit" value="Get longitude" />
-			Longitude: <output id="response_gpsgetlongitude" name="response_gpsgetlongitude"></output>
-		</form>
-
-		<form id="form_gpsgetdate" method="POST" action="/gpsgetdate">
-			<input id="gpsgetdateButton" type="submit" value="Get date" />
+		</div>
+		<br>
+		<div id="getlatitude" class="container-fluid">
+			<h5>Get latitude</h5>
+			<form id="form_gpsgetlatitude" method="POST" action="/gpsgetlatitude">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input class="btn btn-info" id="gpsgetlatitudeButton" type="submit" value="Get latitude" />
+					Latitude: <output id="response_gpsgetlatitude" name="response_gpsgetlatitude"></output>
+				</div>
+			</form>
+		</div>
+		<div id="getlongitude" class="container-fluid">
+			<h5>Get longitude</h5>
+			<form id="form_gpsgetlongitude" method="POST" action="/gpsgetlongitude">
+				<div class="form-group">
+					<label for="format">Format:</label>
+					<select name="format">
+					  <option value="percent_of_rev">Percentage of revolution</option>
+					  <option value="degrees">Degrees</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input id="gpsgetlongitudeButton" type="submit" value="Get longitude" />
+					Longitude: <output id="response_gpsgetlongitude" name="response_gpsgetlongitude"></output>
+				</div>
+			</form>
+		</div>
+		<div id="getdate" class="container-fluid">
+			<h5>Get date</h5>
+			<button class="btn btn-info" id="gpsgetdateButton">Get date</button>
 			Date: <output id="response_gpsgetdate" name="response_gpsgetdate"></output>
-		</form>
-
-		<form id="form_gpsgettime" method="POST" action="/gpsgettime">
-			<input id="gpsgettimeButton" type="submit" value="Get time" />
+		</div>
+		<br>
+		<div id="gettime" class="container-fluid">
+			<h5>Get time</h5>
+			<button class="btn btn-info" id="gpsgettimeButton">Get time</button>
 			Time: <output id="response_gpsgettime" name="response_gpsgettime"></output>
-		</form>
+		</div>
 	</div>
+
+<hr>
 
 	<!-- RTC section -->
-	<div id="rtc">
-		<p>RTC</p>
-		<form id="form_rtcgetdate" method="POST" action="/rtcgetdate">
-			<input id="rtcgetdateButton" type="submit" value="Get date" />
+	<div id="rtc" class="container-fluid">
+		<h4>RTC</h4>
+		<div id="getdate" class="container-fluid">
+			<h5>Get date</h5>
+			<button class="btn btn-info" id="rtcgetdateButton">Get date</button>
 			Date: <output id="response_rtcgetdate" name="response_rtcgetdate"></output>
-		</form>
-
-		<form id="form_rtcgettime" method="POST" action="/rtcgettime">
-			<input id="rtcgettimeButton" type="submit" value="Get time" />
+		</div>
+		<br>
+		<div id="gettime" class="container-fluid">
+			<h5>Get time</h5>
+			<button class="btn btn-info" id="rtcgettimeButton">Get time</button>
 			Time: <output id="response_rtcgettime" name="response_rtcgettime"></output>
-		</form>
+		</div>
+		<br>
+		<div id="setdate" class="container-fluid">
+			<h5>Set date</h5>
+			<form id="form_rtcsetdate" method="POST" action="/rtcsetdate">
+				<div class="form-group">
+					<label for="date">Date:</label>
+					<input name="day" type="text">Day&nbsp;
+					<input name="month" type="text">Month&nbsp;
+					<input name="year" type="text">Year
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="rtcsetdateButton" type="submit" value="Set date" />
+					RTC response: <output id="response_rtcsetdate" name="response_rtcsetdate"></output>
+				</div>
+			</form>
+		</div>
 
-		<form id="form_rtcsetdate" method="POST" action="/rtcsetdate">
-			Date:<br>
-			<input name="day" type="text">Day&nbsp;
-			<input name="month" type="text">Month&nbsp;
-			<input name="year" type="text">Year&nbsp;
-			
-			<input id="rtcsetdateButton" type="submit" value="Set date" />
-			RTC response: <output id="response_rtcsetdate" name="response_rtcsetdate"></output>
-		</form>
-
-		<form id="form_rtcsettime" method="POST" action="/rtcsettime">
-			Time:<br>
-			<input name="hours" type="text">Hours&nbsp;
-			<input name="minutes" type="text">Minutes&nbsp;
-			<input name="seconds" type="text">Seconds&nbsp;
-			
-			<input id="rtcsettimeButton" type="submit" value="Set time" />
-			RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
-		</form>
-	</div>
-
-	<!-- General section -->
-	<div id="general">
-		<p>General info</p>
-		<form id="form_version" method="POST" action="/version">
-			<input id="versionButton" type="submit" value="Version" />
-			Version: <output id="response_version" name="response_version"></output>
-		</form>		
-
-		<form id="form_deviceversion" method="POST" action="/deviceversion">
-			<select name="device">
-			  <option value="AZM/RA Motor">AZM/RA Motor</option>
-			  <option value="ALT/DEC Motor">ALT/DEC Motor</option>
-			  <option value="GPS Unit">GPS Unit</option>
-			  <option value="RTC">RTC</option>
-			</select> 
-			<input id="deviceversionButton" type="submit" value="Device version" />
-			Device version: <output id="response_deviceversion" name="response_deviceversion"></output>
-		</form>
-
-		<form id="form_model" method="POST" action="/model">
-			<input id="modelButton" type="submit" value="Model" />
-			Model: <output id="response_model" name="response_model"></output>
-		</form>
+		<div id="settime" class="container-fluid">
+			<h5>Set time</h5>
+			<form id="form_rtcsettime" method="POST" action="/rtcsettime">
+				<div class="form-group">
+					<label for="time">Time:</label>
+					<input name="hours" type="text">Hours&nbsp;
+					<input name="minutes" type="text">Minutes&nbsp;
+					<input name="seconds" type="text">Seconds
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" id="rtcsettimeButton" type="submit" value="Set time" />
+					RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

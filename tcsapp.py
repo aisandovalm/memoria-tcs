@@ -1,5 +1,5 @@
 from bottle import Bottle, run, static_file, request, route, get, response
-import os, bottle, shutil, time, tcs_bottle_config, camera #, telescope
+import os, bottle, shutil, time, tcs_bottle_config, camera , telescope
 
 app = Bottle()
 
@@ -17,14 +17,6 @@ def root():
 @app.route('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root=tcs_bottle_config.config['bottle_staticfilepath'], mimetype="text/html")
-
-@app.route('/ajax', method='POST')
-def ajaxtest():
-    theText = request.forms.text
-    print theText
-    if theText:
-        return theText
-    return "You didn't type anything."
 
 ###################################################
 ############# TELESCOPE ###########################
@@ -135,7 +127,7 @@ def sync_radechdms():
     print response
     return response
 
-@app.route('/gettrackingmode', method='POST')
+@app.route('/gettrackingmode')
 def get_trackingmode():
     response = telescope.get_tracking_mode()
     print response
@@ -169,7 +161,7 @@ def stopslewing():
     print response
     return response
 
-@app.route('/getlocation', method='POST')
+@app.route('/getlocation')
 def getlocation():
     response = telescope.get_location()
     print response
@@ -181,15 +173,19 @@ def setlocation():
     b = int(request.forms.get('b'))
     c = int(request.forms.get('c'))
     d = int(request.forms.get('d'))
+    print "d: "
+    print d
     e = int(request.forms.get('e'))
     f = int(request.forms.get('f'))
     g = int(request.forms.get('g'))
     h = int(request.forms.get('h'))
+    print "h: "
+    print h
     response = telescope.set_location(a, b, c, d, e, f, g, h)
     print response
     return response
 
-@app.route('/gettime', method='POST')
+@app.route('/gettime')
 def gettime():
     response = telescope.get_time()
     print response
@@ -202,14 +198,16 @@ def settime():
     s = int(request.forms.get('s'))
     t = int(request.forms.get('t'))
     u = int(request.forms.get('u'))
-    v = int(request.forms.get('v'))
+    year = request.forms.get('v')
+    v = int(year[2] + year[3])
+    #v = int(request.forms.get('v'))
     w = int(request.forms.get('w'))
     x = int(request.forms.get('x'))
     response = telescope.set_time(q,r,s,t,u,v,w,x)
     print response
     return response
 
-@app.route('/gpscheck', method='POST')
+@app.route('/gpscheck')
 def gps_check():
     response = telescope.is_gps_linked()
     print response
@@ -229,25 +227,25 @@ def gps_getlongitude():
     print response
     return response
 
-@app.route('/gpsgetdate', method='POST')
+@app.route('/gpsgetdate')
 def gps_getdate():
     response = telescope.gps_get_date()
     print response
     return response
 
-@app.route('/gpsgettime', method='POST')
+@app.route('/gpsgettime')
 def gps_gettime():
     response = telescope.gps_get_time()
     print response
     return response
 
-@app.route('/rtcgetdate', method='POST')
+@app.route('/rtcgetdate')
 def rtc_getdate():
     response = telescope.rtc_get_date()
     print response
     return response
 
-@app.route('/rtcgettime', method='POST')
+@app.route('/rtcgettime')
 def rtc_gettime():
     response = telescope.rtc_get_time()
     print response
@@ -264,10 +262,14 @@ def rtc_setdate():
 
 @app.route('/rtcsettime', method='POST')
 def rtc_settime():
-    response = telescope.rtc_set_time()
+    hours = int(request.forms.get('hours'))
+    minutes = int(request.forms.get('minutes'))
+    seconds = int(request.forms.get('seconds'))
+    response = telescope.rtc_set_time(hours, minutes, seconds)
     print response
     return response
 
+'''
 @app.route('/version', method='POST')
 def get_version():
     response = telescope.get_version()
@@ -286,6 +288,7 @@ def get_model():
     response = telescope.get_model()
     print response
     return response
+'''
 
 ###################################################
 ############# CAMERA ##############################

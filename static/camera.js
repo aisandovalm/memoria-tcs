@@ -305,7 +305,7 @@ $(document).ready(function()
     $('#batteryButton').click(function () 
     {
 		$('#response_battery').html(prgrs_msg);
-		 $.get('/batterylevel', function(response)
+		$.get('/batterylevel', function(response)
         { 	
 			$('#response_battery').html(response);
 		});
