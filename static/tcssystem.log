@@ -1,0 +1,58 @@
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:41:52 -0300] "GET /downloadlog HTTP/1.1" 200 203 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/16049
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:41:57 -0300] "GET /static/bottleserver.log HTTP/1.1" 200 1723 "http://200.1.17.147/downloadlog" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10993
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:42:11 -0300] "GET /static/tcssystem.log HTTP/1.1" 200 478 "http://200.1.17.147/downloadlog" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8647
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:42:23 -0300] "GET /static/tcssystem.log HTTP/1.1" 200 734 "http://200.1.17.147/downloadlog" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/11972
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:44:26 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/110260
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:46:53 -0300] "GET /static/telescope.html HTTP/1.1" 200 19520 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10576
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:46:53 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9490
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:47:32 -0300] "GET /static/bottleserver.log HTTP/1.1" 200 2934 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/12215
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:47:36 -0300] "GET /static/static/tcssystem.log HTTP/1.1" 404 741 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/102267
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:48:02 -0300] "GET /static/telescope.html HTTP/1.1" 200 19315 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9608
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:48:04 -0300] "GET /static/bottleserver.log HTTP/1.1" 200 3561 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9485
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:48:08 -0300] "GET /static/tcssystem.log HTTP/1.1" 200 2736 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8512
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:51:41 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/91713
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:51:55 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/93752
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:52:03 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/32503
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:52:06 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/31466
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:52:33 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/93310
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:52:36 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/31967
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:52:42 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/31801
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:57:33 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/96498
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:58:03 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/96320
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:58:10 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/32866
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:18:59:44 -0300] "GET /telescope.js HTTP/1.1" 404 742 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/32693
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:00:29 -0300] "GET / HTTP/1.1" 200 24 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6847
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:14:22 -0300] "GET / HTTP/1.1" 200 24 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7714
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:14:22 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/95871
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:14:22 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/32904
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:05 -0300] "GET / HTTP/1.1" 200 748 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/12274
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:16 -0300] "GET /static/telescope.html HTTP/1.1" 200 19315 "http://200.1.17.147/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/13613
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:16 -0300] "GET /static/telescope.js HTTP/1.1" 200 10666 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8686
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:18 -0300] "GET /static/camera.html HTTP/1.1" 200 5241 "http://200.1.17.147/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8446
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:19 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://200.1.17.147/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9598
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:22 -0300] "GET /static/bottleserver.log HTTP/1.1" 200 7728 "http://200.1.17.147/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9593
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:25 -0300] "GET /static/tcssystem.log HTTP/1.1" 200 7588 "http://200.1.17.147/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8656
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:29 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10333
+DEBUG:root:after_request hook
+INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:29:36 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/14264

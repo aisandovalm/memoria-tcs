@@ -29,16 +29,9 @@ def get_RA_DEC(format):
 	if echo(check) == check:
 		nexstar.write('E')
 		response = nexstar.read(10) #Se espera respuesta de 10 bytes
-		print 'get_RA_DEC: '
-		print response
-		print response[0:4]
-		print response[5:9]
 
 		ra = _hex_to_perc_of_rev(response[0:4])
 		dec = _hex_to_perc_of_rev(response[5:9])
-
-		print ra
-		print dec
 
 		if format == 'percent_of_rev':
 			#return ra, dec
