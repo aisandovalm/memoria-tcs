@@ -56,3 +56,160 @@ DEBUG:root:after_request hook
 INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:16:29 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10333
 DEBUG:root:after_request hook
 INFO:requestlogger:200.1.17.244 - - [28/Aug/2015:19:29:36 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/14264
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:20:58:45 -0300] "GET / HTTP/1.1" 200 748 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/11730
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:20:58:52 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/74490
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:21:01:20 -0300] "GET /static/camera.html HTTP/1.1" 200 5241 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/11117
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:21:33:36 -0300] "GET /static/telescope.html HTTP/1.1" 200 19315 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10308
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:21:33:41 -0300] "GET /static/telescope.js HTTP/1.1" 200 10666 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7359
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:21:33:51 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7402
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [31/Aug/2015:21:34:01 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7731
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:11:39 -0300] "GET / HTTP/1.1" 200 1102 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10008
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:12:08 -0300] "GET /home_2.jpg HTTP/1.1" 404 738 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/75500
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:12:37 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/26381
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:13:05 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/26091
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:14:56 -0300] "GET / HTTP/1.1" 200 1109 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10512
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:15:25 -0300] "GET /static/home_2.jpg HTTP/1.1" 200 829890 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8106
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:16:07 -0300] "GET /static/telescope.html HTTP/1.1" 200 20384 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7040
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:16:35 -0300] "GET /static/telescope.js HTTP/1.1" 200 10666 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6954
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:17:04 -0300] "GET /static/static/alma_2.jpg HTTP/1.1" 404 738 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/78145
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:18:11 -0300] "GET /static/camera.html HTTP/1.1" 200 5951 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7220
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:18:40 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7060
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:19:08 -0300] "GET /static/camera_3.jpg HTTP/1.1" 200 3123236 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6989
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:20:13 -0300] "GET /static/telescope.html HTTP/1.1" 200 20377 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7633
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:20:41 -0300] "GET /static/alma_2.jpg HTTP/1.1" 200 897865 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6943
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:50:14 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/12223
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:52:00 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8841
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [26/Sep/2015:23:52:05 -0300] "GET /static/camera.html HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7432
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:18:05 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7768
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:20:09 -0300] "POST /settrackingmode HTTP/1.1" 500 1685 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/117408
+DEBUG:root:Communication problem, check the conections and make sure that the telescope is on. Restart the app
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:26:17 -0300] "POST /settrackingmode HTTP/1.1" 200 99 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10664
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:26:28 -0300] "POST /slewing HTTP/1.1" 500 1488 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/123264
+DEBUG:root:Communication problem, check the conections and make sure that the telescope is on. Restart the app
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:26:52 -0300] "POST /slewing HTTP/1.1" 200 99 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9557
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:35:38 -0300] "GET /static/telescope.html HTTP/1.1" 200 20386 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/12061
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:39:45 -0300] "GET /static/telescope.html HTTP/1.1" 200 20837 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8183
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:40:15 -0300] "POST /gotoradec HTTP/1.1" 500 1476 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/32468
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:43:25 -0300] "GET /static/telescope.html HTTP/1.1" 200 20841 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7731
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:53:09 -0300] "GET /static/telescope.html HTTP/1.1" 200 20854 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8193
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:53:33 -0300] "POST /gotoradec HTTP/1.1" 500 1466 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/31128
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:55:44 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8222
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:55:45 -0300] "GET /static/telescope.js HTTP/1.1" 200 10843 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7730
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:55:46 -0300] "GET /static/alma_2.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7374
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:56:00 -0300] "POST /gotoradec HTTP/1.1" 500 1466 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/31099
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:57:12 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8257
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:57:13 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7493
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:57:29 -0300] "POST /gotoradec HTTP/1.1" 500 1458 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/31054
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:58:14 -0300] "GET /static/telescope.html HTTP/1.1" 200 20835 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8090
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:58:14 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7622
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:00:58:37 -0300] "POST /static/telescope.html HTTP/1.1" 405 752 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/29732
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:00:59 -0300] "GET /static/telescope.html HTTP/1.1" 200 20854 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10432
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:00:59 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7468
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:01:14 -0300] "POST /gotoradec HTTP/1.1" 500 1520 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/95462
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:02:21 -0300] "POST /gotoradec HTTP/1.1" 500 1454 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/98659
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:05:52 -0300] "POST /gotoradec HTTP/1.1" 200 19 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8858
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:06:09 -0300] "POST /gotoradec HTTP/1.1" 200 19 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6692
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:06:51 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/11168
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:06:52 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/15922
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:07:31 -0300] "GET /static/telescope.html HTTP/1.1" 200 20861 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7798
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:07:32 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7418
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:07:32 -0300] "GET /static/alma_2.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7650
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:08:11 -0300] "GET /static/telescope.html HTTP/1.1" 200 20848 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7750
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:08:11 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7316
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:08:12 -0300] "GET /static/alma_2.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7439
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:08:44 -0300] "POST /gotoradec HTTP/1.1" 200 19 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7409
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:12 -0300] "POST /gotoradec HTTP/1.1" 200 19 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6413
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:52 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10473
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:52 -0300] "GET /static/telescope.js HTTP/1.1" 200 10666 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7632
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:53 -0300] "GET /static/alma_2.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7534
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:56 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7591
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:56 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/18533
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:57 -0300] "GET /static/alma_2.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7452
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:09:59 -0300] "POST /gotoradec HTTP/1.1" 200 19 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6403
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:16:40 -0300] "POST /gotoradechdms HTTP/1.1" 200 19 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9333
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:26:59 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/11094
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:26:59 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7503
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:27:10 -0300] "POST /syncradec HTTP/1.1" 500 1463 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/117881
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:28:42 -0300] "POST /setlocation HTTP/1.1" 200 47 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9472
+DEBUG:root:Communication problem, check the conections and make sure that the telescope is on. Restart the app
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:28:57 -0300] "POST /gpsgetlatitude HTTP/1.1" 200 99 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9323
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [27/Sep/2015:01:29:09 -0300] "POST /rtcsetdate HTTP/1.1" 200 47 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7002
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:22:57:43 -0300] "GET / HTTP/1.1" 200 1109 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/14623
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:22:57:46 -0300] "GET /static/home_2.jpg HTTP/1.1" 200 829890 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7992
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:22:57:48 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/75853
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:22:57:48 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/25486
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:48 -0300] "GET /static/telescope.html HTTP/1.1" 200 20848 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7634
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:48 -0300] "GET /static/telescope.js HTTP/1.1" 200 10666 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7395
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:48 -0300] "GET /static/alma_2.jpg HTTP/1.1" 200 897865 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7394
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:51 -0300] "GET /static/camera.html HTTP/1.1" 200 5945 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7397
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:51 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7364
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:51 -0300] "GET /static/camera_3.jpg HTTP/1.1" 200 3123236 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7301

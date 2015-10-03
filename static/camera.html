@@ -3,20 +3,42 @@
 <head>
 	<title>Camera control</title>
 		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="camera.js"></script>
+		<style>
+			body{
+				background: url(camera_3.jpg) no-repeat center center fixed; 
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			}
+		</style>
+		<!--<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$('#mainContainer').show(2000);
+			});
+		</script>-->
+
 </head>
 <body>
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
-	<div class="navbar">
+	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
 			<ul class="nav">
-				<li><a href="/static/telescope.html">Control telescope</a></li>
-				<li class="active"><a href="/static/camera.html">Control camera</a></li>
-				<li><a href="/static/bottleserver.log" download="bottleserver.log">Download bottleserver.log</a></li>
-				<li><a href="/static/tcssystem.log" download="tcssystem.log">Download tcssystem.log</a></li>
+				<li><a href="/static/telescope.html"><h6>Control telescope</h6></a></li>
+				<li class="active"><a href="/static/camera.html"><h6>Control camera</h6></a></li>
+				<li><a href="/static/bottleserver.log" download="bottleserver.log"><h6>Download bottleserver.log</h6></a></li>
+				<li><a href="/static/tcssystem.log" download="tcssystem.log"><h6>Download tcssystem.log</h6></a></li>
 			</ul>
 		</div>
 	</div>
 
+	<br><br><br>
+
+
+	<div id="mainContainer" class="container" style="background-color:rgba(255,255,255,0.7);align:center;">
 	<!-- Image settings section -->
 	<div id="imagesettings" class="container-fluid">
 		<h4>Image Settings</h4>
@@ -24,10 +46,10 @@
 	    	<div class="form-group">
 	    		<label for="imgparameter">Parameter:</label>
 				<select id="imgparameter" name="imgparameter">
-					<option value=" " selected="selected">Select parameter </option>
+					<option value=" " selected="selected">Select parameter</option>
 					<option value="imagesize">Image Size</option>
 					<option value="iso">ISO Speed</option>
-				 	<option value="whitebalance">WhiteBalance</option>
+				 	<option value="whitebalance">White Balance</option>
 				</select> 
 			</div>
 			<div class="form-group">
@@ -38,12 +60,12 @@
 			</div>
 			<div class="form-group">
 				<input class="btn btn-primary" id="applyimagesettingsButton" type="submit" value="Apply setting" />
-				Camera response: <output id="response_imagesettings" name="response_imagesettings"></output>
+				Camera response: <output class="text-info"  id="response_imagesettings" name="response_imagesettings"></output>
 			</div>
 		</form>
 
 		<button class="btn btn-info" id="currentimagesettingsButton">Get current settings</button>
-		Current Settings: <output id="response_currentimagesettings"></output>
+		Current Settings: <output class="text-info"   class="text-info" class="text-info" id="response_currentimagesettings"></output>
 	</div>
 
 	<hr>
@@ -76,12 +98,12 @@
 			</div>
 			<div class="form-group">
 				<input class="btn btn-primary" id="applycapturesettingsButton" type="submit" value="Apply setting" />
-				Camera response: <output id="response_capturesettings" name="response_capturesettings"></output>
+				Camera response: <output class="text-info"  id="response_capturesettings" name="response_capturesettings"></output>
 			</div>
 		</form>
 
 		<button class="btn btn-info" id="currentcapturesettingsButton">Get current settings</button>
-		Current Settings: <output id="response_currentcapturesettings"></output>
+		Current Settings: <output class="text-info"  id="response_currentcapturesettings"></output>
 		</form>
 	</div>
 
@@ -101,7 +123,7 @@
 			</div>
 			<div class="form-group">
 				<input class="btn btn-primary" id="imagesequenceButton" type="submit" value="Capture image sequence" />
-				Camera response: <output id="response_imagesequence" name="response_imagesequence"></output>
+				Camera response: <output class="text-info"  id="response_imagesequence" name="response_imagesequence"></output>
 			</div>
 		</form>
 	</div>
@@ -112,7 +134,7 @@
 	<div id="battery" class="container-fluid">
 		<h4>Battery level</h4>
 		<button class="btn btn-info" id="batteryButton">Get battery level</button>
-		Camera response: <output id="response_battery" name="response_battery">
+		Camera response: <output class="text-info"  id="response_battery" name="response_battery"></output>
 	</div>
 
 	<hr>
@@ -121,14 +143,12 @@
 	<div id="preview" class="container-fluid">
 		<h4>Capture preview image</h4>
 		<button class="btn btn-primary" id="capturepreview">Capture image</button>
-		Camera response: <output id="response_preview" name="response_preview">
+		Camera response: <output class="text-info"  id="response_preview" name="response_preview"></output>
 	</div>
 	<div id="previewimage" class="container-fluid"/>
+	</div>
 
-	<hr>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<!--<script src="jquery_v1_8_2.js"></script>-->
-    <script src="camera.js"></script>
+	<hr>	
+    
 </body>
 </html>	

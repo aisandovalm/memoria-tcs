@@ -3,20 +3,40 @@
 <head>
 	<title>Telescope control</title>
 		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="telescope.js"></script>
+		<style>
+			body{
+				background: url(alma_2.jpg) no-repeat center center fixed; 
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			}
+		</style>
+		<!--<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$('#mainContainer').show(2000);
+			});
+		</script>-->
 </head>
 <body>
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
-	<div class="navbar">
+	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
 			<ul class="nav">
-				<li class="active"><a href="/static/telescope.html">Control telescope</a></li>
-				<li><a href="/static/camera.html">Control camera</a></li>
-				<li><a href="/static/bottleserver.log" download="bottleserver.log">Download bottleserver.log</a></li>
-				<li><a href="/static/tcssystem.log" download="tcssystem.log">Download tcssystem.log</a></li>
+				<li class="active"><a href="/static/telescope.html"><h6>Control telescope</h6></a></li>
+				<li><a href="/static/camera.html"><h6>Control camera</h6></a></li>
+				<li><a href="/static/bottleserver.log" download="bottleserver.log"><h6>Download bottleserver.log</h6></a></li>
+				<li><a href="/static/tcssystem.log" download="tcssystem.log"><h6>Download tcssystem.log</h6></a></li>
 			</ul>
 		</div>
 	</div>
 
+	<br><br><br>
+
+	<div id="mainContainer" class="container" style="background-color:rgba(255,255,255,0.7);align:center;">
 	<!-- Get position section -->
 	<div id="getposition" class="container-fluid">
 		<h4>GET POSITION</h4>
@@ -40,7 +60,7 @@
 			</div>
 			<div class="form-group">
 				<input class="btn btn-info" id="getpositionButton" type="submit" value="Get position" />
-				Position: <output id="position" name="position"></output>
+				Position: <output class="text-info" id="position" name="position"></output>
 			</div>
 		</form>
 	</div>
@@ -62,15 +82,15 @@
 				</div>
 				<div class="form-group">
 					<label for="ra">RA:</label>
-					<input name="ra" type="text">
+					<input id="ra" name="ra" type="text" required>
 				</div>
 				<div class="form-group">
 					<label for="dec">DEC:</label>
-					<input name="dec" type="text">
+					<input id="dec" name="dec" type="text" required>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="gotoradecButton" type="submit" value="GOTO RADEC" />
-					Telescope response: <output id="response_gotoradec" name="response_gotoradec"></output>
+					Telescope response: <output class="text-info" id="response_gotoradec" name="response_gotoradec"></output>
 				</div>
 			</form>
 		</div>
@@ -86,15 +106,15 @@
 				</div>
 				<div class="form-group">
 					<label for="ra">RA:</label>
-					<input name="ra" type="text">
+					<input name="ra" type="text" required>
 				</div>
 				<div class="form-group">
 					<label for="dec">DEC:</label>
-					<input name="dec" type="text">
+					<input name="dec" type="text" required>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="gotopreciseradecButton" type="submit" value="GOTO Precise RADEC" />
-					Telescope response: <output id="response_gotopreciseradec" name="response_gotopreciseradec"></output>
+					Telescope response: <output class="text-info" id="response_gotopreciseradec" name="response_gotopreciseradec"></output>
 				</div>
 			</form>
 			
@@ -104,19 +124,19 @@
 			<form id="form_gotoradechdms" name="form_gotoradechdms" method="POST" action="/gotoradechdms">
 				<div class="form-group">
 					<label for="ra">RA:</label>
-					<input name="ra_h" type="text">Hours&nbsp;
-					<input name="ra_m" type="text">Minutes&nbsp;
-					<input name="ra_s" type="text">Seconds
+					<input name="ra_h" type="text" required>Hours&nbsp;
+					<input name="ra_m" type="text" required>Minutes&nbsp;
+					<input name="ra_s" type="text" required>Seconds
 				</div>
 				<div class="form-group">
 					<label for="dec">DEC:</label>
-					<input name="dec_d" type="text">Degrees&nbsp;
-					<input name="dec_m" type="text">Arcminutes&nbsp;
-					<input name="dec_s" type="text">Arcseconds
+					<input name="dec_d" type="text" required>Degrees&nbsp;
+					<input name="dec_m" type="text" required>Arcminutes&nbsp;
+					<input name="dec_s" type="text" required>Arcseconds
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="gotoradechdmsButton" type="submit" value="GOTO RADEC hdms" />
-					Telescope response: <output id="response_gotoradechdms" name="response_gotoradechdms"></output>
+					Telescope response: <output class="text-info" id="response_gotoradechdms" name="response_gotoradechdms"></output>
 				</div>
 			</form>
 		</div>
@@ -127,20 +147,20 @@
 					<label for="format">Format:</label>
 					<select name="format">
 					  <option value="percent_of_rev">Percentage of revolution</option>
-					  <option value="degrees">Degrees</option>
+					  <option value="degrees" required>Degrees</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="azm">AZM:</label>
-					<input name="azm" type="text">
+					<input name="azm" type="text" required>
 				</div>
 				<div class="form-group">
 					<label for="alt">ALT:</label>
-					<input name="alt" type="text">
+					<input name="alt" type="text" required>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="gotoazmaltButton" type="submit" value="GOTO AZM-ALT" />
-					Telescope response: <output id="response_gotoazmalt" name="response_gotoazmalt"></output>
+					Telescope response: <output class="text-info" id="response_gotoazmalt" name="response_gotoazmalt"></output>
 				</div>
 			</form>
 		</div>
@@ -156,15 +176,15 @@
 				</div>
 				<div class="form-group">
 					<label for="azm">AZM:</label>
-					<input name="azm" type="text">
+					<input name="azm" type="text" required>
 				</div>
 				<div class="form-group">
 					<label for="alt">ALT:</label>
-					<input name="alt" type="text">
+					<input name="alt" type="text" required>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="gotopreciseazmaltButton" type="submit" value="GOTO Precise AZM-ALT" />
-					Telescope response: <output id="response_gotopreciseazmalt" name="response_gotopreciseazmalt"></output>
+					Telescope response: <output class="text-info" id="response_gotopreciseazmalt" name="response_gotopreciseazmalt"></output>
 				</div>
 			</form>
 			
@@ -174,19 +194,19 @@
 			<form id="form_gotoazmaltdms" name="form_gotoazmaltdms" method="POST" action="/gotoazmaltdms">
 				<div class="form-group">
 					<label for="azm">AZM:</label>
-					<input name="azm_d" type="text">Degrees&nbsp;
-					<input name="azm_m" type="text">Arcminutes&nbsp;
-					<input name="azm_s" type="text">Arcseconds
+					<input name="azm_d" type="text" required>Degrees&nbsp;
+					<input name="azm_m" type="text" required>Arcminutes&nbsp;
+					<input name="azm_s" type="text" required>Arcseconds
 				</div>
 				<div class="form-group">
 					<label for"alt">ALT:</label>
-					<input name="alt_d" type="text">Degrees&nbsp;
-					<input name="alt_m" type="text">Arcminutes&nbsp;
-					<input name="alt_s" type="text">Arcseconds
+					<input name="alt_d" type="text" required>Degrees&nbsp;
+					<input name="alt_m" type="text" required>Arcminutes&nbsp;
+					<input name="alt_s" type="text" required>Arcseconds
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="gotoazmaltdmsButton" type="submit" value="GOTO AZM-ALT dms" />
-					Telescope response: <output id="response_gotoazmaltdms" name="response_gotoazmaltdms"></output>
+					Telescope response: <output class="text-info" id="response_gotoazmaltdms" name="response_gotoazmaltdms"></output>
 				</div>
 			</form>
 		</div>
@@ -209,15 +229,15 @@
 				</div>
 				<div class="form-group">
 					<label for="ra">RA:</label>
-					<input name="ra" type="text">
+					<input name="ra" type="text" required>
 				</div>
 				<div class="form-group">
 					<label for"dec">DEC:</label>
-					<input name="dec" type="text">
+					<input name="dec" type="text" required>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="syncradecButton" type="submit" value="SYNC RADEC" />
-					Telescope response: <output id="response_syncradec" name="response_syncradec"></output>
+					Telescope response: <output class="text-info" id="response_syncradec" name="response_syncradec"></output>
 				</div>
 			</form>
 		</div>
@@ -233,15 +253,15 @@
 				</div>
 				<div class="form-group">
 					<label for="ra">RA:</label>
-					<input name="ra" type="text">
+					<input name="ra" type="text" required>
 				</div>
 				<div class="form-group">
 					<label for="dec">DEC:</label>
-					<input name="dec" type="text">
+					<input name="dec" type="text" required>
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="syncpreciseradecButton" type="submit" value="SYNC Precise RADEC" />
-					Telescope response: <output id="response_syncpreciseradec" name="response_syncpreciseradec"></output>
+					Telescope response: <output class="text-info" id="response_syncpreciseradec" name="response_syncpreciseradec"></output>
 				</div>
 			</form>
 		</div>
@@ -250,19 +270,19 @@
 			<form id="form_syncradechdms" name="form_syncradechdms" method="POST" action="/syncradechdms">
 				<div class="form-group">
 					<label for="ra">RA:</label>
-					<input name="ra_h" type="text">Hours&nbsp;
-					<input name="ra_m" type="text">Minutes&nbsp;
-					<input name="ra_s" type="text">Seconds
+					<input name="ra_h" type="text" required>Hours&nbsp;
+					<input name="ra_m" type="text" required>Minutes&nbsp;
+					<input name="ra_s" type="text" required>Seconds
 				</div>
 				<div class="form-group">
 					<label for="dec">DEC:</label>
-					<input name="dec_d" type="text">Degrees&nbsp;
-					<input name="dec_m" type="text">Arcminutes&nbsp;
-					<input name="dec_s" type="text">Arcseconds
+					<input name="dec_d" type="text" required>Degrees&nbsp;
+					<input name="dec_m" type="text" required>Arcminutes&nbsp;
+					<input name="dec_s" type="text" required>Arcseconds
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="syncradechdmsButton" type="submit" value="SYNC RADEC hdms" />
-					Telescope response: <output id="response_syncradechdms" name="response_syncradechdms"></output>
+					Telescope response: <output class="text-info" id="response_syncradechdms" name="response_syncradechdms"></output>
 				</div>
 			</form>
 		</div>
@@ -276,7 +296,7 @@
 		<div id="gettrackingmode" class="container-fluid">
 			<h5>Get tracking mode</h5>
 			<button class="btn btn-info" id="gettrackingmodeButton" onclick="_gettracking()">Get tracking mode</button>
-			Tracking mode: <output id="response_gettrackingmode" name="response_gettrackingmode"></output>
+			Tracking mode: <output class="text-info" id="response_gettrackingmode" name="response_gettrackingmode"></output>
 		</div>
 		<br>
 		<div id="settrackingmode" class="container-fluid">
@@ -293,7 +313,7 @@
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="settrackingmodeButton" type="submit" value="Set tracking mode"/>
-					Telescope response: <output id="response_settrackingmode" name="response_settrackingmode"></output>
+					Telescope response: <output class="text-info" id="response_settrackingmode" name="response_settrackingmode"></output>
 				</div>
 			</form>
 		</div>	
@@ -328,18 +348,18 @@
 			</div>
 			<div class="form-group">
 				<label for="rate">Rate:</label>
-				<input name="rate" type="text">
+				<input name="rate" type="text" required>
 			</div>
 			<div class="form-group">
 				<input class="btn btn-primary" id="slewingButton" type="submit" value="Slew" />
-				Telescope response: <output id="response_slewing" name="response_slewing"></output>
+				Telescope response: <output class="text-info" id="response_slewing" name="response_slewing"></output>
 			</div>
 		</form>
 		
 
 		<div id="stopslewing">
 			<button class="btn btn-primary" id="stopslewingButton">Stop Slewing</button>
-			Telescope response: <output id="response_stopslewing" name="response_stopslewing">
+			Telescope response: <output class="text-info" id="response_stopslewing" name="response_stopslewing"></output>
 		</div>
 	</div>
 
@@ -351,7 +371,7 @@
 		<div id="getlocation" class="container-fluid">
 			<h5>Get location</h5>
 			<button class="btn btn-info" id="getlocationButton">Get location</button>
-			Location: <output id="location" name="location"></output>
+			Location: <output class="text-info" id="location" name="location"></output>
 		</div>
 		<br>
 		<div id="setlocation" class="container-fluid">
@@ -359,9 +379,9 @@
 			<form id="form_setlocation" name="form_setlocation" method="POST" action="/setlocation">
 				<div class="form-group">
 					<label for="latitude">Latitude:</label>
-					<input name="a" type="text">Degrees&nbsp;
-					<input name="b" type="text">Arcminutes&nbsp;
-					<input name="c" type="text">Arcseconds&nbsp;
+					<input name="a" type="text" required>Degrees&nbsp;
+					<input name="b" type="text" required>Arcminutes&nbsp;
+					<input name="c" type="text" required>Arcseconds&nbsp;
 					<select name="d">
 					  <option value="0">North</option>
 					  <option value="1">South</option>
@@ -369,9 +389,9 @@
 				</div>
 				<div class="form-group">
 					<label for="longitude">Longitude:</label>
-					<input name="e" type="text">Degrees&nbsp;
-					<input name="f" type="text">Arcminutes&nbsp;
-					<input name="g" type="text">Arcseconds&nbsp;
+					<input name="e" type="text" required> Degrees&nbsp;
+					<input name="f" type="text" required>Arcminutes&nbsp;
+					<input name="g" type="text" required>Arcseconds&nbsp;
 					<select name="h">
 					  <option value="0">East</option>
 					  <option value="1">West</option>
@@ -379,14 +399,14 @@
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="setlocationButton" type="submit" value="Set location" />
-					Telescope response: <output id="response_setlocation" name="response_setlocation"></output>
+					Telescope response: <output class="text-info" id="response_setlocation" name="response_setlocation"></output>
 				</div>
 			</form>
 		</div>
 		<div id="gettime" class="container-fluid">
 			<h5>Get time</h5>
 			<button class="btn btn-info" id="gettimeButton">Get time</button>
-			Time: <output id="time" name="time"></output>
+			Time: <output class="text-info" id="time" name="time"></output>
 		</div>
 		<br>
 		<div id="settime" class="container-fluid">
@@ -394,16 +414,16 @@
 			<form id="form_settime" name="form_settime" method="POST" action="/settime">
 				<div class="form-group">
 					<label for="time">Time:</label>
-					<input name="q" type="text">Hours&nbsp;
-					<input name="r" type="text">Minutes&nbsp;
-					<input name="s" type="text">Seconds
+					<input name="q" type="text" required>Hours&nbsp;
+					<input name="r" type="text" required>Minutes&nbsp;
+					<input name="s" type="text" required>Seconds
 				</div>
 				<div class="form-group">
 					<label for="date">Date:</label>
-					<input name="t" type="text">Month&nbsp;
-					<input name="u" type="text">Day&nbsp;
-					<input name="v" type="text">Year&nbsp;
-					<input name="w" type="text">Offset from GMT (Santiago, Chile = GMT-3)
+					<input name="t" type="text" required>Month&nbsp;
+					<input name="u" type="text" required>Day&nbsp;
+					<input name="v" type="text" required>Year&nbsp;
+					<input name="w" type="text" required>Offset from GMT (Santiago, Chile = GMT-3)
 					<select name="x">
 					  <option value="0">Standard time</option>
 					  <option value="1">Daylight savings</option>
@@ -411,7 +431,7 @@
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="settimeButton" type="submit" value="Set time" />
-					Telescope response: <output id="response_settime" name="response_settime"></output>
+					Telescope response: <output class="text-info" id="response_settime" name="response_settime"></output>
 				</div>
 			</form>
 		</div>
@@ -425,7 +445,7 @@
 		<div id="check" class="container-fluid">
 			<h5>Check GPS</h5>
 			<button class="btn btn-info" id="gpscheckButton">Check GPS</button>
-			GPS response: <output id="response_gpscheck" name="response_gpscheck"></output>
+			GPS response: <output class="text-info" id="response_gpscheck" name="response_gpscheck"></output>
 		</div>
 		<br>
 		<div id="getlatitude" class="container-fluid">
@@ -440,7 +460,7 @@
 				</div>
 				<div class="form-group">
 					<input class="btn btn-info" id="gpsgetlatitudeButton" type="submit" value="Get latitude" />
-					Latitude: <output id="response_gpsgetlatitude" name="response_gpsgetlatitude"></output>
+					Latitude: <output class="text-info" id="response_gpsgetlatitude" name="response_gpsgetlatitude"></output>
 				</div>
 			</form>
 		</div>
@@ -456,20 +476,20 @@
 				</div>
 				<div class="form-group">
 					<input id="gpsgetlongitudeButton" type="submit" value="Get longitude" />
-					Longitude: <output id="response_gpsgetlongitude" name="response_gpsgetlongitude"></output>
+					Longitude: <output class="text-info" id="response_gpsgetlongitude" name="response_gpsgetlongitude"></output>
 				</div>
 			</form>
 		</div>
 		<div id="getdate" class="container-fluid">
 			<h5>Get date</h5>
 			<button class="btn btn-info" id="gpsgetdateButton">Get date</button>
-			Date: <output id="response_gpsgetdate" name="response_gpsgetdate"></output>
+			Date: <output class="text-info" id="response_gpsgetdate" name="response_gpsgetdate"></output>
 		</div>
 		<br>
 		<div id="gettime" class="container-fluid">
 			<h5>Get time</h5>
 			<button class="btn btn-info" id="gpsgettimeButton">Get time</button>
-			Time: <output id="response_gpsgettime" name="response_gpsgettime"></output>
+			Time: <output class="text-info" id="response_gpsgettime" name="response_gpsgettime"></output>
 		</div>
 	</div>
 
@@ -481,13 +501,13 @@
 		<div id="getdate" class="container-fluid">
 			<h5>Get date</h5>
 			<button class="btn btn-info" id="rtcgetdateButton">Get date</button>
-			Date: <output id="response_rtcgetdate" name="response_rtcgetdate"></output>
+			Date: <output class="text-info" id="response_rtcgetdate" name="response_rtcgetdate"></output>
 		</div>
 		<br>
 		<div id="gettime" class="container-fluid">
 			<h5>Get time</h5>
 			<button class="btn btn-info" id="rtcgettimeButton">Get time</button>
-			Time: <output id="response_rtcgettime" name="response_rtcgettime"></output>
+			Time: <output class="text-info" id="response_rtcgettime" name="response_rtcgettime"></output>
 		</div>
 		<br>
 		<div id="setdate" class="container-fluid">
@@ -495,13 +515,13 @@
 			<form id="form_rtcsetdate" method="POST" action="/rtcsetdate">
 				<div class="form-group">
 					<label for="date">Date:</label>
-					<input name="day" type="text">Day&nbsp;
-					<input name="month" type="text">Month&nbsp;
-					<input name="year" type="text">Year
+					<input name="day" type="text" required>Day&nbsp;
+					<input name="month" type="text" required>Month&nbsp;
+					<input name="year" type="text" required>Year
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="rtcsetdateButton" type="submit" value="Set date" />
-					RTC response: <output id="response_rtcsetdate" name="response_rtcsetdate"></output>
+					RTC response: <output class="text-info" id="response_rtcsetdate" name="response_rtcsetdate"></output>
 				</div>
 			</form>
 		</div>
@@ -511,20 +531,20 @@
 			<form id="form_rtcsettime" method="POST" action="/rtcsettime">
 				<div class="form-group">
 					<label for="time">Time:</label>
-					<input name="hours" type="text">Hours&nbsp;
-					<input name="minutes" type="text">Minutes&nbsp;
-					<input name="seconds" type="text">Seconds
+					<input name="hours" type="text" required>Hours&nbsp;
+					<input name="minutes" type="text" required>Minutes&nbsp;
+					<input name="seconds" type="text" required>Seconds
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary" id="rtcsettimeButton" type="submit" value="Set time" />
-					RTC response: <output id="response_rtcsettime" name="response_rtcsettime"></output>
+					RTC response: <output class="text-info" id="response_rtcsettime" name="response_rtcsettime"></output>
 				</div>
 			</form>
 		</div>
 	</div>
+	</div>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<!--<script src="jquery_v1_8_2.js"></script>-->
-    <script src="telescope.js"></script>
+    
 </body>
 </html>

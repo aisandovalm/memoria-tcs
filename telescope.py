@@ -11,6 +11,7 @@ device = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-i
 try:
 	nexstar = serial.Serial(device, baudrate=9600, timeout=1)
 except SerialException:
+	nexstar = None;
 	print "Error: Port not found, make sure that the USB/Serial cable is connected to the Raspberry Pi, then restart the app or it will not work properly"
 
 check = 1
@@ -811,13 +812,16 @@ def get_model():
 
 #Para chequear comunicación
 def echo(x):
-	command = ('K' + chr(x))
-	nexstar.write(command)
-	response = nexstar.read(2)
-	if len(response) == 0:
-		return 0
+	if nexstar != None:
+		command = ('K' + chr(x))
+		nexstar.write(command)
+		response = nexstar.read(2)
+		if len(response) == 0:
+			return 0
+		else:
+			return ord(response[0])
 	else:
-		return ord(response[0])
+		return 0
 
 def is_alignment_complete():
 	nexstar.write('J')
