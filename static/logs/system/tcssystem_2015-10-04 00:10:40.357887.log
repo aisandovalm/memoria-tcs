@@ -1,0 +1,9 @@
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:00:10:44 -0300] "GET /static/logs.html HTTP/1.1" 304 0 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/13391
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:00:10:45 -0300] "GET /static/logs.js HTTP/1.1" 304 0 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7490
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:00:10:45 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/13104
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:00:10:47 -0300] "GET /getsystemlogs HTTP/1.1" 200 924 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7189
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:00:10:51 -0300] "POST /downloadlog HTTP/1.1" 500 1464 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/95418

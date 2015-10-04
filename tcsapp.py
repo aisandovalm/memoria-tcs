@@ -1,13 +1,19 @@
 from bottle import Bottle, run, static_file, request, route, get, response, template
-import os, bottle, shutil, time, tcs_bottle_config, camera , telescope
+import os, bottle, shutil, time, tcs_bottle_config, camera , telescope, json
 
 #Logging part
 from requestlogger import WSGILogger, ApacheFormatter
 from logging.handlers import TimedRotatingFileHandler
 import logging
 
+#Datetime
+import datetime
+
+#Se obtiene datetime para agregar al nombre de los logs
+_datetime = str(datetime.datetime.now())
+
 #En tcssystem.log se almacenan todos los eventos de log
-logging.basicConfig(filename='static/tcssystem.log', level=logging.DEBUG)
+logging.basicConfig(filename='static/logs/system/tcssystem_'+_datetime+'.log', level=logging.DEBUG)
 
 app = Bottle()
 
@@ -460,8 +466,37 @@ def capturepreview():
     else:
         return 'Error'
 
+###################################################
+############# LOGS ################################
+###################################################
+@app.route('/getsystemlogs')
+def getsystemlogs():
+    print('System Logs!')
+    systemlogs = os.listdir('static/logs/system')
+    return json.dumps(systemlogs)
+
+@app.route('/getserverlogs')
+def getserverlogs():
+    print('Server Logs!')
+    serverlogs = os.listdir('static/logs/server')
+    return json.dumps(serverlogs)
+
+@app.route('/deletesystemlog', method='POST')
+def deletesystemlog():
+    print "Delete system log"
+    filename = request.body.read()
+    os.remove('static/logs/system/'+filename)
+    return 'borrado'
+
+@app.route('/deleteserverlog', method='POST')
+def deleteserverlog():
+    print "Delete server log"
+    filename = request.body.read()
+    os.remove('static/logs/server/'+filename)
+    return 'borrado'
+
 #En bottleserver.log se almacenan solo los logs correspondientes al servidor (htttp requests)
-handlers = [TimedRotatingFileHandler('static/bottleserver.log', 'd', 7),]
+handlers = [TimedRotatingFileHandler('static/logs/server/server_'+_datetime+'.log', 'd', 7),]
 app = WSGILogger(app, handlers, ApacheFormatter())
 
 

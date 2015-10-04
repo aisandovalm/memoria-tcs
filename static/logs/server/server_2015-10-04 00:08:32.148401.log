@@ -1,0 +1,5 @@
+192.168.0.11 - - [04/Oct/2015:00:08:43 -0300] "GET /static/logs.html HTTP/1.1" 304 0 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10876
+192.168.0.11 - - [04/Oct/2015:00:08:43 -0300] "GET /static/logs.js HTTP/1.1" 304 0 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7445
+192.168.0.11 - - [04/Oct/2015:00:08:44 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7367
+192.168.0.11 - - [04/Oct/2015:00:08:47 -0300] "GET /getsystemlogs HTTP/1.1" 200 836 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7237
+192.168.0.11 - - [04/Oct/2015:00:08:51 -0300] "POST /downloadlog HTTP/1.1" 200 0 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8563
