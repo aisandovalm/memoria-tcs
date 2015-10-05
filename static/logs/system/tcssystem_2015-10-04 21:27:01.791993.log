@@ -1,0 +1,7 @@
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:21:28:20 -0300] "GET /static/images.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/14188
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:21:28:20 -0300] "GET /static/images.js HTTP/1.1" 304 0 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7637
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:21:28:23 -0300] "GET /gettars HTTP/1.1" 200 155 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9772
+INFO:requestlogger:192.168.0.11 - - [04/Oct/2015:21:28:28 -0300] "POST /deletesequence HTTP/1.1" 500 1612 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/116212

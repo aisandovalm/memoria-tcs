@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-import subprocess, tcs_bottle_config
+import subprocess, tcs_bottle_config, os
 
 global_usb_port = None
 
@@ -51,14 +51,19 @@ def get_current_capture_config():
 	current += '; Shutter Speed: ' + get_config('shutterspeed').split("\n")[2].split(" ")[1]
 	return current
 
-def capture_sequence(frames, interval):
+def capture_sequence(dirname, frames, interval):
 	response = _verify_camera()
 	if response == "Camera not found":
 		return 'Error: ' + response + '. Check the camera connections and make sure is On'
 
-	command = ['-F', frames, '-I', interval, '--capture-image-and-download', '--filename=images/%Y%m%d%H%M%S.jpg']
-	execute_response = _execute_command(command)
-	return execute_response
+	#Create directory with sequence name
+	if os.path.exists('static/images/'+dirname):
+		return 999
+	else:
+		os.makedirs('static/images/'+dirname)
+		command = ['-F', frames, '-I', interval, '--capture-image-and-download', '--filename=static/images/'+dirname+'/%Y%m%d%H%M%S.jpg']
+		execute_response = _execute_command(command)
+		return execute_response
 
 def set_config(param, value):
 	response = _verify_camera()

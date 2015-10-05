@@ -27,9 +27,12 @@
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
 			<ul class="nav">
-				<li><a href="/static/telescope.html"><h6>Control telescope</h6></a></li>
-				<li class="active"><a href="/static/camera.html"><h6>Control camera</h6></a></li>
+				<li><a href="/"><h6>TCS</h6></a></li>
+				<li><a href="/static/telescope.html"><h6>Telescope control</h6></a></li>
+				<li class="active"><a href="/static/camera.html"><h6>Camera control</h6></a></li>
+				<li><a href="/static/images.html"><h6>Image sequences</h6></a></li>
 				<li><a href="/static/logs.html"><h6>Logs</h6></a></li>
+				<li><a href="/static/about.html"><h6>About</h6></a></li>
 			</ul>
 		</div>
 	</div>
@@ -114,11 +117,15 @@
 		<form id="form_imagesequence" method="POST" action="/imagesequence">
 			<div class="form-group">
 				<label for="frames">Number of images:</label>
-				<input id="frames" name="frames" type="text">
+				<input id="frames" name="frames" type="text"/>
 			</div>
 			<div class="form-group">
 				<label for="time">Time interval between each image (> 1):</label>
-				<input name="timeinterval" type="text"> [seconds]
+				<input name="timeinterval" type="text"/> [seconds]
+			</div>
+			<div class="form-group">
+				<label for="name">Sequence name</label>
+				<input name="seqname" type="text" placeholder='Please do not include / \ : * ? " < > |'>
 			</div>
 			<div class="form-group">
 				<input class="btn btn-primary" id="imagesequenceButton" type="submit" value="Capture image sequence" />

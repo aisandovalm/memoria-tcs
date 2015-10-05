@@ -1,0 +1,14 @@
+192.168.0.11 - - [04/Oct/2015:21:08:08 -0300] "GET /static/images.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/14984
+192.168.0.11 - - [04/Oct/2015:21:08:09 -0300] "GET /static/images.js HTTP/1.1" 304 0 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7580
+192.168.0.11 - - [04/Oct/2015:21:08:15 -0300] "GET /gettars HTTP/1.1" 200 155 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9913
+192.168.0.11 - - [04/Oct/2015:21:09:09 -0300] "GET /static/images.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8428
+192.168.0.11 - - [04/Oct/2015:21:09:09 -0300] "GET /static/images.js HTTP/1.1" 200 1020 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7709
+192.168.0.11 - - [04/Oct/2015:21:09:11 -0300] "GET /gettars HTTP/1.1" 200 155 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8841
+192.168.0.11 - - [04/Oct/2015:21:10:55 -0300] "GET /static/images.html HTTP/1.1" 200 1758 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7987
+192.168.0.11 - - [04/Oct/2015:21:10:55 -0300] "GET /static/images.js HTTP/1.1" 304 0 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7601
+192.168.0.11 - - [04/Oct/2015:21:10:58 -0300] "GET /gettars HTTP/1.1" 200 155 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9150
+192.168.0.11 - - [04/Oct/2015:21:16:47 -0300] "GET /static/images.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7839
+192.168.0.11 - - [04/Oct/2015:21:16:47 -0300] "GET /static/images.js HTTP/1.1" 200 1012 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8282
+192.168.0.11 - - [04/Oct/2015:21:16:48 -0300] "GET /static/backgroundimgs/sequences.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7616
+192.168.0.11 - - [04/Oct/2015:21:16:49 -0300] "GET /gettars HTTP/1.1" 200 155 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9011
+192.168.0.11 - - [04/Oct/2015:21:17:25 -0300] "GET /static/images/MoonImages_ImageSequence.tar HTTP/1.1" 200 10240 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7425

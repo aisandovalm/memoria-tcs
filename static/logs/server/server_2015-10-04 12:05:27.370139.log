@@ -1,0 +1,3 @@
+192.168.0.11 - - [04/Oct/2015:12:05:37 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10744
+192.168.0.11 - - [04/Oct/2015:12:05:39 -0300] "GET /static/camera.html HTTP/1.1" 200 6148 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8412
+192.168.0.11 - - [04/Oct/2015:12:06:00 -0300] "POST /imagesequence HTTP/1.1" 500 1513 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/624854

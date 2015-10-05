@@ -33,9 +33,12 @@ function deleteServerLog(log)
 $(document).ready(function() 
 {
     $('#systembutton').click(function(){
+    	$('#systemlogs').hide(1000);
+    	$('#systemTable').empty();
     	$('#serverlogs').hide(1000);
     	$.getJSON('/getsystemlogs', function(response){
     		LogValues = response;
+    		$('#systemTable').append('<tr><th>Log</th><th>Action</th></tr>');
     		$.each(response, function(key, val) {
     			$('#systemTable').append('<tr id="system_'+key+'"><td><a href="/static/logs/system/'+val+'" download="'+val+'">'+val+'</a></td><td><button class="btn btn-danger" onclick="deleteSystemLog('+key+')">Delete</button></td></tr>');
     		});
@@ -44,10 +47,12 @@ $(document).ready(function()
     });
 
     $('#serverbutton').click(function(){
-    	console.log('serverlogs');
+    	$('#serverlogs').hide(1000);
+    	$('#systemTable').empty();
     	$('#systemlogs').hide(1000);
     	$.getJSON('/getserverlogs', function(response){
     		LogValues = response;
+    		$('#serverTable').append('<tr><th>Log</th><th>Action</th></tr>');
     		$.each(response, function(key, val) {
     			$('#serverTable').append('<tr id="server_'+key+'"><td><a href="/static/logs/server/'+val+'" download="'+val+'">'+val+'</a></td><td><button class="btn btn-danger" onclick="deleteServerLog('+key+')">Delete</button></td></tr>');
     		});

@@ -1,5 +1,5 @@
 from bottle import Bottle, run, static_file, request, route, get, response, template
-import os, bottle, shutil, time, tcs_bottle_config, camera , telescope, json
+import os, tarfile, bottle, shutil, time, tcs_bottle_config, camera , telescope, json
 
 #Logging part
 from requestlogger import WSGILogger, ApacheFormatter
@@ -430,20 +430,35 @@ def get_capturesettings():
 def capture_imagesequence():
     frames = request.forms.get('frames')
     interval = request.forms.get('timeinterval')
+    directoryname = request.forms.get('seqname')
     if frames == '': #Para prevenir infinitas imagenes
         logging.debug('Error: Invalid number of images. Please try again')
         return 'Error: Invalid number of images. Please try again'
     if interval == '': #Para prevenir infinito tiempo entre imagenes
         logging.debug('Error: Invalid time interval. Please try again')
         return 'Error: Invalid time interval. Please try again'
-    response = camera.capture_sequence(frames, interval)
+    response = camera.capture_sequence(directoryname, frames, interval)
     print response
-    if response == 0:
-        logging.debug('The sequence has finished, successful operation')
-        return 'The sequence has finished, successful operation'
+    if response == 0: #Successful operation, now tar the directory with the images
+        tarresponse = tardirectory(directoryname)
+        if tarresponse == 0:
+            logging.debug('The sequence has finished, successful operation')
+            return 'The sequence has finished, successful operation'
+        else:
+            logging.debug(tarresponse)
+            return tarresponse
+    elif response == 999:
+        logging.debug('The sequence name already exists, please type a diferent name for the sequence')
+        return 'The sequence name already exists, please type a diferent name for the sequence'
     else:
         logging.debug(response)
         return response
+
+def tardirectory(dirname):
+    tar = tarfile.open(dirname+'_ImageSequence'+'.tar', 'w')
+    tar.add('static/images/'+dirname)
+    tar.close()
+    return 0
 
 @app.route('/batterylevel')
 def get_batterylevel():
@@ -494,6 +509,32 @@ def deleteserverlog():
     filename = request.body.read()
     os.remove('static/logs/server/'+filename)
     return 'borrado'
+
+###################################################
+############# IMAGES ##############################
+###################################################
+@app.route('/gettars')
+def gettars():
+    print 'get tars'
+    files = []
+    _list = os.listdir('static/images/')
+    print _list
+    for item in _list:
+        if os.path.splitext(item)[1] == '.tar':
+            files.append(item)
+    print files
+    return json.dumps(files)
+
+@app.route('/deletesequence', method='POST')
+def deleteSequence():
+    print 'deletesequence'
+    seqname = request.body.read()
+    print seqname
+    os.remove('static/images/'+seqname)
+    index = seqname.find('_ImageSequence.tar')
+    dirname = seqname[:index]
+    os.removedirs('static/images/'+dirname)
+    return 'borrados'
 
 #En bottleserver.log se almacenan solo los logs correspondientes al servidor (htttp requests)
 handlers = [TimedRotatingFileHandler('static/logs/server/server_'+_datetime+'.log', 'd', 7),]

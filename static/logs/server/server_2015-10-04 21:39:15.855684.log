@@ -1,0 +1,12 @@
+192.168.0.11 - - [04/Oct/2015:21:39:19 -0300] "GET /static/images.html HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/13795
+192.168.0.11 - - [04/Oct/2015:21:39:20 -0300] "GET /static/images.js HTTP/1.1" 304 0 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/12805
+192.168.0.11 - - [04/Oct/2015:21:39:22 -0300] "GET /gettars HTTP/1.1" 200 123 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9693
+192.168.0.11 - - [04/Oct/2015:21:39:26 -0300] "POST /deletesequence HTTP/1.1" 200 8 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9483
+192.168.0.11 - - [04/Oct/2015:21:39:54 -0300] "POST /deletesequence HTTP/1.1" 200 8 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8563
+192.168.0.11 - - [04/Oct/2015:21:41:48 -0300] "GET /gettars HTTP/1.1" 200 40 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8388
+192.168.0.11 - - [04/Oct/2015:21:41:55 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7643
+192.168.0.11 - - [04/Oct/2015:21:41:56 -0300] "GET /static/backgroundimgs/telescope.jpg HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7798
+192.168.0.11 - - [04/Oct/2015:21:42:03 -0300] "GET /static/camera.html HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7555
+192.168.0.11 - - [04/Oct/2015:21:42:06 -0300] "GET /static/images.js HTTP/1.1" 200 918 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7710
+192.168.0.11 - - [04/Oct/2015:21:42:10 -0300] "GET /static/logs.html HTTP/1.1" 304 0 "http://192.168.0.13/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7511
+192.168.0.11 - - [04/Oct/2015:21:42:13 -0300] "GET /static/about.html HTTP/1.1" 404 731 "http://192.168.0.13/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/79807

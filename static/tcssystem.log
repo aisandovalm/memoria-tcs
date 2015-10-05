@@ -213,3 +213,15 @@ DEBUG:root:after_request hook
 INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:51 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7364
 DEBUG:root:after_request hook
 INFO:requestlogger:192.168.0.11 - - [02/Oct/2015:23:11:51 -0300] "GET /static/camera_3.jpg HTTP/1.1" 200 3123236 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7301
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [03/Oct/2015:16:12:55 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/15265
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [03/Oct/2015:16:12:57 -0300] "GET /static/camera.html HTTP/1.1" 304 0 "http://192.168.0.13/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8499
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [03/Oct/2015:16:12:59 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "http://192.168.0.13/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7734
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [03/Oct/2015:16:12:59 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8308
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [03/Oct/2015:16:13:01 -0300] "GET /static/bottleserver.log HTTP/1.1" 200 16360 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/12151
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [03/Oct/2015:16:13:06 -0300] "GET /static/tcssystem.log HTTP/1.1" 200 30487 "http://192.168.0.13/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7446
