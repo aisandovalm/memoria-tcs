@@ -48,7 +48,7 @@ $(document).ready(function()
 
     $('#serverbutton').click(function(){
     	$('#serverlogs').hide(1000);
-    	$('#systemTable').empty();
+    	$('#serverTable').empty();
     	$('#systemlogs').hide(1000);
     	$.getJSON('/getserverlogs', function(response){
     		LogValues = response;

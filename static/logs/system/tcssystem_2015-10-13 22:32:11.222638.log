@@ -1,0 +1,81 @@
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:22 -0300] "GET / HTTP/1.1" 200 1150 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/13625
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:23 -0300] "GET /static/backgroundimgs/home.jpg HTTP/1.1" 200 829890 "http://192.168.0.14/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/10360
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:23 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/75382
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:24 -0300] "GET /favicon.ico HTTP/1.1" 404 740 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/25495
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:39 -0300] "GET /static/telescope.html HTTP/1.1" 200 20879 "http://192.168.0.14/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7443
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:39 -0300] "GET /static/telescope.js HTTP/1.1" 200 10666 "http://192.168.0.14/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/13019
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:32:40 -0300] "GET /static/backgroundimgs/telescope.jpg HTTP/1.1" 200 897865 "http://192.168.0.14/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7073
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:01 -0300] "GET /static/camera.html HTTP/1.1" 200 6148 "http://192.168.0.14/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7555
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:02 -0300] "GET /static/camera.js HTTP/1.1" 200 13050 "http://192.168.0.14/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7257
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:02 -0300] "GET /static/backgroundimgs/camera.jpg HTTP/1.1" 200 3123236 "http://192.168.0.14/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7247
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:18 -0300] "GET /static/images.html HTTP/1.1" 200 1758 "http://192.168.0.14/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8299
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:18 -0300] "GET /static/images.js HTTP/1.1" 200 918 "http://192.168.0.14/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7197
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:18 -0300] "GET /static/backgroundimgs/sequences.jpg HTTP/1.1" 200 177960 "http://192.168.0.14/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7192
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:22 -0300] "GET /gettars HTTP/1.1" 200 40 "http://192.168.0.14/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/11084
+DEBUG:root:Error: Camera not found. Check the camera connections and make sure is On
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:33:54 -0300] "POST /imagesequence HTTP/1.1" 200 73 "http://192.168.0.14/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 1/1007426
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:34:03 -0300] "GET /gettars HTTP/1.1" 200 40 "http://192.168.0.14/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8188
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:36:55 -0300] "GET /static/logs.html HTTP/1.1" 200 2121 "http://192.168.0.14/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7600
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:36:55 -0300] "GET /static/logs.js HTTP/1.1" 200 1947 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7471
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:36:55 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 200 675289 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7686
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:36:58 -0300] "GET /getsystemlogs HTTP/1.1" 200 2772 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7725
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:37:14 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7812
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:22:37:24 -0300] "GET /static/about.html HTTP/1.1" 200 6 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7096
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:15:59 -0300] "GET /getsystemlogs HTTP/1.1" 200 2772 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7422
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:16:02 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6658
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:17:31 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7273
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:13 -0300] "GET /static/logs.html HTTP/1.1" 304 0 "http://192.168.0.14/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8935
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:14 -0300] "GET /static/logs.js HTTP/1.1" 304 0 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/8018
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:14 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 304 0 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/9167
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:19 -0300] "GET /getsystemlogs HTTP/1.1" 200 2772 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6889
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:22 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7848
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:24 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6657
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:19:42 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7050
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:07 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6922
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:09 -0300] "GET /static/logs.html HTTP/1.1" 304 0 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7756
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:09 -0300] "GET /static/logs.js HTTP/1.1" 200 1947 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7586
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:10 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 304 0 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7555
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:11 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6844
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:14 -0300] "GET /getsystemlogs HTTP/1.1" 200 2772 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6351
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:16 -0300] "GET /getserverlogs HTTP/1.1" 200 2619 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/6363
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:33 -0300] "GET /static/logs/server/server_2015-10-04 21:07:15.569973.log HTTP/1.1" 200 602 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7206
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.0.11 - - [13/Oct/2015:23:20:42 -0300] "GET /static/logs/server/server_2015-10-04 21:07:15.569973.log HTTP/1.1" 200 602 "http://192.168.0.14/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" 0/7113

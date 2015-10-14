@@ -527,9 +527,7 @@ def gettars():
 
 @app.route('/deletesequence', method='POST')
 def deleteSequence():
-    print 'deletesequence'
     seqname = request.body.read()
-    print seqname
     os.remove('static/images/'+seqname)
     index = seqname.find('_ImageSequence.tar')
     dirname = seqname[:index]
