@@ -4,53 +4,95 @@
 import serial, io, math
 from serial import SerialException
 
-#Parametros para conexion serial con Telescopio
+#Device to connect via serial port
 device = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0';
 
-#Se establece conexión serial con el Telescopio, la instancia de la conexión se pasa a la variable "nexstar"
+#Establish serial connection with telescope. The connection instance is passed to nexstar variable
 try:
 	nexstar = serial.Serial(device, baudrate=9600, timeout=1)
 except SerialException:
 	nexstar = None;
 	print "Error: Port not found, make sure that the USB/Serial cable is connected to the Raspberry Pi, then restart the app or it will not work properly"
 
+#Variable to check communication
 check = 1
+
+#Error messages
 msg_error_check = 'Communication problem, check the conections and make sure that the telescope is on. Restart the app'
 msg_error_format = 'Error: Invalid format'
 msg_error_goto = 'Error: A problem has ocurred with the GOTO command, check the values and try again'
 
 ###########################################################################
-#Funciones Get Position:												  #
-# #format: especifíca en qué formato se requieren las coordenadas         #
-#		- 'percent_of_rev': Porcentaje de revolución					  #	
-#		- 'degrees': Grados 											  #
-#		- 'H/DMS': Horas/Grados:Minutos/Arcominutos:Segundos/Arcosegundos #
+#Check communication and status functions:							      #
 ###########################################################################
+def echo(x):
+	if nexstar != None:
+		command = ('K' + chr(x))
+		nexstar.write(command)
+		response = nexstar.read(2)
+		if len(response) == 0:
+			return 0
+		else:
+			return ord(response[0])
+	else:
+		return 0
+
+def is_alignment_complete():
+	nexstar.write('J')
+	response = nexstar.read(2)
+
+	align = ord(response[0])
+	return True if align == 1 else False
+
+def is_goto_in_progress():
+	nexstar.write('L')
+	response = nexstar.read(2)
+	return True if (int(response[0]) == 1) else False
+
+def cancel_goto():
+	nexstar.write('M')
+	response = nexstar.read(1)
+	return _verify_response(response)	
+
+#Entrega un error si la respuesta del telescopio no es la esperada
+def _verify_response(response):
+	if response == '#':
+		return 'Command received correctly, successful operation'
+	else:
+		return 'Error: failed operation'
+
+
+#################################################################################################
+#Get Position functions:												                        #
+# # format: Specifies format in that the coordinates are required.                               #
+#		- 'frac_of_rev': Fracción of a revolution    					                        #	
+#		- 'degrees': Decimal degrees											                #
+#		- 'H/DMS': Sexagesimal system (Hours:Minutes:Seconds) (Degrees:Arcminutes:Arcosegundos) #
+#################################################################################################
 def get_RA_DEC(format):
 	if echo(check) == check:
 		nexstar.write('E')
-		response = nexstar.read(10) #Se espera respuesta de 10 bytes
+		response = nexstar.read(10) #Expecting 10 bytes
 
-		ra = _hex_to_perc_of_rev(response[0:4])
-		dec = _hex_to_perc_of_rev(response[5:9])
+		ra = _hex_to_frac_of_rev(response[0:4])
+		dec = _hex_to_frac_of_rev(response[5:9])
 
-		if format == 'percent_of_rev':
+		if format == 'frac_of_rev':
 			#return ra, dec
-			return "RA: " + str(ra) + ", DEC: " + str(dec)
+			return "RA: " + str(ra) + ", Dec: " + str(dec)
 		elif format == 'degrees':
 			#return ra * 360, dec * 360
-			return "RA: " + str(ra*360) + ", DEC: " + str(dec*360)
+			return "RA: " + str(ra*360) + ", Dec: " + str(dec*360)
 		elif format == 'H/DMS':
 			ra_h, ra_m, ra_s  = _dd_to_hms(ra*360)
 			dec_d, dec_m, dec_s = _dd_to_dms(dec*360)
 			#return ra_h, ra_m, ra_s, dec_d, dec_m, dec_s
 			return ("RA: " + str(ra_h) + "h" + str(ra_m) + "m" + str(ra_s) + "s"
-				+ " DEC: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
+				+ " Dec: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
 		else:
 			return msg_error_format
 	else:
 		return msg_error_check
-
 
 
 def get_precise_RA_DEC(format):
@@ -58,18 +100,18 @@ def get_precise_RA_DEC(format):
 		nexstar.write('e')
 		response = nexstar.read(18) #Se espera respuesta de 18 bytes
 
-		ra = _hex_precise_to_perc_of_rev(response[0:8])
-		dec = _hex_precise_to_perc_of_rev(response[9:17])
+		ra = _hex_precise_to_frac_of_rev(response[0:8])
+		dec = _hex_precise_to_frac_of_rev(response[9:17])
 
-		if format == 'percent_of_rev':
-			return "RA: " + str(ra) + ", DEC: " + str(dec)
+		if format == 'frac_of_rev':
+			return "RA: " + str(ra) + ", Dec: " + str(dec)
 		elif format == 'degrees':
-			return "RA: " + str(ra*360) + ", DEC: " + str(dec*360)
+			return "RA: " + str(ra*360) + ", Dec: " + str(dec*360)
 		elif format == 'H/DMS':
 			ra_h, ra_m, ra_s  = _dd_to_hms(ra*360)
 			dec_d, dec_m, dec_s = _dd_to_dms(dec*360)
 			return ("RA: " + str(ra_h) + "h" + str(ra_m) + "m" + str(ra_s) + "s"
-				+ " DEC: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
+				+ " Dec: " + str(dec_d) + "°" + str(dec_m) + "'" + str(dec_s) + '"')
 		else:
 			return msg_error_format
 	else:
@@ -78,20 +120,20 @@ def get_precise_RA_DEC(format):
 def get_AZM_ALT(format):
 	if echo(check) == check:
 		nexstar.write('Z')
-		response = nexstar.read(10) #Se espera respuesta de 10 bytes
+		response = nexstar.read(10)
 
-		azm = _hex_to_perc_of_rev(response[0:4])
-		alt = _hex_to_perc_of_rev(response[5:9])
+		azm = _hex_to_frac_of_rev(response[0:4])
+		alt = _hex_to_frac_of_rev(response[5:9])
 
-		if format == 'percent_of_rev':
-			return "AZM: " + str(azm) + ", ALT: " + str(alt)
+		if format == 'frac_of_rev':
+			return "Azm: " + str(azm) + ", Alt: " + str(alt)
 		elif format == 'degrees':
-			return "AZM: " + str(azm*360) + ", ALT: " + str(alt*360)
+			return "Azm: " + str(azm*360) + ", Alt: " + str(alt*360)
 		elif format == 'H/DMS':
 			azm_d, azm_m, azm_s  = _dd_to_dms(azm*360)
 			alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
-			return ("AZM: " + str(azm_d) + "°" + str(azm_m) + "'" + str(azm_s) + '"'
-				+ " ALT: " + str(alt_d) + "°" + str(alt_m) + "'" + str(alt_s) + '"')
+			return ("Azm: " + str(azm_d) + "°" + str(azm_m) + "'" + str(azm_s) + '"'
+				+ " Alt: " + str(alt_d) + "°" + str(alt_m) + "'" + str(alt_s) + '"')
 		else:
 			return msg_error_format
 	else:
@@ -100,34 +142,34 @@ def get_AZM_ALT(format):
 def get_precise_AZM_ALT(format):
 	if echo(check) == check:
 		nexstar.write('z')
-		response = nexstar.read(18) #Se espera respuesta de 18 bytes
+		response = nexstar.read(18)
 
-		azm = _hex_precise_to_perc_of_rev(response[0:8])
-		alt = _hex_precise_to_perc_of_rev(response[9:17])
+		azm = _hex_precise_to_frac_of_rev(response[0:8])
+		alt = _hex_precise_to_frac_of_rev(response[9:17])
 
-		if format == 'percent_of_rev':
-			return "AZM: " + str(azm) + ", ALT: " + str(alt)
+		if format == 'frac_of_rev':
+			return "Azm: " + str(azm) + ", Alt: " + str(alt)
 		elif format == 'degrees':
-			return "AZM: " + str(azm*360) + ", ALT: " + str(alt*360)
+			return "Azm: " + str(azm*360) + ", Alt: " + str(alt*360)
 		elif format == 'H/DMS':
 			azm_d, azm_m, azm_s  = _dd_to_dms(azm*360)
 			alt_d, alt_m, alt_s = _dd_to_dms(alt*360)
-			return ("AZM: " + str(azm_d) + "°" + str(azm_m) + "'" + str(azm_s) + '"'
-				+ " ALT: " + str(alt_d) + "°" + str(alt_m) + "'" + str(alt_s) + '"')
+			return ("Azm: " + str(azm_d) + "°" + str(azm_m) + "'" + str(azm_s) + '"'
+				+ " Alt: " + str(alt_d) + "°" + str(alt_m) + "'" + str(alt_s) + '"')
 		else:
 			return msg_error_format
 	else:
 		return msg_error_check
 
-#Valor hexadecimal a fracción de revolución
-def _hex_to_perc_of_rev(value):
+#Hexadecimal value to fraction of revolution
+def _hex_to_frac_of_rev(value):
 	return int(value, 16) / 65536.0
 
-#Valor hexadecimal preciso a fracción de revolución
-def _hex_precise_to_perc_of_rev(value):
+#Precise hexadecimal value to fraction of revolution
+def _hex_precise_to_frac_of_rev(value):
 	return int(value, 16) / 4294967296.0
 
-#Grado decimal a Horas:Minutos:Segundos
+#Decimal degree to Hours:Minutes:Seconds
 def _dd_to_hms(dd):
 	hours = (dd/360.0)*24
 	if 1 <= hours < 10:
@@ -169,13 +211,7 @@ def _dd_to_hms(dd):
 
 	return int(sHours), int(sMins), float(sSecs)
 
-	#(hfrac, hours) = math.modf(dd)
-	#(mfrac, minutes) = math.modf(hfrac * 60)
-	#seconds = mfrac * 60.
-	#return (str(int(hours)) + 'h' + str(int(minutes)) + 'm' + str(seconds) + 's')
-	#return int(hours), int(minutes), seconds
-
-#Grado decimal a Grados:Arcominutos:Arcosegundos
+#Decimal degree to Degrees:Arcminutes:Arcseconds
 def _dd_to_dms(dd):
 	negative = dd < 0
 	dd = abs(dd)
@@ -191,19 +227,19 @@ def _dd_to_dms(dd):
 
 	return int(degrees), int(minutes), seconds
 
-#################################################################
-#Funciones GOTO:                                                #
-# #ra: valor de Right Ascension								    #
-# #dec: valor de Declination									#
-# #azm: valor de Azimuth	                                    #
-# #alt: valor de Altitude									    #
-# #format: especifíca en qué formato se reciben las coordenadas #
-#################################################################
+##################################################################
+#GOTO functions:                                                 #
+# # ra: Right Ascension value								     #
+# # dec: Declination value									     #
+# # azm: Azimuth value	                                         #
+# # alt: Altitude value									         #
+# # format: Specifies format in that the coordinates are required #
+##################################################################
 def goto_RA_DEC(ra, dec, format):
 	print ra, dec, format
 	if echo(check) == check:
-		if format == 'percent_of_rev':
-			command = ('R' + _perc_of_rev_to_hex(ra) + ',' + _perc_of_rev_to_hex(dec))
+		if format == 'frac_of_rev':
+			command = ('R' + _frac_of_rev_to_hex(ra) + ',' + _frac_of_rev_to_hex(dec))
 		elif format == 'degrees':
 			command = ('R' + _degrees_to_hex(ra) + ',' + _degrees_to_hex(dec))
 
@@ -224,9 +260,9 @@ def goto_RA_DEC(ra, dec, format):
 
 def goto_precise_RA_DEC(ra, dec, format):
 	if echo(check) == check:
-		if format == 'percent_of_rev':
-			command = ('r' + _perc_of_rev_to_hex_precise(ra) + ',' 
-				+ _perc_of_rev_to_hex_precise(dec))
+		if format == 'frac_of_rev':
+			command = ('r' + _frac_of_rev_to_hex_precise(ra) + ',' 
+				+ _frac_of_rev_to_hex_precise(dec))
 		elif format == 'degrees':
 			command = ('r' + _degrees_to_hex_precise(ra) + ',' 
 				+ _degrees_to_hex_precise(dec))
@@ -247,8 +283,8 @@ def goto_precise_RA_DEC(ra, dec, format):
 
 def goto_AZM_ALT(azm, alt, format):
 	if echo(check) == check:
-		if format == 'percent_of_rev':
-			command = ('B' + _perc_of_rev_to_hex(azm) + ',' + _perc_of_rev_to_hex(alt))
+		if format == 'frac_of_rev':
+			command = ('B' + _frac_of_rev_to_hex(azm) + ',' + _frac_of_rev_to_hex(alt))
 		elif format == 'degrees':
 			command = ('B' + _degrees_to_hex(azm) + ',' + _degrees_to_hex(alt))
 
@@ -269,13 +305,13 @@ def goto_AZM_ALT(azm, alt, format):
 def goto_precise_AZM_ALT(azm, alt, format):
 	print 'Funcion goto_precise_AZM_ALT'
 	print azm
-	print _perc_of_rev_to_hex_precise(azm)
+	print _frac_of_rev_to_hex_precise(azm)
 	print alt
-	print _perc_of_rev_to_hex_precise(alt)
+	print _frac_of_rev_to_hex_precise(alt)
 	if echo(check) == check:
-		if format == 'percent_of_rev':
-			command = ('b' + _perc_of_rev_to_hex_precise(azm) + ',' 
-				+ _perc_of_rev_to_hex_precise(alt))
+		if format == 'frac_of_rev':
+			command = ('b' + _frac_of_rev_to_hex_precise(azm) + ',' 
+				+ _frac_of_rev_to_hex_precise(alt))
 		elif format == 'degrees':
 			command = ('b' + _degrees_to_hex_precise(azm) + ',' 
 				+ _degrees_to_hex_precise(alt))
@@ -294,10 +330,10 @@ def goto_precise_AZM_ALT(azm, alt, format):
 	else:
 		return msg_error_check
 
-def _perc_of_rev_to_hex(value):
+def _frac_of_rev_to_hex(value):
 	return '%04X' % round(value * 2.**16)
 
-def _perc_of_rev_to_hex_precise(value):	
+def _frac_of_rev_to_hex_precise(value):	
 	return '%08X' % round(value * 2.**32)
 
 def _degrees_to_hex(value):
@@ -307,19 +343,19 @@ def _degrees_to_hex_precise(value):
 	return '%08X' % round(value / 360. * 2.**32)	
 
 #################################################################
-#Funciones GOTO con parámetros de entrada como h:m:s y °:':"    #                                                #
-# #ra_h: hours value of Right Ascension							#
-# #ra_m: minutes value of Right Ascension						#
-# #ra_s: seconds value of Right Ascension		  				#						
-# #dec_d: degrees value of Declination							#
-# #dec_m: arcminutes value of Declination						#
-# #dec_s: arcseconds value of Declination						#										
-# #azm_d: degrees value of Azimuth							    #
-# #azm_m: arcminutes value of Azimuth					 	    #
-# #azm_s: arcseconds value of Azimuth						    #
-# #alt_d: degrees value of Altitude						        #
-# #alt_m: arcminutes value of Altitude					 	    #
-# #alt_s: arcseconds value of Altitude						    #
+#GOTO functions with sexagesimal input                          #                                                #
+# # ra_h: hours value of Right Ascension						#
+# # ra_m: minutes value of Right Ascension						#
+# # ra_s: seconds value of Right Ascension		  				#						
+# # dec_d: degrees value of Declination							#
+# # dec_m: arcminutes value of Declination						#
+# # dec_s: arcseconds value of Declination						#										
+# # azm_d: degrees value of Azimuth							    #
+# # azm_m: arcminutes value of Azimuth					 	    #
+# # azm_s: arcseconds value of Azimuth						    #
+# # alt_d: degrees value of Altitude						    #
+# # alt_m: arcminutes value of Altitude					 	    #
+# # alt_s: arcseconds value of Altitude						    #
 #################################################################
 def goto_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s):
 	ra_dd = _hms_to_dd(ra_h, ra_m, ra_s)
@@ -333,14 +369,14 @@ def goto_AZM_ALT_dms(azm_d, azm_m, azm_s, alt_d, alt_m, alt_s):
 
 	return goto_precise_AZM_ALT(azm_dd, alt_dd, 'degrees')	
 
-#Horas:Minutos:Segundos a grado decimal
+#Hours:Minutes_Seconds to decimal degrees
 def _hms_to_dd(h, m, s):
 	first = float(h) + float(m)/60.0 + float(s)/3600.0
-	percent = first / 24
-	degrees = percent * 360
+	frac = first / 24
+	degrees = frac * 360
 	return degrees
 
-#Grados:Arcominutos:Arcosegundos a grado decimal
+#Degrees:Arcminutes:Arcseconds to decimal degrees
 def _dms_to_dd(d, m, s):
 	if d < 0:
 		degrees = float(d) - float(m)/60.0 - float(s)/3600.0
@@ -349,13 +385,16 @@ def _dms_to_dd(d, m, s):
 
 	return degrees
 
-#################
-#Funciones Sync:#
-#################
+###################################################################
+#Sync functions:                                                  #
+# # ra: Right Ascension value								      #
+# # dec: Declination value									      #								         #
+# # format: Specifies format in that the coordinates are required #
+###################################################################
 def sync_RA_DEC(ra, dec, format):
 	if echo(check) == check:
-		if format == 'percent_of_rev':
-			command = ('S' + _perc_of_rev_to_hex(ra) + ',' + _perc_of_rev_to_hex(dec))
+		if format == 'frac_of_rev':
+			command = ('S' + _frac_of_rev_to_hex(ra) + ',' + _frac_of_rev_to_hex(dec))
 		elif format == 'degrees':
 			command = ('S' + _degrees_to_hex(ra) + ',' + _degrees_to_hex(dec))
 
@@ -368,9 +407,9 @@ def sync_RA_DEC(ra, dec, format):
 
 def sync_precise_RA_DEC(ra, dec, format):
 	if echo(check) == check:
-		if format == 'percent_of_rev':
-			command = ('s' + _perc_of_rev_to_hex_precise(ra) + ',' 
-				+ _perc_of_rev_to_hex_precise(dec))
+		if format == 'frac_of_rev':
+			command = ('s' + _frac_of_rev_to_hex_precise(ra) + ',' 
+				+ _frac_of_rev_to_hex_precise(dec))
 		elif format == 'degrees':
 			command = ('s' + _degrees_to_hex_precise(ra) + ',' 
 				+ _degrees_to_hex_precise(dec))
@@ -381,20 +420,29 @@ def sync_precise_RA_DEC(ra, dec, format):
 	else:
 		return msg_error_check
 
+#################################################################
+#Sync function with sexagesimal input                           #                                                #
+# # ra_h: hours value of Right Ascension						#
+# # ra_m: minutes value of Right Ascension						#
+# # ra_s: seconds value of Right Ascension		  				#						
+# # dec_d: degrees value of Declination							#
+# # dec_m: arcminutes value of Declination						#
+# # dec_s: arcseconds value of Declination						#										
+#################################################################
 def sync_RA_DEC_hdms(ra_h, ra_m, ra_s, dec_d, dec_m, dec_s):
 	ra_dd = _hms_to_dd(ra_h, ra_m, ra_s)
 	dec_dd = _dms_to_dd(dec_d, dec_m,dec_s)
 
 	return sync_precise_RA_DEC(ra_dd, dec_dd, 'degrees')
 
-#####################
-#Funciones Tracking:#
-#####################
-	#Tracking modes:
-		# 0 = Off
-		# 1 = Alt/Az
-		# 2 = EQ North
-		# 3 = EQ South
+######################
+#Tracking functions: #
+## Tracking modes:   #
+#	# 0 = Off        #
+#	# 1 = Alt/Az     #
+#	# 2 = EQ North   #
+#	# 3 = EQ South   #
+######################
 def get_tracking_mode():
 	if echo(check) == check:
 		nexstar.write('t')
@@ -419,10 +467,12 @@ def set_tracking_mode(mode):
 	else:
 		return msg_error_check
 
-####################
-#Funciones Slewing:#
-####################
-#Recibe direction: azm_ra o alt_dec y rate en arcseconds/second
+############################################
+#Slewing functions:                        #     
+# # direction: Slew direction              #
+# # sign: Slew sense                       #
+# # rate: Slew rate [arcoseconds/seconds]  #
+############################################
 def slew_var_rate(direction, sign, rate):
 	if echo(check) == check:
 		if direction == 'azm_ra':
@@ -477,28 +527,27 @@ def stop_slewing():
 	return 'Slewing has stopped'
 
 
-##########################
-#Funciones Time/location:#
-##########################
-#El formato para los comandos de Location es: ABCDEFGH, donde:
-	#A is the number of degrees of latitude.
-	#B is the number of minutes of latitude.
-	#C is the number of seconds of latitude.
-	#D is 0 for north and 1 for south.
-	#E is the number of degrees of longitude.
-	#F is the number of minutes of longitude.
-	#G is the number of seconds of longitude.
-	#H is 0 for east and 1 for west.
-#El formato para los comandos de Time es: QRSTUVWX, donde:
-	#Q is the hour (24 hour clock).
-	#R is the minutes.
-	#S is the seconds.
-	#T is the month.
-	#U is the day.
-	#V is the year (century assumed as 20).
-	#W is the offset from GMT for the time zone. Note: if zone is negative, use 256-zone.
-	#X is 1 to enable Daylight Savings and 0 for Standard Time.
-
+#############################################################################################
+#Time/location functions:                                                                   #
+# # Location format is: ABCDEFGH, where:                                                    #
+	# A is the number of degrees of latitude.                                               #
+	# B is the number of minutes of latitude.                                               #
+	# C is the number of seconds of latitude.                                               #
+	# D is 0 for north and 1 for south.                                                     #
+	# E is the number of degrees of longitude.                                              #
+	# F is the number of minutes of longitude.                                              #
+	# G is the number of seconds of longitude.                                              #
+	# H is 0 for east and 1 for west.                                                       #
+# # Time format is: QRSTUVWX, where:                                                        #
+	# Q is the hour (24 hour clock).                                                        #
+	# R is the minutes.                                                                     #
+	# S is the seconds.                                                                     #
+	# T is the month.                                                                       #
+	# U is the day.                                                                         #
+	# V is the year (century assumed as 20).                                                #
+	# W is the offset from GMT for the time zone. Note: if zone is negative, use 256-zone.  #
+	# X is 1 to enable Daylight Savings and 0 for Standard Time.                            #
+#############################################################################################
 def get_location():
 	if echo(check) == check:
 		nexstar.write('w')
@@ -555,7 +604,6 @@ def get_time():
 	else:
 		return msg_error_check
 
-#Se recibe Time con el siguiente formato: (HH,MM,SS,DD,MM,YY,GMT_Offset,type) 
 def set_time(Q, R, S, T, U, V, W, X):
 	if echo(check) == check:
 		if W < 0:
@@ -569,9 +617,10 @@ def set_time(Q, R, S, T, U, V, W, X):
 		return msg_error_check
 
 
-################
-#Funciones GPS:#
-################
+###################################################################
+#GPS functions:                                                   #
+# # format: Specifies format in that the coordinates are required #
+###################################################################
 def is_gps_linked():
 	if echo(check) == check:
 		command = ('P' + chr(1) + chr(176) + chr(55) + chr(0) + chr(0)
@@ -604,7 +653,7 @@ def gps_get_latitude(format):
 			latitude = (ord(response[0]) * 2.**16 + ord(response[1]) * 2.**8 +
 				ord(response[2])) / (2.**24)
 
-			if format == 'percent_of_rev':
+			if format == 'frac_of_rev':
 				return latitude
 			elif format == 'degrees':
 				return latitude * 360
@@ -626,7 +675,7 @@ def gps_get_longitude(format):
 			longitude = (ord(response[0]) * 2.**16 + ord(response[1]) * 2.**8 +
 				ord(response[2])) / (2.**24)
 
-			if format == 'percent_of_rev':
+			if format == 'frac_of_rev':
 				return longitude
 			elif format == 'degrees':
 				return longitude * 360
@@ -677,7 +726,7 @@ def gps_get_time():
 
 
 ############################
-#Funciones RTC (CGE Mount):#
+#RTC (CGE Mount) functions:#
 ############################
 def rtc_get_date():
 	if echo(check) == check:
@@ -742,108 +791,3 @@ def rtc_set_time(hours, minutes, seconds):
 		return _verify_response(response)
 	else:
 		return msg_error_check
-
-
-########################
-#Funciones Misceláneas:#
-########################
-def get_version():
-	if echo(check) == check:
-		nexstar.write('V')
-		response = nexstar.read(3)
-		if response[2] == '#':
-			return 'Major: ' + str(ord(response[0])) + ', minor: ' + str(ord(response[1]))
-		else:
-			return 'Error: The telescope has send wrong information'
-	else:
-		return msg_error_check
-
-def get_device_version(device):
-	if echo(check) == check:
-		if device == 'AZM/RA Motor':
-			dev = 16
-		elif device == 'ALT/DEC Motor':
-			dev = 17
-		elif device == 'GPS Unit':
-			dev = 176
-		elif device == 'RTC':
-			dev = 178
-		else:
-			return 'Error: Invalid device'
-
-		command = ('P' + chr(1) + chr(dev) + chr(254) + chr(0) + 
-			chr(0) + chr(0) + chr(2))
-		nexstar.write(command)
-		response = nexstar.read(3)
-		return 'Major: ' + str(ord(response[0])) + ', minor: ' + str(ord(response[1]))
-	else:
-		return msg_error_check
-
-def get_model():
-	if echo(check) == check:
-		nexstar.write('m')
-		response = nexstar.read(2)
-
-		model = ord(response[0])
-		if model == 1:
-			return 'GPS Series'
-		elif model == 3:
-			return 'i-Series'
-		elif model == 4:
-			return 'i-Series SE'
-		elif model == 5:
-			return 'CGE'
-		elif model == 6:
-			return 'Advanced GT'
-		elif model == 7:
-			return 'SLT'
-		elif model == 9:
-			return 'CPC'
-		elif model == 10:
-			return 'GT'
-		elif model == 11:
-			return '4/5 SE'
-		elif model == 12:
-			return '6/8 SE'
-		else:
-			return 'Modelo desconocido (model id: ' + str(ord(response[0])) + ')'
-	else:
-		return msg_error_check
-
-#Para chequear comunicación
-def echo(x):
-	if nexstar != None:
-		command = ('K' + chr(x))
-		nexstar.write(command)
-		response = nexstar.read(2)
-		if len(response) == 0:
-			return 0
-		else:
-			return ord(response[0])
-	else:
-		return 0
-
-def is_alignment_complete():
-	nexstar.write('J')
-	response = nexstar.read(2)
-
-	align = ord(response[0])
-	return True if align == 1 else False
-
-def is_goto_in_progress():
-	nexstar.write('L')
-	response = nexstar.read(2)
-	return True if (int(response[0]) == 1) else False
-
-def cancel_goto():
-	nexstar.write('M')
-	response = nexstar.read(1)
-	return _verify_response(response)	
-
-#Entrega un error si la respuesta del telescopio no es la esperada
-def _verify_response(response):
-	if response == '#':
-		return 'Command received correctly, successful operation'
-	else:
-		return 'Error: failed operation'
-

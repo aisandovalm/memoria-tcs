@@ -5,6 +5,39 @@ import subprocess, tcs_bottle_config, os
 
 global_usb_port = None
 
+def _verify_camera():
+	if _detectcamera() == False:
+		return "Camera not found"
+	resetusb()
+
+def _detectcamera():
+	gphoto_detect = subprocess.check_output(['sudo', 'gphoto2', '--auto-detect'])
+	
+	if gphoto_detect == None:
+		return False
+		
+	usb_device = gphoto_detect.split(":")
+	if len(usb_device) < 2:
+		return False
+	else:
+		usb_device = usb_device[1].strip().replace(",","/")
+		global global_usb_port
+		global_usb_port = usb_device
+		return True		
+
+def resetusb():	
+	if global_usb_port != None:
+		subprocess.Popen(['sudo', tcs_bottle_config.config['usbresetpath'], '/dev/bus/usb/' + global_usb_port])
+		return True
+	else:
+		return False
+
+def _execute_command(command):
+	#response = _verify_camera()
+	gphoto_command = ['sudo', 'gphoto2'] + command
+	gphoto_response = subprocess.check_call(gphoto_command)
+	return gphoto_response
+
 def list_config():
 	command = ['--list-config']
 	execute_response = _execute_command(command)	
@@ -84,49 +117,3 @@ def capture_preview():
 	execute_response = _execute_command(command)
 	return 'captured'
 
-
-def _execute_command(command):
-	#response = _verify_camera()
-	gphoto_command = ['sudo', 'gphoto2'] + command
-	gphoto_response = subprocess.check_call(gphoto_command)
-	return gphoto_response
-
-def execute(command):
-	
-	if _detectcamera() == False:
-		return "Camera not found"
-	
-	resetusb()	
-	gphotocommand = ['sudo', 'gphoto2'] + command
-	gphoto_response = subprocess.check_output(gphotocommand)
-	resetusb()
-	
-	return gphoto_response
-
-def _verify_camera():
-	if _detectcamera() == False:
-		return "Camera not found"
-
-	resetusb()
-
-def _detectcamera():
-	gphoto_detect = subprocess.check_output(['sudo', 'gphoto2', '--auto-detect'])
-	
-	if gphoto_detect == None:
-		return False
-		
-	usb_device = gphoto_detect.split(":")
-	if len(usb_device) < 2:
-		return False
-	else:
-		usb_device = usb_device[1].strip().replace(",","/")
-		global global_usb_port
-		global_usb_port = usb_device
-		return True		
-
-def resetusb():	
-	if global_usb_port != None:
-		subprocess.Popen(['sudo', tcs_bottle_config.config['usbresetpath'], '/dev/bus/usb/' + global_usb_port])
-		return True
-	else:
-		return False
