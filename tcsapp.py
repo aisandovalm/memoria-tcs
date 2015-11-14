@@ -9,14 +9,19 @@ import logging
 #Datetime
 import datetime
 
-#Se obtiene datetime para agregar al nombre de los logs
+#Datetime to add in logs names
 _datetime = str(datetime.datetime.now())
 
-#En tcssystem.log se almacenan todos los eventos de log
+#System logs events are saved in static/logs/system/tcssystem_<datetime>.log
 logging.basicConfig(filename='static/logs/system/tcssystem_'+_datetime+'.log', level=logging.DEBUG)
+
+#Server logs events are saved in static/logs/server/server_<datetime>.log
+handlers = [TimedRotatingFileHandler('static/logs/server/server_'+_datetime+'.log', 'd', 7),]
+app = WSGILogger(app, handlers, ApacheFormatter())
 
 app = Bottle()
 
+#Allow CORS (Cross-Origin Resource Sharing). Permits requests and response from outsite the domain.
 @app.hook('after_request')
 def enable_cors():
     print "after_request hook"
@@ -36,7 +41,6 @@ def server_static(filepath):
 ###################################################
 ############# TELESCOPE ###########################
 ###################################################
-
 @app.route('/getposition', method='POST')
 def get_position():
     c = request.forms.get('coordinates')
@@ -359,29 +363,6 @@ def rtc_settime():
     else:
         return 'Invalid input value, please type numeric values'
 
-'''
-@app.route('/version', method='POST')
-def get_version():
-    response = telescope.get_version()
-    print response
-    logging.debug(response)
-    return response
-
-@app.route('/deviceversion', method='POST')
-def get_deviceversion():
-    device = request.forms.get('device')
-    response = telescope.get_device_version(device)
-    print response
-    logging.debug(response)
-    return response
-
-@app.route('/model', method='POST')
-def get_model():
-    response = telescope.get_model()
-    print response
-    logging.debug(response)
-    return response
-'''
 
 ###################################################
 ############# CAMERA ##############################
@@ -431,10 +412,10 @@ def capture_imagesequence():
     frames = request.forms.get('frames')
     interval = request.forms.get('timeinterval')
     directoryname = request.forms.get('seqname')
-    if frames == '': #Para prevenir infinitas imagenes
+    if frames == '': #To prevent infinite images
         logging.debug('Error: Invalid number of images. Please try again')
         return 'Error: Invalid number of images. Please try again'
-    if interval == '': #Para prevenir infinito tiempo entre imagenes
+    if interval == '': #To prevent infinite time interval between captures
         logging.debug('Error: Invalid time interval. Please try again')
         return 'Error: Invalid time interval. Please try again'
     response = camera.capture_sequence(directoryname, frames, interval)
@@ -501,14 +482,14 @@ def deletesystemlog():
     print "Delete system log"
     filename = request.body.read()
     os.remove('static/logs/system/'+filename)
-    return 'borrado'
+    return 'Deleted'
 
 @app.route('/deleteserverlog', method='POST')
 def deleteserverlog():
     print "Delete server log"
     filename = request.body.read()
     os.remove('static/logs/server/'+filename)
-    return 'borrado'
+    return 'Deleted'
 
 ###################################################
 ############# IMAGES ##############################
@@ -532,12 +513,7 @@ def deleteSequence():
     index = seqname.find('_ImageSequence.tar')
     dirname = seqname[:index]
     os.removedirs('static/images/'+dirname)
-    return 'borrados'
-
-#En bottleserver.log se almacenan solo los logs correspondientes al servidor (htttp requests)
-handlers = [TimedRotatingFileHandler('static/logs/server/server_'+_datetime+'.log', 'd', 7),]
-app = WSGILogger(app, handlers, ApacheFormatter())
-
+    return 'Deleted'
 
 bottle.debug(tcs_bottle_config.config['bottle_debug'])
 run(app, host=tcs_bottle_config.config['bottle_ip'], port=tcs_bottle_config.config['bottle_port'], reloader=tcs_bottle_config.config['bottle_reloader'], server='cherrypy')
