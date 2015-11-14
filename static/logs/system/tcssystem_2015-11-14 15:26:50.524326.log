@@ -1,0 +1,56 @@
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:26:58 -0300] "GET / HTTP/1.1" 304 0 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/13723
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:26:59 -0300] "GET /static/backgroundimgs/home.jpg HTTP/1.1" 304 0 "http://192.168.100.2/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/8305
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:00 -0300] "GET /static/telescope.html HTTP/1.1" 304 0 "http://192.168.100.2/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7494
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:00 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.100.2/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7447
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:00 -0300] "GET /static/backgroundimgs/telescope.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7727
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:01 -0300] "GET /static/camera.html HTTP/1.1" 304 0 "http://192.168.100.2/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7319
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:02 -0300] "GET /static/camera.js HTTP/1.1" 304 0 "http://192.168.100.2/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7562
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:02 -0300] "GET /static/backgroundimgs/camera.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7551
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:03 -0300] "GET /static/images.html HTTP/1.1" 304 0 "http://192.168.100.2/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7607
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:03 -0300] "GET /static/images.js HTTP/1.1" 304 0 "http://192.168.100.2/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7498
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:04 -0300] "GET /static/backgroundimgs/sequences.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7488
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:05 -0300] "GET /static/logs.html HTTP/1.1" 304 0 "http://192.168.100.2/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/11744
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:05 -0300] "GET /static/logs.js HTTP/1.1" 304 0 "http://192.168.100.2/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7503
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:27:05 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7650
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:28:58 -0300] "GET / HTTP/1.1" 200 1089 "" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7707
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:28:59 -0300] "GET /static/backgroundimgs/home.jpg HTTP/1.1" 304 0 "http://192.168.100.2/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7554
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:16 -0300] "GET /static/telescope.html HTTP/1.1" 200 20818 "http://192.168.100.2/" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7956
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:16 -0300] "GET /static/telescope.js HTTP/1.1" 304 0 "http://192.168.100.2/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7519
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:16 -0300] "GET /static/backgroundimgs/telescope.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7539
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:34 -0300] "GET /static/camera.html HTTP/1.1" 200 5953 "http://192.168.100.2/static/telescope.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7966
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:34 -0300] "GET /static/camera.js HTTP/1.1" 304 0 "http://192.168.100.2/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/13092
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:35 -0300] "GET /static/backgroundimgs/camera.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7603
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:37 -0300] "GET /static/images.html HTTP/1.1" 200 1697 "http://192.168.100.2/static/camera.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7646
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:38 -0300] "GET /static/images.js HTTP/1.1" 304 0 "http://192.168.100.2/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7600
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:38 -0300] "GET /static/backgroundimgs/sequences.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7693
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:41 -0300] "GET /static/logs.html HTTP/1.1" 200 2060 "http://192.168.100.2/static/images.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7699
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:41 -0300] "GET /static/logs.js HTTP/1.1" 304 0 "http://192.168.100.2/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/7555
+DEBUG:root:after_request hook
+INFO:requestlogger:192.168.100.1 - - [14/Nov/2015:15:29:41 -0300] "GET /static/backgroundimgs/logs.jpg HTTP/1.1" 304 0 "http://192.168.100.2/static/logs.html" "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0" 0/17838

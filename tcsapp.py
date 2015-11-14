@@ -17,7 +17,6 @@ logging.basicConfig(filename='static/logs/system/tcssystem_'+_datetime+'.log', l
 
 #Server logs events are saved in static/logs/server/server_<datetime>.log
 handlers = [TimedRotatingFileHandler('static/logs/server/server_'+_datetime+'.log', 'd', 7),]
-app = WSGILogger(app, handlers, ApacheFormatter())
 
 app = Bottle()
 
@@ -514,6 +513,8 @@ def deleteSequence():
     dirname = seqname[:index]
     os.removedirs('static/images/'+dirname)
     return 'Deleted'
+
+app = WSGILogger(app, handlers, ApacheFormatter())
 
 bottle.debug(tcs_bottle_config.config['bottle_debug'])
 run(app, host=tcs_bottle_config.config['bottle_ip'], port=tcs_bottle_config.config['bottle_port'], reloader=tcs_bottle_config.config['bottle_reloader'], server='cherrypy')
